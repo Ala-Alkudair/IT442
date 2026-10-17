@@ -1,0 +1,1681 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>شرح الفصل السابع: الشبكات اللاسلكية</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Reem+Kufi:wght@500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one reading column, sticky part-nav, each slide a numbered sheet with its own badge */
+:root{
+  --bg:#f3f6f9; --paper:#ffffff; --ink:#14233a; --muted:#5a6b80; --line:#d5dee8;
+  --sig:#0a8f8a; --sig-soft:#dff3f1; --amber:#c27a12; --amber-soft:#fbefd9;
+  --rose:#c2414b; --rose-soft:#fbe3e5; --violet:#5b4bc4; --violet-soft:#e8e5fb;
+  --display:"Reem Kufi","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --body:"IBM Plex Sans Arabic",Tahoma,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1520; --paper:#152131; --ink:#e6edf5; --muted:#9aabbf; --line:#2a3a50;
+  --sig:#3cc7c0; --sig-soft:#123634; --amber:#f0b04c; --amber-soft:#3a2c14;
+  --rose:#f07a83; --rose-soft:#3d1c20; --violet:#a497ff; --violet-soft:#26224a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1520; --paper:#152131; --ink:#e6edf5; --muted:#9aabbf; --line:#2a3a50;
+  --sig:#3cc7c0; --sig-soft:#123634; --amber:#f0b04c; --amber-soft:#3a2c14;
+  --rose:#f07a83; --rose-soft:#3d1c20; --violet:#a497ff; --violet-soft:#26224a; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.85;direction:rtl;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 60px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:860px;margin:0 auto}
+header.hero{padding-block:44px 28px}
+.hero .eyebrow{font-size:14px;color:var(--sig);font-weight:700;letter-spacing:.02em}
+.hero h1{font-family:var(--display);font-size:clamp(34px,7vw,56px);line-height:1.25;margin:6px 0 10px;text-wrap:balance}
+.hero p{font-size:18px;color:var(--muted);margin:0;max-width:62ch}
+.wave{display:block;width:100%;height:46px;margin-top:18px}
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border:1px solid var(--line);border-radius:14px;
+  padding:10px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:26px}
+nav.top a{font-size:14px;text-decoration:none;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;white-space:nowrap}
+nav.top a:hover,nav.top a:focus-visible{border-color:var(--sig);color:var(--sig);outline:none}
+.jump{display:flex;gap:6px;align-items:center;margin-inline-start:auto}
+.jump label{font-size:13px;color:var(--muted)}
+.jump input{width:70px;font:inherit;font-size:15px;padding:2px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.jump button{font:inherit;font-size:14px;padding:2px 12px;border-radius:8px;border:0;background:var(--sig);color:var(--paper);cursor:pointer}
+.jump button:focus-visible,.jump input:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+section.part{margin-top:46px}
+.part-h{display:flex;gap:14px;align-items:center;margin-bottom:18px}
+.part-h .emo{font-size:40px;line-height:1}
+.part-h h2{font-family:var(--display);font-size:clamp(26px,5vw,38px);margin:0;line-height:1.3}
+.part-h small{display:block;font-family:var(--body);font-size:14px;color:var(--muted);font-weight:500}
+.s{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:16px;scroll-margin-top:90px}
+.s.mini{padding:12px 18px}
+.s.mini .sh h3{font-size:18px}
+.sh{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.n{font-family:var(--mono);font-size:13px;background:var(--ink);color:var(--paper);border-radius:8px;padding:2px 10px;white-space:nowrap}
+.sh h3{font-family:var(--display);font-size:24px;margin:0;line-height:1.4;text-wrap:balance}
+.s p{margin:6px 0}
+.s ul,.s ol{margin:6px 0;padding-inline-start:22px}
+.s li{margin:3px 0}
+.en{font-family:var(--mono);font-size:.86em;direction:ltr;unicode-bidi:isolate;color:var(--violet)}
+.small{font-size:14px;color:var(--muted)}
+.key{background:var(--amber-soft);border-inline-start:4px solid var(--amber);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:19px;font-weight:700}
+.tip{background:var(--sig-soft);border-radius:10px;padding:10px 14px;margin:10px 0}
+.warn{background:var(--rose-soft);border-radius:10px;padding:10px 14px;margin:10px 0}
+.formula{direction:ltr;text-align:center;font-family:var(--mono);font-size:20px;background:var(--violet-soft);color:var(--ink);border-radius:10px;padding:12px;margin:10px 0;overflow-x:auto}
+.big{font-size:22px;font-weight:700}
+.tw{overflow-x:auto;margin:10px 0}
+table.t{border-collapse:collapse;width:100%;font-size:15px;min-width:420px}
+table.t th,table.t td{border:1px solid var(--line);padding:8px 10px;text-align:right;vertical-align:top}
+table.t th{background:var(--sig-soft);font-weight:700}
+table.t td.c,table.t th.c{text-align:center}
+.num{font-variant-numeric:tabular-nums}
+.fig{overflow-x:auto;margin:12px 0;background:var(--bg);border-radius:12px;padding:10px}
+.fig svg{display:block;margin:0 auto;max-width:100%;height:auto}
+.fig .cap{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+svg text{font-family:var(--body);fill:var(--ink)}
+svg .mu{fill:var(--muted)}
+svg .st{stroke:var(--ink);fill:none;stroke-width:2}
+svg .sm{stroke:var(--muted);fill:none;stroke-width:1.5}
+svg .sg{stroke:var(--sig);fill:none;stroke-width:2.5}
+svg .sa{stroke:var(--amber);fill:none;stroke-width:2.5}
+svg .sr{stroke:var(--rose);fill:none;stroke-width:2.5}
+svg .sv{stroke:var(--violet);fill:none;stroke-width:2.5}
+svg .fp{fill:var(--paper);stroke:var(--ink);stroke-width:1.5}
+svg .fg{fill:var(--sig-soft);stroke:var(--sig);stroke-width:1.5}
+svg .fa{fill:var(--amber-soft);stroke:var(--amber);stroke-width:1.5}
+svg .fr{fill:var(--rose-soft);stroke:var(--rose);stroke-width:1.5}
+svg .fv{fill:var(--violet-soft);stroke:var(--violet);stroke-width:1.5}
+svg .dot{fill:var(--sig)}
+svg .dash{stroke-dasharray:6 5}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:10px 0}
+.grid2>div{min-width:0;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.grid2 h4{margin:0 0 4px;font-size:18px}
+.steps{counter-reset:st;list-style:none;padding:0!important}
+.steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:8px 0}
+.steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:2px;width:28px;height:28px;border-radius:50%;background:var(--sig);color:var(--paper);font-family:var(--mono);font-size:14px;display:grid;place-items:center}
+footer{margin-top:40px;text-align:center;font-size:14px;color:var(--muted)}
+@media (max-width:520px){body{font-size:16px}.sh h3{font-size:21px}.s{padding:16px}.formula{font-size:16px}}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <div class="eyebrow">📡 IT442 · Chapter 7 · Kurose & Ross</div>
+  <h1>الشبكات اللاسلكية والمتنقلة</h1>
+  <p>شرح كامل لكل سلايدات الفصل السابع (135 سلايد) بالترتيب، وكل شرح فوقه رقم السلايد. المحتوى من السلايدات نفسها بس، بدون أي معلومة زيادة.</p>
+  <svg class="wave" viewBox="0 0 800 46" preserveAspectRatio="none" aria-hidden="true">
+    <path class="sg" d="M0 23 Q 25 0 50 23 T 100 23 T 150 23 T 200 23 T 250 23 T 300 23 T 350 23 T 400 23 T 450 23 T 500 23 T 550 23 T 600 23 T 650 23 T 700 23 T 750 23 T 800 23"/>
+  </svg>
+</header>
+
+<nav class="top" aria-label="أجزاء الشرح">
+  <a href="#p1">🧭 المقدمة</a>
+  <a href="#p2">📻 الطبقة الفيزيائية</a>
+  <a href="#p3">📶 WiFi</a>
+  <a href="#p4">🗼 الخلوي 3G/4G/5G</a>
+  <a href="#p5">😴 النوم والاستيقاظ</a>
+  <a href="#p6">🧠 5G Core</a>
+  <a href="#p7">🚗 التنقل</a>
+  <a href="#p8">🔵 Bluetooth و IoT</a>
+  <form class="jump" id="jumpf">
+    <label for="jn">روح لسلايد</label>
+    <input id="jn" type="number" min="1" max="135" inputmode="numeric" placeholder="1-135">
+    <button type="submit">↩</button>
+  </form>
+</nav>
+
+<!-- ================= PART 1 ================= -->
+<section class="part" id="p1">
+<div class="part-h"><span class="emo">🧭</span><h2>الجزء الأول: المقدمة<small>سلايد 1 إلى 15</small></h2></div>
+
+<article class="s" id="s1"><div class="sh"><span class="n">سلايد 1</span><h3>📘 عنوان الفصل</h3></div>
+<p class="big">Chapter 7: Wireless and Mobile Networks</p>
+<p>ملاحظة من المؤلفين <span class="en">Kurose & Ross</span>: السلايدات مجانية للجميع، وكل اللي يطلبونه:</p>
+<ul><li>✅ لو استخدمتها (مثلاً في محاضرة) اذكر المصدر.</li><li>✅ لو نشرتها على موقع، اذكر إنها مأخوذة من سلايداتهم واذكر حقوق النشر.</li></ul>
+<p class="small">📚 المصدر: Computer Networking: A Top-Down Approach، الطبعة التاسعة، Pearson 2025.</p>
+</article>
+
+<article class="s" id="s2"><div class="sh"><span class="n">سلايد 2</span><h3>🎯 نظرة عامة وأهداف الفصل</h3></div>
+<p>الهدف إنك تفهم مبادئ الشبكات اللاسلكية في هذي المستويات:</p>
+<div class="tw"><table class="t">
+<tr><th>المستوى</th><th>وش ندرس فيه</th></tr>
+<tr><td>📻 <b>Physical layer</b></td><td>الراديو، وكيف يأثر على الطبقات اللي فوقه</td></tr>
+<tr><td>📶 <b>Access network</b></td><td>تحديات طبقة الربط (link layer) وحلولها في أي شبكة لاسلكية</td></tr>
+<tr><td>🧠 <b>Core network</b></td><td>طبقة "الشبكة" (network layer) في الشبكة اللاسلكية</td></tr>
+<tr><td>🚗 <b>Mobility</b></td><td>تنقل المستخدم أو الجهاز بين شبكات الوصول</td></tr>
+<tr><td>🛰️ <b>شبكات لتطبيقات معينة</b></td><td>Bluetooth والأقمار الصناعية و IoT</td></tr>
+</table></div>
+<p>وعلى أرض الواقع: <b>WiFi</b>، و<b>5G</b> (مع شي بسيط من 4G)، و<b>Bluetooth والأقمار الصناعية و IoT</b>.</p>
+</article>
+
+<article class="s mini" id="s3"><div class="sh"><span class="n">سلايد 3</span><h3>🗺️ مخطط الفصل</h3></div>
+<p>المقدمة ← الراديو (الطبقة الفيزيائية) ← شبكة الوصول اللاسلكية (المبادئ، WiFi، 5G) ← الشبكة الأساسية (المبادئ، 5G) ← التنقل ← Bluetooth والأقمار الصناعية و IoT.</p>
+</article>
+
+<article class="s" id="s4"><div class="sh"><span class="n">سلايد 4</span><h3>📈 السياق: ليش اللاسلكي مهم؟</h3></div>
+<div class="grid2">
+<div><h4>📱 5 : 1</h4><p>الأجهزة المتصلة بالإنترنت الخلوي (mobile broadband) أكثر من المتصلة بإنترنت ثابت، والنسبة 5 إلى 1 في 2019.</p></div>
+<div><h4>🏠 80%</h4><p>من البيوت اللي فيها إنترنت تستخدم WiFi، فالاتصال اللاسلكي أكبر بعد لو حسبناهم.</p></div>
+<div><h4>🌐 60%</h4><p>من الترافيك من المواقع الكبيرة رايح لأجهزة متنقلة.</p></div>
+</div>
+<div class="fig">
+<svg viewBox="0 0 520 220" width="520" role="img" aria-label="رسم يوضح زيادة مشتركي الإنترنت المتنقل مقارنة بالثابت">
+<line class="sm" x1="60" y1="20" x2="60" y2="180"/><line class="sm" x1="60" y1="180" x2="500" y2="180"/>
+<text x="54" y="184" font-size="11" text-anchor="end" class="mu">0</text>
+<text x="54" y="104" font-size="11" text-anchor="end" class="mu">4000</text>
+<text x="54" y="26" font-size="11" text-anchor="end" class="mu">8000</text>
+<text x="62" y="198" font-size="11" class="mu">2007</text><text x="470" y="198" font-size="11" class="mu">2023</text>
+<path class="sg" d="M60 176 C 150 165, 220 120, 290 80 S 420 40, 500 28"/>
+<path class="sa" d="M60 174 C 200 170, 350 160, 500 152"/>
+<text x="300" y="66" font-size="13" fill="var(--sig)" style="fill:var(--sig)">📱 Mobile broadband</text>
+<text x="300" y="148" font-size="13" style="fill:var(--amber)">🔌 Fixed broadband</text>
+<text x="40" y="12" font-size="11" class="mu">مليون مشترك</text>
+</svg>
+<div class="cap">الرسم في السلايد من 2007 إلى 2023 (المصدر statista.com): المتنقل يطلع فوق بكثير والثابت يزيد ببطء.</div>
+</div>
+</article>
+
+<article class="s" id="s5"><div class="sh"><span class="n">سلايد 5</span><h3>🧩 التطبيقات اللاسلكية واحتياجاتها</h3></div>
+<p><b>ست مجالات تطبيقات:</b></p>
+<div class="grid2">
+<div>🌍 Wide-area Mobile Wireless Internet Access</div>
+<div>🏢 Local-area Mobile Wireless Internet Access</div>
+<div>📡 Fixed Wireless Internet Access</div>
+<div>🛰️ Satellite Networks for Internet Access and Sensing</div>
+<div>🔌 Cable replacement (بديل الكابلات)</div>
+<div>💡 Internet of Things (IoT)</div>
+</div>
+<p><b>كل تطبيق يتقيّم حسب أهمية ست احتياجات</b> (🔴 عالية، 🟡 متوسطة، 🟢 منخفضة):</p>
+<div class="tw"><table class="t">
+<tr><th>الاحتياج</th><th>معناه</th></tr>
+<tr><td>⚡ user data rate</td><td>سرعة بيانات المستخدم</td></tr>
+<tr><td>🚗 mobility</td><td>التنقل</td></tr>
+<tr><td>🔋 energy efficiency</td><td>كفاءة الطاقة</td></tr>
+<tr><td>📊 area traffic capacity</td><td>سعة الترافيك في المنطقة</td></tr>
+<tr><td>⏱️ latency</td><td>التأخير</td></tr>
+<tr><td>👥 device density</td><td>كثافة الأجهزة</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s6"><div class="sh"><span class="n">سلايد 6 → 10</span><h3>🏗️ عناصر الشبكة اللاسلكية</h3></div>
+<p class="small">السلايدات من 6 إلى 10 نفس الرسم، وكل سلايد يركز على عنصر. الرسم تحت يجمعهم:</p>
+<div class="fig">
+<svg viewBox="0 0 600 250" width="600" role="img" aria-label="رسم عناصر الشبكة اللاسلكية">
+<rect class="fa" x="210" y="14" width="180" height="50" rx="12"/>
+<text x="300" y="36" text-anchor="middle" font-size="14" font-weight="700">🔌 wired network</text>
+<text x="300" y="54" text-anchor="middle" font-size="12" class="mu">infrastructure</text>
+<line class="st" x1="250" y1="64" x2="150" y2="110"/><line class="st" x1="350" y1="64" x2="450" y2="110"/>
+<rect class="fg" x="105" y="110" width="90" height="38" rx="8"/><text x="150" y="134" text-anchor="middle" font-size="13">🗼 base station</text>
+<rect class="fg" x="405" y="110" width="90" height="38" rx="8"/><text x="450" y="134" text-anchor="middle" font-size="13">📶 AP</text>
+<path class="sg dash" d="M130 150 L 70 205"/><path class="sg dash" d="M170 150 L 220 205"/>
+<path class="sg dash" d="M430 150 L 380 205"/><path class="sg dash" d="M470 150 L 530 205"/>
+<text x="62" y="225" font-size="22">💻</text><text x="208" y="225" font-size="22">📱</text>
+<text x="368" y="225" font-size="22">📱</text><text x="518" y="225" font-size="22">💡</text>
+<text x="300" y="200" text-anchor="middle" font-size="12" style="fill:var(--sig)">〰 wireless link</text>
+<text x="300" y="244" text-anchor="middle" font-size="12" class="mu">wireless hosts</text>
+</svg></div>
+</article>
+
+<article class="s" id="s7"><div class="sh"><span class="n">سلايد 7</span><h3>📱 الأجهزة اللاسلكية (wireless hosts)</h3></div>
+<ul><li>مثل 💻 اللابتوب، 📱 الجوال، 💡 أجهزة IoT.</li><li>تشغّل تطبيقات.</li><li>ممكن تكون ثابتة (non-mobile) أو متحركة (mobile).</li></ul>
+<div class="key">⚠️ لاسلكي ما يعني دائماً متنقل! (wireless does not always mean mobility)</div>
+</article>
+
+<article class="s" id="s8"><div class="sh"><span class="n">سلايد 8</span><h3>🗼 المحطة الأساسية (base station)</h3></div>
+<ul><li>عادةً متصلة بالشبكة السلكية.</li>
+<li><b>relay (وسيط):</b> مسؤولة عن إرسال الحزم بين الشبكة السلكية والأجهزة اللاسلكية اللي في "منطقتها".</li>
+<li>أمثلة: 🗼 أبراج 4G/5G، و📶 نقاط الوصول في WiFi <span class="en">802.11 Access Points (APs)</span>.</li></ul>
+</article>
+
+<article class="s" id="s9"><div class="sh"><span class="n">سلايد 9</span><h3>〰️ الرابط اللاسلكي (wireless link)</h3></div>
+<ul><li>يُستخدم عادةً لربط الأجهزة بالمحطة الأساسية، وأحياناً كرابط أساسي (backbone).</li>
+<li><b>multiple access protocol</b> ينظّم الوصول للرابط: <span class="en">random access, FDMA, TDMA, CDMA, polling</span>.</li>
+<li>الروابط تختلف في سرعات الإرسال والمسافات ونطاقات التردد.</li></ul>
+<div class="tip">🔗 <b>Ad hoc networks:</b> مو كل الشبكات اللاسلكية متصلة بشبكة أكبر.</div>
+</article>
+
+<article class="s" id="s10"><div class="sh"><span class="n">سلايد 10</span><h3>📻 راديو الجهاز اللاسلكي</h3></div>
+<p>الجهاز فيه أكثر من راديو لأكثر من نوع شبكة.</p>
+<div class="key">📱 iPhone 16 فيه تقريباً 11 راديو وهوائيات كثيرة</div>
+<p>5 راديوهات خلوية + WiFi + Bluetooth + UWB + القمر الصناعي + NFC + GPS.</p>
+</article>
+
+<article class="s" id="s11"><div class="sh"><span class="n">سلايد 11</span><h3>📏 خصائص بعض الروابط اللاسلكية</h3></div>
+<div class="tw"><table class="t">
+<tr><th>المدى</th><th>التقنيات (والسرعة)</th></tr>
+<tr><td>🏠 Indoor<br><span class="small">10 - 30 m</span></td><td>Bluetooth (2 Mbps)، 802.11b (11 Mbps)</td></tr>
+<tr><td>🌳 Outdoor<br><span class="small">50 - 200 m</span></td><td>802.11g (54 Mbps)، 802.11n (600 Mbps)، 802.11ac (3.5 Gbps)، 802.11ax (14 Gbps)</td></tr>
+<tr><td>🏙️ Midrange outdoor<br><span class="small">200 m - 4 Km</span></td><td>802.11 af, ah، و 4G LTE و 5G eMBB</td></tr>
+<tr><td>🛣️ Long range outdoor<br><span class="small">4 Km - 15 Km</span></td><td>5G (10 Gbps)</td></tr>
+<tr><td>🛰️ Space<br><span class="small">مئات الكيلومترات</span></td><td>LEOS</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s12"><div class="sh"><span class="n">سلايد 12 و 13</span><h3>🏛️ Infrastructure mode مقابل 🤝 Ad hoc mode</h3></div>
+<div class="fig">
+<svg viewBox="0 0 600 200" width="600" role="img" aria-label="مقارنة وضع البنية التحتية ووضع ad hoc">
+<text x="150" y="20" text-anchor="middle" font-size="15" font-weight="700">🏛️ infrastructure mode</text>
+<rect class="fa" x="95" y="34" width="110" height="30" rx="8"/><text x="150" y="54" text-anchor="middle" font-size="12">wired network</text>
+<line class="st" x1="150" y1="64" x2="150" y2="92"/>
+<rect class="fg" x="115" y="92" width="70" height="28" rx="6"/><text x="150" y="111" text-anchor="middle" font-size="12">🗼 BS</text>
+<path class="sg dash" d="M135 120 L 70 165"/><path class="sg dash" d="M150 120 L 150 165"/><path class="sg dash" d="M165 120 L 230 165"/>
+<text x="60" y="185" font-size="20">📱</text><text x="140" y="185" font-size="20">💻</text><text x="220" y="185" font-size="20">📱</text>
+<line class="sm" x1="300" y1="10" x2="300" y2="190"/>
+<text x="450" y="20" text-anchor="middle" font-size="15" font-weight="700">🤝 ad hoc mode</text>
+<path class="sv dash" d="M380 80 L 450 60 L 520 100 L 470 160 L 390 150 Z"/><path class="sv dash" d="M450 60 L 470 160"/>
+<text x="368" y="88" font-size="20">📱</text><text x="438" y="66" font-size="20">💻</text><text x="508" y="108" font-size="20">📱</text>
+<text x="458" y="170" font-size="20">📱</text><text x="378" y="160" font-size="20">💻</text>
+<text x="450" y="194" text-anchor="middle" font-size="12" class="mu">ما فيه base station</text>
+</svg></div>
+<div class="grid2">
+<div><h4>🏛️ Infrastructure mode (سلايد 12)</h4><p>المحطة الأساسية توصل الأجهزة المتنقلة بالشبكة السلكية.</p><p><b>🔄 handoff:</b> لما الجهاز يغيّر المحطة الأساسية اللي توصله بالشبكة السلكية.</p></div>
+<div><h4>🤝 Ad hoc mode (سلايد 13)</h4><ul><li>ما فيه base stations.</li><li>الأجهزة ترسل بس للأجهزة اللي داخل نطاق تغطيتها.</li><li>الأجهزة تنظّم نفسها في شبكة وتسوي routing بينها.</li></ul></div>
+</div>
+</article>
+
+<article class="s" id="s14"><div class="sh"><span class="n">سلايد 14</span><h3>🗂️ تصنيف الشبكات اللاسلكية</h3></div>
+<div class="tw"><table class="t">
+<tr><th></th><th>1️⃣ single hop (قفزة وحدة)</th><th>🔁 multiple hops (قفزات متعددة)</th></tr>
+<tr><th>🏛️ infrastructure<br>(مثل APs)</th><td>الجهاز يتصل بـ base station (WiFi أو خلوي) وهي توصله بالإنترنت</td><td>الجهاز ممكن يحتاج يمر عبر أكثر من جهاز لاسلكي عشان يوصل للإنترنت: <b>mesh net</b></td></tr>
+<tr><th>🤝 no infrastructure<br>(Ad hoc)</th><td>ما فيه base station ولا اتصال بالإنترنت (Bluetooth، ad hoc nets)</td><td>ما فيه base station ولا اتصال بالإنترنت، وممكن يحتاج يمر عبر أجهزة عشان يوصل لجهاز معيّن: <b>MANET، VANET</b></td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s15"><div class="sh"><span class="n">سلايد 15</span><h3>🧱 شبكات الحافة (edge) والأساسية (core)</h3></div>
+<div class="fig">
+<svg viewBox="0 0 600 190" width="600" role="img" aria-label="الحافة والأساسية في WiFi و 5G">
+<text x="560" y="40" font-size="14" font-weight="700" text-anchor="end">📶 WiFi</text>
+<rect class="fg" x="330" y="56" width="110" height="34" rx="8"/><text x="385" y="78" text-anchor="middle" font-size="12">WLAN 1 / WLAN 2</text>
+<rect class="fa" x="150" y="56" width="150" height="34" rx="8"/><text x="225" y="78" text-anchor="middle" font-size="12">Institutional wired network</text>
+<rect class="fp" x="30" y="56" width="90" height="34" rx="8"/><text x="75" y="78" text-anchor="middle" font-size="12">🌐 Internet</text>
+<line class="st" x1="330" y1="73" x2="300" y2="73"/><line class="st" x1="150" y1="73" x2="120" y2="73"/>
+<text x="560" y="130" font-size="14" font-weight="700" text-anchor="end">🗼 5G</text>
+<rect class="fg" x="330" y="140" width="110" height="34" rx="8"/><text x="385" y="162" text-anchor="middle" font-size="11">UE ← gNode-B / eNode-B</text>
+<rect class="fa" x="150" y="140" width="150" height="34" rx="8"/><text x="225" y="162" text-anchor="middle" font-size="12">MME ...</text>
+<rect class="fp" x="30" y="140" width="90" height="34" rx="8"/><text x="75" y="162" text-anchor="middle" font-size="12">🌐 Internet</text>
+<line class="st" x1="330" y1="157" x2="300" y2="157"/><line class="st" x1="150" y1="157" x2="120" y2="157"/>
+<text x="385" y="20" text-anchor="middle" font-size="13" style="fill:var(--sig)">edge</text>
+<text x="225" y="20" text-anchor="middle" font-size="13" style="fill:var(--amber)">core</text>
+</svg></div>
+<ul><li><b>WiFi:</b> الحافة = WLAN 1 و WLAN 2، والأساسية = الشبكة السلكية للمؤسسة اللي توصل للإنترنت.</li>
+<li><b>5G:</b> الحافة فيها الجهاز (UE) والمحطة الأساسية (gNode-B أو eNode-B)، والأساسية فيها عناصر مثل MME، وبعدها الإنترنت.</li></ul>
+</article>
+</section>
+
+<!-- ================= PART 2 ================= -->
+<section class="part" id="p2">
+<div class="part-h"><span class="emo">📻</span><h2>الجزء الثاني: الراديو، الطبقة الفيزيائية<small>سلايد 16 إلى 57</small></h2></div>
+
+<article class="s mini" id="s16"><div class="sh"><span class="n">سلايد 16</span><h3>🗺️ مخطط القسم</h3></div>
+<p>مبادئ الراديو · قنوات الراديو · الهوائيات (MIMO) · الطيف الترددي · الترميز والتعديل (coding and modulation).</p>
+</article>
+
+<article class="s" id="s17"><div class="sh"><span class="n">سلايد 17</span><h3>⚡ الكهرومغناطيسية: أساس الاتصال</h3></div>
+<div class="fig">
+<svg viewBox="0 0 600 120" width="600" role="img" aria-label="المرسل يولد مجال كهرومغناطيسي يولد تيار عند المستقبل">
+<rect class="fa" x="470" y="35" width="110" height="50" rx="10"/><text x="525" y="58" text-anchor="middle" font-size="13">📤 transmitter</text><text x="525" y="76" text-anchor="middle" font-size="11" class="mu">(1) تيار</text>
+<path class="sg" d="M465 60 q -12 -22 -24 0 t -24 0 t -24 0 t -24 0 t -24 0 t -24 0 t -24 0 t -24 0 t -24 0 t -24 0 t -24 0 t -24 0 t -24 0 t -24 0"/>
+<text x="300" y="25" text-anchor="middle" font-size="12">(2) EM field في الفضاء</text>
+<rect class="fg" x="20" y="35" width="110" height="50" rx="10"/><text x="75" y="58" text-anchor="middle" font-size="13">📥 receiver</text><text x="75" y="76" text-anchor="middle" font-size="11" class="mu">(3) تيار يتولّد</text>
+</svg></div>
+<ol class="steps"><li>تيار كهربائي في مكان (المرسل)...</li><li>يولّد مجال كهرومغناطيسي (EM field) في الفضاء...</li><li>وهذا يولّد تيار في مكان بعيد (المستقبل).</li></ol>
+</article>
+
+<article class="s" id="s18"><div class="sh"><span class="n">سلايد 18</span><h3>🌊 الموجات الكهرومغناطيسية</h3></div>
+<div class="fig">
+<svg viewBox="0 0 520 140" width="520" role="img" aria-label="موجة توضح الطول الموجي والسعة">
+<line class="sm" x1="20" y1="70" x2="500" y2="70"/>
+<path class="sg" d="M20 70 C 50 10, 90 10, 120 70 S 190 130, 220 70 S 290 10, 320 70 S 390 130, 420 70 S 490 10, 500 40"/>
+<line class="sa" x1="70" y1="22" x2="270" y2="22"/><text x="170" y="16" text-anchor="middle" font-size="13" style="fill:var(--amber)">λ wavelength</text>
+<line class="sv" x1="370" y1="70" x2="370" y2="118"/><text x="380" y="100" font-size="13" style="fill:var(--violet)">amplitude</text>
+<text x="20" y="135" font-size="12" class="mu">→ wave propagation</text>
+</svg></div>
+<p>الموجة الكهرومغناطيسية لها:</p>
+<ul><li>📏 <b>wavelength (λ):</b> الطول الموجي.</li><li>🔁 <b>frequency:</b> سرعة الضوء ÷ الطول الموجي.</li><li>➡️ <b>directionality:</b> اتجاه الانتشار.</li><li>📈 <b>amplitude:</b> سعة تتغير مع الوقت.</li></ul>
+<div class="formula">frequency = c / λ</div>
+</article>
+
+<article class="s" id="s19"><div class="sh"><span class="n">سلايد 19</span><h3>🔄 الطور (Phase)</h3></div>
+<ul><li>طور الإشارة الدورية يمثل الجزء اللي انقطع من الدورة لحد الوقت t.</li><li>غالباً يُقاس بالدرجات (من 0 إلى 360).</li></ul>
+<div class="key">💡 نقدر نرمّز المعلومات بتغيير طور الإشارة، مع إبقاء التردد نفسه!</div>
+<div class="fig">
+<svg viewBox="0 0 520 110" width="520" role="img" aria-label="إشارة تمثل بتات بتغيير الطور">
+<line class="sm" x1="10" y1="55" x2="510" y2="55"/>
+<g font-size="14" font-family="JetBrains Mono" text-anchor="middle"><text x="50" y="18">0</text><text x="130" y="18">0</text><text x="210" y="18">1</text><text x="290" y="18">0</text><text x="370" y="18">1</text><text x="450" y="18">1</text></g>
+<path class="sg" d="M10 55 q20 -30 40 0 t40 0 M90 55 q20 -30 40 0 t40 0"/>
+<path class="sa" d="M170 55 q20 30 40 0 t40 0"/>
+<path class="sg" d="M250 55 q20 -30 40 0 t40 0"/>
+<path class="sa" d="M330 55 q20 30 40 0 t40 0 M410 55 q20 30 40 0 t40 0"/>
+<text x="260" y="104" text-anchor="middle" font-size="12" class="mu">bit 0 و bit 1 نفس التردد بس طورهم مختلف</text>
+</svg></div>
+</article>
+
+<article class="s" id="s20"><div class="sh"><span class="n">سلايد 20</span><h3>🔋 القدرة (Power)</h3></div>
+<p><b>Power:</b> الطاقة اللي يرسلها أو يستقبلها الهوائي في وحدة الزمن.</p>
+<div class="grid2"><div><h4>📏 خطي (linear)</h4><p>بالواط أو الملي واط (watts / milliwatts)</p></div><div><h4>📐 لوغاريتمي</h4><p>بالديسيبل (dB)</p></div></div>
+<div class="formula">P<sub>dBm</sub> = 10 · log<sub>10</sub>( P<sub>mW</sub> / 1mW )</div>
+<div class="tip">🧮 <b>مثال:</b> 250 mW (أقصى قدرة إرسال معتادة للجوال) ← 10 · log10(250mW / 1mW) = <b>24 dBm</b></div>
+<p><b>Power spectral density:</b> القدرة الموجودة في الإشارة كدالة للتردد. الرسم في السلايد يوضح إشارة حول تردد مركزي (carrier frequency) قيمته 1.00 GHz، بين 0.9975 و 1.0025.</p>
+</article>
+
+<article class="s" id="s21"><div class="sh"><span class="n">سلايد 21</span><h3>📶 عرض النطاق (Bandwidth)</h3></div>
+<p><b>Bandwidth:</b> عرض نطاق الترددات (بالـ Hz) اللي تستخدمه إشارة الراديو.</p>
+<ul><li>استخدام الترددات يتوصف بالـ power spectral density (psd)، و psd = 0 معناه ما فيه قدرة إشارة عند هذا التردد.</li><li>bandwidth = "band" + "width" يعني عرض النطاق المستخدم.</li></ul>
+<div class="fig">
+<svg viewBox="0 0 460 150" width="460" role="img" aria-label="إشارة عرضها 22 ميغاهرتز حول 2.438 غيغاهرتز">
+<line class="sm" x1="20" y1="115" x2="440" y2="115"/>
+<path class="fg" d="M120 115 L 140 40 L 320 40 L 340 115 Z"/>
+<line class="sa dash" x1="230" y1="30" x2="230" y2="115"/>
+<text x="120" y="135" text-anchor="middle" font-size="12" font-family="JetBrains Mono">2.427</text>
+<text x="230" y="135" text-anchor="middle" font-size="12" font-family="JetBrains Mono">2.438</text>
+<text x="340" y="135" text-anchor="middle" font-size="12" font-family="JetBrains Mono">2.449</text>
+<text x="230" y="22" text-anchor="middle" font-size="12" style="fill:var(--amber)">carrier (center) frequency</text>
+<text x="230" y="80" text-anchor="middle" font-size="15" font-weight="700">22 MHz</text>
+<text x="440" y="148" text-anchor="end" font-size="11" class="mu">frequency (GHz)</text>
+</svg><div class="cap">إشارة عرضها 22 MHz، وهذي تقابل القناة 6 في WiFi 📶</div></div>
+<div class="warn">⚠️ <b>للكلمة معنيين:</b> "bandwidth" الراديو (عرض النطاق الترددي) يختلف عن "bandwidth" الرابط اللي يستخدمها مهندسين الشبكات (يعني أقصى سرعة إرسال).</div>
+</article>
+
+<article class="s" id="s22"><div class="sh"><span class="n">سلايد 22</span><h3>📢 الإشارة والضوضاء</h3></div>
+<div class="grid2">
+<div><h4>📡 interference (التداخل)</h4><p>من مرسلات أو مصادر إشعاع ثانية في نفس نطاق التردد.</p><p class="small">مئات الأجهزة في نطاق 2.4 GHz غير المرخّص (ISM: Industrial, Scientific, and Medical): WiFi، Bluetooth، Zigbee، التلفزيون الفضائي، المايكرويف 🍿، أبواب الكراجات، أجهزة مراقبة الأطفال، الهواتف اللاسلكية، المايكات والسماعات اللاسلكية، الدرونز والألعاب 🚁، الراديو الهواة...</p></div>
+<div><h4>🌡️ thermal and electronic noise</h4><p>ضوضاء في المستقبل من التغيرات الحرارية الطبيعية وعيوب الإلكترونيات.</p></div>
+</div>
+<p class="small">الرسم: الإشارة الأصلية + الضوضاء = إشارة مستقبلة فيها ضوضاء.</p>
+</article>
+
+<article class="s" id="s23"><div class="sh"><span class="n">سلايد 23</span><h3>📊 نسبة الإشارة إلى الضوضاء (SNR)</h3></div>
+<div class="key">SNR = نسبة قدرة الإشارة إلى قدرة الضوضاء، وهي المقياس الأساسي لجودة القناة ⭐</div>
+<div class="formula">SNR(dB) = 10 · log<sub>10</sub>( received signal power / noise power )</div>
+<ul><li>SNR = 0 ← الإشارة والضوضاء متساويين.</li><li>⬆️ SNR عالي ← سهل نستخرج الإشارة. ⬇️ SNR منخفض ← صعب.</li></ul>
+<div class="tw"><table class="t"><tr><th>الحد الأدنى المعتاد</th><th>القيمة</th></tr><tr><td>🗼 Cellular</td><td class="num">-10 إلى -6 dB</td></tr><tr><td>📶 WiFi</td><td class="num">20 dB</td></tr></table></div>
+</article>
+
+<article class="s" id="s24"><div class="sh"><span class="n">سلايد 24</span><h3>⚖️ المفاضلة بين SNR و BER</h3></div>
+<div class="fig">
+<svg viewBox="0 0 460 220" width="460" role="img" aria-label="منحنيات BER مقابل SNR لثلاث طرق تعديل">
+<line class="sm" x1="50" y1="15" x2="50" y2="185"/><line class="sm" x1="50" y1="185" x2="440" y2="185"/>
+<text x="20" y="20" font-size="12">BER</text><text x="440" y="205" font-size="12" text-anchor="end">SNR (dB) →</text>
+<text x="46" y="30" font-size="10" text-anchor="end" class="mu">10⁻¹</text><text x="46" y="182" font-size="10" text-anchor="end" class="mu">10⁻⁷</text>
+<path class="sg" d="M60 30 C 90 60, 110 130, 140 180"/>
+<path class="sa" d="M140 30 C 170 60, 200 130, 240 180"/>
+<path class="sr" d="M240 30 C 280 60, 310 130, 360 180"/>
+<text x="100" y="80" font-size="11" style="fill:var(--sig)">BPSK 1 Mbps</text>
+<text x="205" y="80" font-size="11" style="fill:var(--amber)">QAM16 4 Mbps</text>
+<text x="315" y="80" font-size="11" style="fill:var(--rose)">QAM256 8 Mbps</text>
+</svg></div>
+<ul>
+<li>كل ما زاد SNR صار أسهل نستخرج الإشارة من الضوضاء ✅</li>
+<li><b>لو الطبقة الفيزيائية ثابتة:</b> نزيد القدرة ⬆️ ← يزيد SNR ⬆️ ← يقل BER ⬇️</li>
+<li><b>لو SNR ثابت:</b> نختار الطبقة الفيزيائية اللي تحقق متطلب BER وتعطي أعلى throughput.</li>
+<li>🚗 SNR ممكن يتغير مع الحركة ← نعدّل الطبقة الفيزيائية ديناميكياً (طريقة التعديل والسرعة).</li>
+</ul>
+</article>
+
+<article class="s" id="s25"><div class="sh"><span class="n">سلايد 25</span><h3>🧮 سعة القناة (Shannon capacity)</h3></div>
+<p>أقصى سرعة نقدر ننقل فيها بيانات بالقناة حسب الـ bandwidth و SNR.</p>
+<div class="formula">C = B · log<sub>2</sub>( 1 + received signal power / noise power )</div>
+<div class="tw"><table class="t"><tr><th>الرمز</th><th>معناه</th></tr><tr><td>C</td><td>السعة (bits/sec)</td></tr><tr><td>B</td><td>عرض النطاق (Hz)</td></tr><tr><td>power</td><td>تُقاس بشكل خطي (مثلاً mW)</td></tr></table></div>
+<div class="tip">👀 <b>ملاحظات:</b><br>📈 C تزيد <b>خطياً</b> مع B (لو SNR ثابت).<br>📉 لما يكون SNR عالي، C تزيد <b>لوغاريتمياً</b>، يعني ما فيه فايدة كبيرة من زيادة SNR بعد حد معيّن.</div>
+<p class="small">📜 Shannon: ورقة كلاسيكية سنة 1948.</p>
+</article>
+
+<article class="s" id="s26"><div class="sh"><span class="n">سلايد 26</span><h3>🆚 الرابط اللاسلكي مقابل السلكي</h3></div>
+<p>فيه فروقات مهمة عن الرابط السلكي:</p>
+<div class="grid2">
+<div><h4>📉 decreased signal strength</h4><p>الإشارة تضعف وهي تمر عبر المواد (path loss).</p></div>
+<div><h4>📡 interference</h4><p>ترددات مثل 2.4 GHz يشاركها أجهزة كثيرة (WiFi، الخلوي، المحركات).</p></div>
+<div><h4>🪞 multipath propagation</h4><p>الإشارة تنعكس من الأجسام والأرض وتوصل في أوقات مختلفة شوي.</p></div>
+</div>
+<div class="key">كل هذا يخلي الاتصال اللاسلكي (حتى لو point to point) أصعب بكثير 😓</div>
+</article>
+
+<article class="s" id="s27"><div class="sh"><span class="n">سلايد 27</span><h3>📉 فقدان المسار (Path loss)</h3></div>
+<p>الإشارة تفقد قدرتها وهي تنتشر.</p>
+<p><b>Path loss (ويسمونه fading):</b> انخفاض كثافة قدرة الموجة (attenuation) وهي رايحة من المرسل للمستقبل.</p>
+<div class="formula">Path loss ~ (f · d)<sup>n</sup></div>
+<p class="small">f = التردد، d = المسافة</p>
+<div class="tw"><table class="t"><tr><th>البيئة</th><th>قيمة n</th></tr><tr><td>🌌 free space</td><td class="num">2</td></tr><tr><td>🏙️ urban</td><td class="num">2.7 إلى 3.5</td></tr><tr><td>🏢 in building</td><td class="num">3 إلى 6</td></tr></table></div>
+</article>
+
+<article class="s" id="s28"><div class="sh"><span class="n">سلايد 28 و 29</span><h3>🙈 مشكلة الجهاز المخفي (Hidden terminal)</h3></div>
+<div class="fig">
+<svg viewBox="0 0 560 210" width="560" role="img" aria-label="الجهازان A و C لا يسمعان بعض بسبب ضعف الإشارة">
+<line class="sm" x1="20" y1="180" x2="540" y2="180"/>
+<line class="sr dash" x1="20" y1="120" x2="540" y2="120"/><text x="540" y="112" text-anchor="end" font-size="11" style="fill:var(--rose)">signal detection threshold</text>
+<path class="sg" d="M100 30 C 160 60, 240 130, 400 170"/>
+<path class="sa" d="M460 30 C 400 60, 320 130, 160 170"/>
+<circle cx="100" cy="190" r="12" class="fg"/><text x="100" y="195" text-anchor="middle" font-size="13" font-weight="700">A</text>
+<circle cx="280" cy="190" r="12" class="fp"/><text x="280" y="195" text-anchor="middle" font-size="13" font-weight="700">B</text>
+<circle cx="460" cy="190" r="12" class="fa"/><text x="460" y="195" text-anchor="middle" font-size="13" font-weight="700">C</text>
+<text x="80" y="24" font-size="11" style="fill:var(--sig)">إشارة A</text><text x="440" y="24" font-size="11" style="fill:var(--amber)">إشارة C</text>
+<text x="20" y="14" font-size="11" class="mu">Signal strength (log scale)</text>
+</svg><div class="cap">إشارة A تنزل تحت الحد قبل ما توصل C، والعكس 🙈</div></div>
+<div class="tw"><table class="t">
+<tr><th>مين يسمع مين؟</th><th class="c">النتيجة</th></tr>
+<tr><td>A ↔ B</td><td class="c">✅ يسمعون بعض</td></tr>
+<tr><td>B ↔ C</td><td class="c">✅ يسمعون بعض</td></tr>
+<tr><td>A ↔ C</td><td class="c">❌ ما يسمعون بعض، ويتداخلون عند B</td></tr>
+</table></div>
+<div class="grid2">
+<div><h4>📉 السبب الأول: path loss</h4><p>ضعف الإشارة حسب ~(d)² يسبب المشكلة.</p></div>
+<div><h4>🧱 السبب الثاني: objects</h4><p>عائق بين A و C، فما يدرون إنهم يتداخلون عند B.</p></div>
+</div>
+<div class="warn">النتيجة: هذا يعقّد مشاركة القناة بين A و B و C.</div>
+</article>
+
+<article class="s" id="s30"><div class="sh"><span class="n">سلايد 30 و 31</span><h3>🪞 Multipath وزمن التماسك (Coherence time)</h3></div>
+<div class="fig">
+<svg viewBox="0 0 520 170" width="520" role="img" aria-label="مسار مباشر ومسارات منعكسة">
+<line class="sm" x1="10" y1="150" x2="510" y2="150"/>
+<text x="40" y="110" font-size="28">🗼</text><text x="440" y="110" font-size="28">📱</text>
+<line class="sg" x1="80" y1="95" x2="435" y2="95"/><text x="260" y="88" text-anchor="middle" font-size="12" style="fill:var(--sig)">LOS path (line of sight)</text>
+<path class="sa" d="M80 100 L 260 150 L 435 100"/><text x="260" y="140" text-anchor="middle" font-size="12" style="fill:var(--amber)">reflected path</text>
+<rect class="fp" x="230" y="10" width="60" height="30" rx="4"/><text x="260" y="30" text-anchor="middle" font-size="16">🏢</text>
+<path class="sv" d="M80 90 L 260 40 L 435 90"/><text x="340" y="52" font-size="12" style="fill:var(--violet)">reflected path</text>
+</svg></div>
+<p><b>Multipath:</b> الإشارة تنعكس من الأرض والمباني وتوصل في أوقات مختلفة شوي.</p>
+<div class="key">⏳ Coherence time (Tc): مدة وجود البت في القناة عشان يُستقبل</div>
+<ul><li>يأثر على أقصى سرعة إرسال ممكنة، لأن أزمنة التماسك ما ينفع تتداخل.</li><li>يتناسب <b>عكسياً</b> مع: 🔁 التردد، و🚗 سرعة حركة المستقبل.</li></ul>
+<p>اللي يوصلك: 🟢 نبضة مباشرة (LOS pulse)، 🔴 مكونات multipath، 🟣 مكونات منعكسة ومتأخرة.</p>
+</article>
+
+<article class="s" id="s32"><div class="sh"><span class="n">سلايد 32</span><h3>📡 الهوائيات (Antennas)</h3></div>
+<ul><li>الهوائيات ترسل وتستقبل موجات الراديو.</li><li>👴 هوائي واحد: old school.</li><li>📡📡 هوائيات متعددة: صارت شي معتاد في الشبكات اللاسلكية.</li></ul>
+<div class="key">MIMO = Multiple Input Multiple Output</div>
+<p>أمثلة: Gigabit LTE مع <b>4x4 MIMO</b>، و Wi-Fi 6 (802.11ax) مع <b>2x2 MIMO</b>.</p>
+</article>
+
+<article class="s" id="s33"><div class="sh"><span class="n">سلايد 33 و 34</span><h3>👤 MIMO لمستخدم واحد: Spatial diversity</h3></div>
+<ul><li>أكثر من هوائي إرسال واستقبال لنفس المستخدم في نفس الوقت.</li>
+<li>نستغل الـ multipath: الهوائيات المتعددة تزيد عدد المسارات بين المرسل والمستقبل.</li>
+<li>الإشارات اللي توصل مو متطابقة (بعضها جودته أعلى).</li>
+<li><b>antenna gain:</b> نزيد SNR بدمج أكثر من إشارة.</li></ul>
+<p class="small">الرسم في السلايد 33: 12 مسار إشارة من مرسل فيه هوائيين لمستقبل فيه هوائيين.</p>
+<p><b>سلايد 34:</b> نرسل ونستقبل <b>نسخ مكررة من نفس المعلومة</b> بالتوازي على مسارات مكانية مختلفة:</p>
+<div class="grid2"><div><h4>🛡️ improved reliability</h4><p>صعب كل المسارات تسوء في نفس الوقت.</p></div><div><h4>📏 improved range</h4><p>الهوائيات المتعددة تجمع إشارة أكثر عند المستقبل.</p></div></div>
+</article>
+
+<article class="s" id="s35"><div class="sh"><span class="n">سلايد 35 → 37</span><h3>🧮 Spatial diversity مقابل Spatial multiplexing</h3></div>
+<div class="fig">
+<svg viewBox="0 0 600 200" width="600" role="img" aria-label="مقارنة التنوع المكاني والتعدد المكاني">
+<text x="150" y="18" text-anchor="middle" font-size="14" font-weight="700">🛡️ diversity: نفس x</text>
+<rect class="fa" x="20" y="40" width="60" height="120" rx="8"/><text x="50" y="35" text-anchor="middle" font-size="11">Tx</text>
+<rect class="fg" x="220" y="40" width="60" height="120" rx="8"/><text x="250" y="35" text-anchor="middle" font-size="11">Rx</text>
+<text x="50" y="75" text-anchor="middle" font-size="13" font-family="JetBrains Mono">x</text><text x="50" y="135" text-anchor="middle" font-size="13" font-family="JetBrains Mono">x</text>
+<line class="sg" x1="80" y1="70" x2="220" y2="70"/><line class="sg" x1="80" y1="130" x2="220" y2="130"/><line class="sm" x1="80" y1="70" x2="220" y2="130"/><line class="sm" x1="80" y1="130" x2="220" y2="70"/>
+<text x="250" y="75" text-anchor="middle" font-size="12" font-family="JetBrains Mono">y1</text><text x="250" y="135" text-anchor="middle" font-size="12" font-family="JetBrains Mono">y2</text>
+<line class="sm" x1="300" y1="10" x2="300" y2="190"/>
+<text x="450" y="18" text-anchor="middle" font-size="14" font-weight="700">🚀 multiplexing: x1 و x2</text>
+<rect class="fa" x="320" y="40" width="60" height="120" rx="8"/><text x="350" y="35" text-anchor="middle" font-size="11">Tx</text>
+<rect class="fg" x="520" y="40" width="60" height="120" rx="8"/><text x="550" y="35" text-anchor="middle" font-size="11">Rx</text>
+<text x="350" y="75" text-anchor="middle" font-size="13" font-family="JetBrains Mono">x1</text><text x="350" y="135" text-anchor="middle" font-size="13" font-family="JetBrains Mono">x2</text>
+<line class="sa" x1="380" y1="70" x2="520" y2="70"/><line class="sv" x1="380" y1="130" x2="520" y2="130"/><line class="sa dash" x1="380" y1="70" x2="520" y2="130"/><line class="sv dash" x1="380" y1="130" x2="520" y2="70"/>
+<text x="550" y="75" text-anchor="middle" font-size="12" font-family="JetBrains Mono">y1</text><text x="550" y="135" text-anchor="middle" font-size="12" font-family="JetBrains Mono">y2</text>
+<text x="150" y="185" text-anchor="middle" font-size="11" class="mu">Hi,j على كل مسار</text><text x="450" y="185" text-anchor="middle" font-size="11" class="mu">Hi,j على كل مسار</text>
+</svg></div>
+<div class="tw"><table class="t">
+<tr><th></th><th>🛡️ Spatial diversity (سلايد 35)</th><th>🚀 Spatial multiplexing (سلايد 36 و 37)</th></tr>
+<tr><th>وش ينرسل؟</th><td>نفس الإشارة x</td><td>تدفقين مختلفين x1 و x2 بالتوازي</td></tr>
+<tr><th>y1</th><td class="en">H1,1(x) + H2,1(x)</td><td class="en">H1,1(x1) + H2,1(x2)</td></tr>
+<tr><th>y2</th><td class="en">H1,2(x) + H2,2(x)</td><td class="en">H1,2(x1) + H2,2(x2)</td></tr>
+</table></div>
+<ul><li><b>x</b> الإشارة المرسلة، و <b>yj</b> الإشارة المستقبلة عند الهوائي j.</li><li><b>Hi,j(x)</b> تحويل الإشارة x من هوائي الإرسال i لهوائي الاستقبال j، والمستقبل يقدّره (وممكن بمساعدة المرسل).</li></ul>
+<div class="tip">🤔 <b>سلايد 35: كيف يعالج المستقبل؟</b> ما نبغى بس نجمع y1 و y2. هل ناخذ اللي SNR حقها أعلى أو أقل؟ أو نعيد ضبط الأطوار ونجمعها بشكل متناسق (coherently)؟</div>
+<div class="warn">🧩 <b>سلايد 37:</b> عندنا معادلتين فيها مجهولين، <b>لكن</b> قيم Hi,j(xi) تتغير مع الوقت وعشوائية (time-varying stochastic).</div>
+</article>
+
+<article class="s" id="s38"><div class="sh"><span class="n">سلايد 38</span><h3>👥 Multi-user MIMO</h3></div>
+<ul><li>هوائيات إرسال متعددة ترسل <b>لمستخدمين مختلفين في نفس الوقت</b> ("spatial multiplexing").</li>
+<li>نستغل الهوائيات الاتجاهية: نرسل لمستخدمين في أماكن مختلفة في نفس الوقت عن طريق <b>🔦 beamforming</b>.</li></ul>
+<p class="small">الرسم يقارن single user MIMO مع multi-user MIMO.</p>
+</article>
+
+<article class="s" id="s39"><div class="sh"><span class="n">سلايد 39</span><h3>🏛️ الطيف الترددي (Radio spectrum)</h3></div>
+<p>الطيف <b>ثروة وطنية تملكها الدولة</b>، والحكومة تحدد كيف يُستخدم محلياً.</p>
+<div class="tw"><table class="t">
+<tr><th>النوع</th><th>الشرح</th><th>أمثلة</th></tr>
+<tr><td>🔒 <b>licensed</b></td><td>استخدام مخصص لمالك واحد عادةً، وغالباً يُوزّع بالمزاد (spectrum auction)</td><td>شركات مثل AT&T و Verizon</td></tr>
+<tr><td>🤝 <b>shared</b></td><td>يتشارك فيه المستخدمين ديناميكياً، والمستخدم الأصلي (incumbent) ممكن ياخذ أولوية والباقين يتراجعون (back off)</td><td>—</td></tr>
+<tr><td>🔓 <b>unlicensed</b></td><td>مفتوح ومجاني لأي أحد بشرط يلتزم بالقواعد (مثل مستويات قدرة الإرسال)</td><td>2.4 و 5 GHz لـ WiFi، و 3.5 GHz لـ "Private 5G" (CBRS)</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s40"><div class="sh"><span class="n">سلايد 40</span><h3>📶 نطاقات طيف WiFi</h3></div>
+<div class="tw"><table class="t">
+<tr><th>النطاق</th><th>القنوات</th><th>المعايير</th></tr>
+<tr><td><b>2.4 GHz</b></td><td>11 إلى 14 قناة حسب الدولة</td><td class="en">802.11 b/g/n/ax</td></tr>
+<tr><td><b>5 GHz</b></td><td>أكثر من 150 قناة بسرعات مختلفة</td><td class="en">802.11 a/h/n/ac/ax</td></tr>
+<tr><td><b>6 GHz</b> 🆕</td><td>أحدث نطاق، أكثر من 250 قناة</td><td class="en">802.11 ax/be</td></tr>
+</table></div>
+<p class="small">فيه نطاقات ثانية لـ 802.11 بس مو منتشرة.</p>
+</article>
+
+<article class="s" id="s41"><div class="sh"><span class="n">سلايد 41</span><h3>🗼 طيف 5G: ثلاث نطاقات</h3></div>
+<p class="small">* ما فيه نطاقات متفق عليها بشكل واضح لـ "منخفض" و"متوسط" و"عالي".</p>
+<div class="fig">
+<svg viewBox="0 0 560 120" width="560" role="img" aria-label="نطاقات 5G المنخفض والمتوسط والعالي">
+<rect class="fg" x="20" y="30" width="120" height="50" rx="8"/><text x="80" y="52" text-anchor="middle" font-size="13" font-weight="700">🐢 Low</text><text x="80" y="70" text-anchor="middle" font-size="11">&lt; 1 GHz</text>
+<rect class="fa" x="150" y="30" width="170" height="50" rx="8"/><text x="235" y="52" text-anchor="middle" font-size="13" font-weight="700">⚖️ Mid</text><text x="235" y="70" text-anchor="middle" font-size="11">1 - 6 GHz</text>
+<rect class="fr" x="330" y="30" width="210" height="50" rx="8"/><text x="435" y="52" text-anchor="middle" font-size="13" font-weight="700">🚀 High (mmwave)</text><text x="435" y="70" text-anchor="middle" font-size="11">25 - 66 GHz</text>
+<text x="20" y="104" font-size="12" class="mu">مسافة أطول ←</text><text x="540" y="104" font-size="12" class="mu" text-anchor="end">→ سرعة أعلى</text>
+</svg></div>
+<div class="tw"><table class="t">
+<tr><th>النطاق</th><th>المسافة</th><th>السرعة</th><th>تفاصيل</th></tr>
+<tr><td>🐢 Low (&lt; 1 GHz)</td><td>أطول (عشرات الأميال)</td><td>50 - 250 Mbps</td><td>—</td></tr>
+<tr><td>⚖️ Mid (1 - 6 GHz)</td><td>~5 أميال؟</td><td>100 - 900 Mbps</td><td>يوازن بين المسافة والسرعة. الأشهر: 1.8، و 3.3 إلى 3.8، و 6 GHz</td></tr>
+<tr><td>🚀 High (25 - 66 GHz)</td><td>قصيرة (&lt; ميل)</td><td>&lt; 3 Gbps</td><td>الأشهر: 26 و 40 و 50 و 66 GHz. يحتاج line of sight، واختراقه ضعيف للأشجار والمباني 🌳🏢</td></tr>
+</table></div>
+<p class="small">الرسم يوضح وين تقع 2G و 3G و 4G و 5G في الطيف (1 - 2.6 GHz و 3.4 - 6 GHz ...).</p>
+</article>
+
+<article class="s mini" id="s42"><div class="sh"><span class="n">سلايد 42</span><h3>🗺️ مخطط الفصل ← الترميز والتعديل</h3></div></article>
+
+<article class="s" id="s43"><div class="sh"><span class="n">سلايد 43</span><h3>🔑 CDMA: Code Division Multiple Access</h3></div>
+<ul><li>كل مستخدم ياخذ <b>"كود" خاص</b> (code set partitioning).</li>
+<li>كل المستخدمين يشتركون في <b>نفس التردد</b>، بس كل واحد عنده تسلسل <b>chipping</b> خاص يرمّز فيه بياناته.</li>
+<li>يسمح لأكثر من مستخدم يرسلون في نفس الوقت بأقل تداخل (لو الأكواد "orthogonal" متعامدة).</li></ul>
+<div class="grid2"><div><h4>🔒 encoding</h4><p>ضرب داخلي: (البيانات الأصلية) × (chipping sequence)</p></div><div><h4>🔓 decoding</h4><p>مجموع الضرب الداخلي: (البيانات المرمّزة) × (chipping sequence)</p></div></div>
+</article>
+
+<article class="s" id="s44"><div class="sh"><span class="n">سلايد 44</span><h3>🧮 CDMA: ترميز وفك ترميز</h3></div>
+<div class="formula">Z<sub>i,m</sub> = d<sub>i</sub> · c<sub>m</sub></div>
+<div class="formula">D<sub>i</sub> = Σ<sub>m=1..M</sub> Z<sub>i,m</sub> · c<sub>m</sub></div>
+<div class="tw"><table class="t" style="direction:ltr">
+<tr><th>slot</th><th>data bit</th><th>code (8 chips)</th><th>channel output Z = d·c</th></tr>
+<tr><td>slot 0</td><td class="c">d0 = 1</td><td class="en">1 1 1 -1 1 -1 -1 -1</td><td class="en">1 1 1 -1 1 -1 -1 -1</td></tr>
+<tr><td>slot 1</td><td class="c">d1 = -1</td><td class="en">1 1 1 -1 1 -1 -1 -1</td><td class="en">-1 -1 -1 1 -1 1 1 1</td></tr>
+</table></div>
+<p>📥 <b>عند المستقبل:</b> يضرب المدخل بنفس الكود ويجمع، فيطلع <b>d0 = 1</b> و <b>d1 = -1</b> ✅</p>
+<div class="warn">😐 "... بس هذا لحاله مو مفيد للحين!"</div>
+</article>
+
+<article class="s" id="s45"><div class="sh"><span class="n">سلايد 45</span><h3>👥 CDMA: تداخل مرسلَين</h3></div>
+<ul><li>القناة <b>تجمع</b> إرسال المرسل 1 مع المرسل 2.</li>
+<li>لو المستقبل استخدم <b>نفس كود المرسل 1</b>، يقدر يرجّع بيانات المرسل 1 الأصلية من البيانات المجمّعة!</li></ul>
+<div class="key">🎉 "... الحين صار مفيد!"</div>
+</article>
+
+<article class="s" id="s46"><div class="sh"><span class="n">سلايد 46</span><h3>⚙️ مراحل الطبقة الفيزيائية</h3></div>
+<div class="fig">
+<svg viewBox="0 0 600 110" width="600" role="img" aria-label="مراحل الترميز والتعديل">
+<g font-size="12" text-anchor="middle">
+<rect class="fp" x="500" y="30" width="90" height="44" rx="8"/><text x="545" y="50">d: original</text><text x="545" y="66" font-family="JetBrains Mono" font-size="9">1010001011</text>
+<rect class="fg" x="390" y="30" width="90" height="44" rx="8"/><text x="435" y="57">🛡️ Coding</text>
+<rect class="fa" x="280" y="30" width="90" height="44" rx="8"/><text x="325" y="50">📐 Digital</text><text x="325" y="66">Modulation</text>
+<rect class="fv" x="170" y="30" width="90" height="44" rx="8"/><text x="215" y="50">〰 Pulse</text><text x="215" y="66">Shaping</text>
+<rect class="fv" x="60" y="30" width="90" height="44" rx="8"/><text x="105" y="50">📡 RF</text><text x="105" y="66">Modulation</text>
+</g>
+<g class="st"><line x1="500" y1="52" x2="482" y2="52"/><line x1="390" y1="52" x2="372" y2="52"/><line x1="280" y1="52" x2="262" y2="52"/><line x1="170" y1="52" x2="152" y2="52"/></g>
+<text x="160" y="96" text-anchor="middle" font-size="11" class="mu">🚫 ما راح ندرسها (شوف مواد ECE)</text>
+</svg></div>
+<div class="tw"><table class="t">
+<tr><th>المرحلة</th><th>وش تسوي</th></tr>
+<tr><td>🛡️ Coding</td><td>تضيف بتات لاكتشاف الأخطاء وتصحيحها في الطبقة الفيزيائية</td></tr>
+<tr><td>📐 Digital Modulation</td><td>نختار طريقة تعديل تعطي أكبر عدد بتات/ثانية تنرسل بشكل موثوق حسب مشاكل القناة، مثل عائلة QAM</td></tr>
+<tr><td>〰 Pulse Shaping</td><td>نطابق bandwidth الإرسال مع bandwidth القناة</td></tr>
+<tr><td>📡 RF Modulation</td><td>نرسل الإشارة كموجة كهرومغناطيسية على التردد المخصص</td></tr>
+</table></div>
+<div class="tip">📻 <b>Carrier:</b> موجة بتردد معيّن fc (carrier frequency) تتعدّل (modulated) بإشارة تحمل المعلومات.</div>
+</article>
+
+<article class="s" id="s47"><div class="sh"><span class="n">سلايد 47</span><h3>🛡️ اكتشاف الأخطاء وتصحيحها (EDC)</h3></div>
+<p><b>EDC (error detection, correction bits):</b> بتات إضافية تنرسل مع البيانات d، عشان المستقبل يكتشف الأخطاء في d وممكن يصححها. مثل parity bits و redundancy bits.</p>
+<div class="fig">
+<svg viewBox="0 0 600 120" width="600" role="img" aria-label="تدفق EDC عبر قناة فيها ضوضاء">
+<g font-size="12" text-anchor="middle">
+<rect class="fp" x="480" y="35" width="110" height="44" rx="8"/><text x="535" y="55">d + EDC</text><text x="535" y="71" class="mu" font-size="10">المرسل</text>
+<rect class="fr" x="330" y="35" width="120" height="44" rx="8"/><text x="390" y="62">📢 noisy channel</text>
+<rect class="fp" x="190" y="35" width="110" height="44" rx="8"/><text x="245" y="55">d' + EDC'</text><text x="245" y="71" class="mu" font-size="10">ممكن فيها أخطاء</text>
+<rect class="fg" x="20" y="20" width="140" height="34" rx="8"/><text x="90" y="42">✅ error-free؟</text>
+<rect class="fa" x="20" y="64" width="140" height="34" rx="8"/><text x="90" y="86">🔧 correctable؟</text>
+</g>
+<g class="st"><line x1="480" y1="57" x2="452" y2="57"/><line x1="330" y1="57" x2="302" y2="57"/><line x1="190" y1="57" x2="162" y2="40"/><line x1="190" y1="57" x2="162" y2="80"/></g>
+</svg></div>
+<ul><li>البيانات المستقبلة d' و EDC' ممكن يكون فيها أخطاء.</li><li>المستقبل يشيك: فيه أخطاء؟ ❌ لا ← سليمة. ✔️ نعم ← هل قابلة للتصحيح؟</li></ul>
+<div class="tip">📚 EDC يُستخدم في طبقات كثيرة: physical، link، network، transport، application.</div>
+</article>
+
+<article class="s" id="s48"><div class="sh"><span class="n">سلايد 48</span><h3>🧱 EDC في الطبقة الفيزيائية</h3></div>
+<p>الطبقة الفيزيائية اللاسلكية ممكن تضيف بتات EDC، فوق اللي تضيفه طبقات application و transport و link.</p>
+<div class="key">✅ إضافة EDC في الطبقة الفيزيائية منطقية!</div>
+<ul><li>⚡ نكتشف ونصلح <b>محلياً</b> بدل ما ننتظر end-to-end.</li><li>📻 تقنيات الطبقة الفيزيائية متكيفة مع طبيعة أخطاء الراديو المحلية.</li></ul>
+</article>
+
+<article class="s" id="s49"><div class="sh"><span class="n">سلايد 49</span><h3>🔀 مثال خلط بتات EDC (Shuffling)</h3></div>
+<div class="tw"><table class="t" style="direction:ltr">
+<tr><th>الخطوة</th><th>البتات</th></tr>
+<tr><td>original bits من link (فيها EDC)</td><td class="en">d1 d2 d3 d4 d5 d6 d7 d8</td></tr>
+<tr><td>add EDC duplicate bits in PHY</td><td class="en">d1 d1' d2 d2' d3 d3' d4 d4' d5 d5' d6 d6' d7 d7' d8 d8'</td></tr>
+<tr><td>shuffle 🔀</td><td class="en">d1 d5' d2 d6' d3 d7' d4 d8' d5 d1' d6 d2' d7 d3' d8 d4'</td></tr>
+</table></div>
+<div class="grid2">
+<div><h4>❌ بدون خلط</h4><p>ضوضاء مفاجئة (burst) تخرّب 3 بتات متتالية ← ممكن المستقبل ما يقدر يعرف <b>d4</b>.</p></div>
+<div><h4>✅ مع الخلط</h4><p>نفس الضوضاء تخرّب 3 بتات ← المستقبل يقدر برضو يعرف <b>كل</b> البتات الأصلية.</p></div>
+</div>
+<p>بعدها <b>modulation</b>: من بتات ← رموز (symbols) ← موجات (waveforms).</p>
+</article>
+
+<article class="s" id="s50"><div class="sh"><span class="n">سلايد 50</span><h3>📐 التعديل (Modulation)</h3></div>
+<p><b>Digital modulation:</b> نرمّز البتات (1 و 0) في إشارة RF تناظرية بتغيير ("modulating") وحدة من خصائصها:</p>
+<div class="grid2"><div><h4>📈 amplitude</h4><p>السعة</p></div><div><h4>🔁 frequency</h4><p>التردد</p></div><div><h4>🔄 phase</h4><p>الطور</p></div></div>
+</article>
+
+<article class="s" id="s51"><div class="sh"><span class="n">سلايد 51</span><h3>📶 ASK و BPSK</h3></div>
+<div class="fig">
+<svg viewBox="0 0 520 190" width="520" role="img" aria-label="مقارنة ASK و BPSK">
+<text x="510" y="20" text-anchor="end" font-size="13" font-weight="700">ASK</text>
+<line class="sm" x1="10" y1="55" x2="440" y2="55"/>
+<path class="sg" d="M10 55 q15 -10 30 0 t30 0 M70 55 q15 -10 30 0 t30 0"/>
+<path class="sa" d="M130 55 q15 -38 30 0 t30 0"/>
+<path class="sg" d="M190 55 q15 -10 30 0 t30 0"/>
+<path class="sa" d="M250 55 q15 -38 30 0 t30 0 M310 55 q15 -38 30 0 t30 0"/>
+<g font-size="13" font-family="JetBrains Mono" text-anchor="middle" class="mu"><text x="40" y="100">0</text><text x="100" y="100">0</text><text x="160" y="100">1</text><text x="220" y="100">0</text><text x="280" y="100">1</text><text x="340" y="100">1</text></g>
+<text x="510" y="130" text-anchor="end" font-size="13" font-weight="700">BPSK</text>
+<line class="sm" x1="10" y1="155" x2="440" y2="155"/>
+<path class="sg" d="M10 155 q15 -25 30 0 t30 0 M70 155 q15 -25 30 0 t30 0"/>
+<path class="sa" d="M130 155 q15 25 30 0 t30 0"/>
+<path class="sg" d="M190 155 q15 -25 30 0 t30 0"/>
+<path class="sa" d="M250 155 q15 25 30 0 t30 0 M310 155 q15 25 30 0 t30 0"/>
+</svg></div>
+<div class="tw"><table class="t">
+<tr><th>الطريقة</th><th>وش يرمّز البتات؟</th></tr>
+<tr><td><b>ASK</b> (Amplitude shift keying)</td><td>📈 سعة الإشارة</td></tr>
+<tr><td><b>BPSK</b> (Binary Phase shift keying)</td><td>🔄 طور الإشارة: 0 و 1 بينهم فرق طور <b>180°</b> بس على نفس التردد</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s52"><div class="sh"><span class="n">سلايد 52</span><h3>🎯 QPSK</h3></div>
+<p class="big">🤔 ليش نوقف عند طورين بس؟</p>
+<ul><li>كل بتين يصيرون <b>"رمز" واحد</b> (symbol): بتين ← 4 رموز.</li><li><b>QPSK (Quadrature Phase Shift Keying):</b> 4 رموز مرمّزة بـ 4 أطوار.</li></ul>
+<div class="fig">
+<svg viewBox="0 0 220 200" width="220" role="img" aria-label="أربعة رموز QPSK">
+<line class="sm" x1="20" y1="100" x2="200" y2="100"/><line class="sm" x1="110" y1="10" x2="110" y2="190"/>
+<circle class="dot" cx="60" cy="50" r="7"/><circle class="dot" cx="160" cy="50" r="7"/><circle class="dot" cx="60" cy="150" r="7"/><circle class="dot" cx="160" cy="150" r="7"/>
+
+</svg><div class="cap">4 رموز: "00" و "01" و "10" و "11"</div></div>
+<div class="key">🚀 QPSK نفس تردد BPSK بس ضعف سرعة البيانات!</div>
+<p class="small">🔗 أداة تفاعلية من السلايد: <a href="https://www.geogebra.org/m/enkymjtg" style="color:var(--sig)">geogebra.org/m/enkymjtg</a></p>
+</article>
+
+<article class="s" id="s53"><div class="sh"><span class="n">سلايد 53</span><h3>🔢 QAM: Quadrature Amplitude Modulation</h3></div>
+<p>تعميم لـ QPSK. <b>m-QAM:</b> نستخدم m قيمة مختلفة من السعة والطور عشان نرمّز <b>log₂(m)</b> بت.</p>
+<div class="tw"><table class="t">
+<tr><th>النوع</th><th class="c">عدد البتات بالرمز</th><th>البتات</th></tr>
+<tr><td>4-QAM</td><td class="c num">2</td><td class="en">b0b1</td></tr>
+<tr><td>16-QAM</td><td class="c num">4</td><td class="en">b0b1b2b3</td></tr>
+<tr><td>64-QAM</td><td class="c num">6</td><td class="en">b0b1b2b3b4b5</td></tr>
+</table></div>
+<p class="small">الرسم: ترميز البتات لـ 4-QAM و 16-QAM و 64-QAM (في WiFi).</p>
+</article>
+
+<article class="s" id="s54"><div class="sh"><span class="n">سلايد 54</span><h3>✨ مخطط الكوكبة: كيف تصير أخطاء البتات؟</h3></div>
+<div class="fig">
+<svg viewBox="0 0 260 240" width="260" role="img" aria-label="كوكبة 16-QAM مع نقاط مستقبلة حول 1111 ونقطة مصنفة خطأ">
+<line class="sm" x1="20" y1="120" x2="240" y2="120"/><line class="sm" x1="130" y1="10" x2="130" y2="230"/>
+<g class="fp">
+<circle cx="40" cy="30" r="4"/><circle cx="85" cy="30" r="4"/><circle cx="175" cy="30" r="4"/><circle cx="220" cy="30" r="4"/>
+<circle cx="40" cy="75" r="4"/><circle cx="85" cy="75" r="4"/><circle cx="175" cy="75" r="4"/>
+<circle cx="40" cy="165" r="4"/><circle cx="85" cy="165" r="4"/><circle cx="175" cy="165" r="4"/><circle cx="220" cy="165" r="4"/>
+<circle cx="40" cy="210" r="4"/><circle cx="85" cy="210" r="4"/><circle cx="175" cy="210" r="4"/><circle cx="220" cy="210" r="4"/></g>
+<circle cx="220" cy="75" r="7" class="fa"/><text x="220" y="62" text-anchor="middle" font-size="11" font-family="JetBrains Mono">1111</text>
+<circle cx="176" cy="30" r="7" class="fr"/><text x="176" y="17" text-anchor="middle" font-size="11" font-family="JetBrains Mono" style="fill:var(--rose)">1011</text>
+<g class="dot"><circle cx="214" cy="80" r="3"/><circle cx="226" cy="70" r="3"/><circle cx="210" cy="72" r="3"/><circle cx="228" cy="82" r="3"/><circle cx="218" cy="86" r="3"/></g>
+<circle cx="192" cy="44" r="4" style="fill:var(--rose)"/>
+</svg><div class="cap">🟢 نقاط قريبة من 1111 تصنّفت صح · 🔴 نقطة أقرب لـ 1011 تصنّفت غلط</div></div>
+<ol class="steps"><li>المرسل يرسل موجات لـ 12 رمز "1111" ورا بعض (16-QAM).</li><li>المستقبل يقيس سعة وطور الإشارة المستقبلة.</li><li>يصنّف الرمز على إنه نمط البتات اللي سعته وطوره <b>الأقرب</b> للإشارة.</li></ol>
+<div class="warn">❌ وحدة من الإشارات تصنّفت غلط كـ <b>1011</b> لأن سعتها وطورها أقرب لـ 1011 من 1111.</div>
+</article>
+
+<article class="s" id="s55"><div class="sh"><span class="n">سلايد 55</span><h3>🔧 التعديل التكيّفي (Adaptive modulation)</h3></div>
+<ul><li>كل طريقة تعديل لها سرعة بيانات اسمية (لو ما فيه أخطاء).</li><li>SNR ممكن يزيد أو ينقص بسبب: 📡 تغيّر التداخل، 🔋 قدرة إرسال المرسل.</li><li>فنتحرك على منحنى المفاضلة بين SNR و BER.</li></ul>
+<div class="key">💡 الفكرة: نغيّر طريقة التعديل والقدرة لحظياً عشان ناخذ أعلى سرعة ممكنة (مع BER مقبول واستهلاك طاقة مقبول) كل ما تغيّر SNR</div>
+<div class="tw"><table class="t"><tr><th>Max data rate</th><th>القيمة</th></tr><tr><td>16 QAM</td><td class="num">11.5 Mbps</td></tr><tr><td>64 QAM</td><td class="num">26.9 Mbps</td></tr></table></div>
+</article>
+
+<article class="s" id="s56"><div class="sh"><span class="n">سلايد 56</span><h3>📶 802.11: تكييف السرعة (Rate adaptation)</h3></div>
+<ul><li>المحطة الأساسية والجهاز يغيّرون سرعة الإرسال (طريقة التعديل) ديناميكياً لما الجهاز يتحرك ويتغيّر SNR.</li></ul>
+<ol class="steps"><li>🚶 لما الجهاز يبعد عن المحطة: SNR ينقص ⬇️ و BER يزيد ⬆️</li><li>لما يصير BER عالي مرة ← ننتقل لسرعة أقل بس BER حقها أقل.</li></ol>
+<p class="small">الرسم: منحنيات QAM256 (8 Mbps) و QAM16 (4 Mbps) و BPSK (1 Mbps) ونقطة التشغيل (operating point).</p>
+</article>
+
+<article class="s" id="s57"><div class="sh"><span class="n">سلايد 57</span><h3>😴 802.11: إدارة الطاقة (Power management)</h3></div>
+<ol class="steps">
+<li>الجهاز يقول للـ AP: "بنام لين الـ beacon frame الجاي" 💤</li>
+<li>الـ AP يعرف إنه ما يرسل frames لهذا الجهاز.</li>
+<li>الجهاز يصحى قبل الـ beacon frame الجاي ⏰</li>
+<li><b>beacon frame:</b> فيه قائمة بالأجهزة اللي لها frames تنتظر الإرسال من الـ AP.</li>
+<li>الجهاز يظل صاحي لو فيه frames له، وإلا يرجع ينام لين الـ beacon الجاي.</li>
+</ol>
+</article>
+</section>
+
+<!-- ================= PART 3 ================= -->
+<section class="part" id="p3">
+<div class="part-h"><span class="emo">📶</span><h2>الجزء الثالث: شبكة الوصول، WiFi<small>سلايد 58 إلى 77</small></h2></div>
+
+<article class="s mini" id="s58"><div class="sh"><span class="n">سلايد 58</span><h3>🗺️ مخطط الفصل ← WiFi wireless LAN و 5G RAN</h3></div></article>
+
+<article class="s" id="s59"><div class="sh"><span class="n">سلايد 59</span><h3>📋 IEEE 802.11 Wireless LAN</h3></div>
+<div class="tw"><table class="t">
+<tr><th>المعيار</th><th>السنة</th><th>أقصى سرعة</th><th>المدى</th><th>التردد</th></tr>
+<tr><td>802.11b</td><td class="num">1999</td><td>11 Mbps</td><td>30 m</td><td>2.4 GHz</td></tr>
+<tr><td>802.11g</td><td class="num">2003</td><td>54 Mbps</td><td>30 m</td><td>2.4 GHz</td></tr>
+<tr><td>802.11n (WiFi 4)</td><td class="num">2009</td><td>600</td><td>70 m</td><td>2.4, 5 GHz</td></tr>
+<tr><td>802.11ac (WiFi 5)</td><td class="num">2013</td><td>3.47 Gbps</td><td>70 m</td><td>5 GHz</td></tr>
+<tr><td>802.11ax (WiFi 6)</td><td class="num">2020 (exp.)</td><td>14 Gbps</td><td>70 m</td><td>2.4, 5 GHz</td></tr>
+<tr><td>802.11af</td><td class="num">2014</td><td>35 – 560 Mbps</td><td>1 Km</td><td>نطاقات تلفزيون غير مستخدمة (54-790 MHz)</td></tr>
+<tr><td>802.11ah</td><td class="num">2017</td><td>347 Mbps</td><td>1 Km</td><td>900 MHz</td></tr>
+</table></div>
+<div class="key">⭐ كلها تستخدم CSMA/CA للوصول المتعدد، ولها نسخ بـ base station ونسخ ad hoc</div>
+</article>
+
+<article class="s" id="s60"><div class="sh"><span class="n">سلايد 60</span><h3>🏗️ معمارية 802.11 LAN</h3></div>
+<div class="fig">
+<svg viewBox="0 0 560 220" width="560" role="img" aria-label="BSS1 و BSS2 متصلتان بسويتش ثم الإنترنت">
+<rect class="fp" x="230" y="10" width="100" height="32" rx="8"/><text x="280" y="31" text-anchor="middle" font-size="13">🌐 Internet</text>
+<line class="st" x1="280" y1="42" x2="280" y2="62"/>
+<rect class="fa" x="210" y="62" width="140" height="32" rx="8"/><text x="280" y="83" text-anchor="middle" font-size="12">switch or router</text>
+<line class="st" x1="240" y1="94" x2="140" y2="125"/><line class="st" x1="320" y1="94" x2="420" y2="125"/>
+<ellipse cx="140" cy="165" rx="110" ry="48" class="fg" style="fill-opacity:.5"/><ellipse cx="420" cy="165" rx="110" ry="48" class="fg" style="fill-opacity:.5"/>
+<text x="140" y="140" text-anchor="middle" font-size="13">📶 AP</text><text x="420" y="140" text-anchor="middle" font-size="13">📶 AP</text>
+<text x="95" y="180" font-size="18">💻</text><text x="165" y="185" font-size="18">📱</text><text x="380" y="185" font-size="18">📱</text><text x="445" y="180" font-size="18">💻</text>
+<text x="140" y="205" text-anchor="middle" font-size="12" font-weight="700">BSS 1</text><text x="420" y="205" text-anchor="middle" font-size="12" font-weight="700">BSS 2</text>
+</svg></div>
+<ul><li>الجهاز اللاسلكي يتواصل مع base station، و <b>base station = access point (AP)</b>.</li>
+<li><b>Basic Service Set (BSS)</b> ويسمى "cell":
+<ul><li>🏛️ infrastructure mode: أجهزة لاسلكية + AP.</li><li>🤝 ad hoc mode: أجهزة بس.</li></ul></li></ul>
+</article>
+
+<article class="s" id="s61"><div class="sh"><span class="n">سلايد 61</span><h3>🔗 القنوات والارتباط (Association)</h3></div>
+<ul><li>الطيف مقسوم لقنوات على ترددات مختلفة.</li><li>مسؤول الـ AP يختار تردده.</li></ul>
+<div class="warn">⚠️ ممكن يصير تداخل: القناة ممكن تكون نفس القناة اللي اختارها AP جار!</div>
+<p class="big">📲 الجهاز الجديد لازم يرتبط (associate) بـ AP:</p>
+<ol class="steps">
+<li>يمسح القنوات ويسمع للـ <b>beacon frames</b> اللي فيها اسم الـ AP (<b>SSID</b>) وعنوان <b>MAC</b> حقه.</li>
+<li>يختار AP يرتبط فيه.</li>
+<li>بعدها ممكن يسوي مصادقة (authentication) 🔐 [الفصل 8].</li>
+<li>بعدها عادةً يشغّل <b>DHCP</b> ياخذ عنوان IP في subnet الـ AP.</li>
+</ol>
+</article>
+
+<article class="s" id="s62"><div class="sh"><span class="n">سلايد 62</span><h3>🔍 المسح السلبي والنشط</h3></div>
+<div class="grid2">
+<div><h4>👂 passive scanning</h4><ol class="steps"><li>الـ APs ترسل beacon frames.</li><li>H1 يرسل <b>Association Request</b> للـ AP اللي اختاره.</li><li>الـ AP يرد بـ <b>Association Response</b>.</li></ol></div>
+<div><h4>📣 active scanning</h4><ol class="steps"><li>H1 يرسل <b>Probe Request</b> (broadcast).</li><li>الـ APs ترد بـ <b>Probe Response</b>.</li><li>H1 يرسل <b>Association Request</b> للـ AP اللي اختاره.</li><li>الـ AP يرد بـ <b>Association Response</b>.</li></ol></div>
+</div>
+<div class="tip">🧠 الفرق: في السلبي الجهاز <b>يسمع</b> الـ beacons، وفي النشط الجهاز <b>يسأل</b> أول بـ Probe Request.</div>
+</article>
+
+<article class="s" id="s63"><div class="sh"><span class="n">سلايد 63</span><h3>🚦 الوصول المتعدد في 802.11</h3></div>
+<p>الهدف نتجنب التصادم (جهازين أو أكثر يرسلون في نفس الوقت).</p>
+<ul><li><b>802.11 يستخدم CSMA:</b> يتحسس القناة قبل ما يرسل، عشان ما يتصادم مع إرسال شغال.</li></ul>
+<div class="warn"><b>🚫 802.11 ما فيه collision detection!</b><br>• صعب نحس بالتصادم: إشارة الإرسال قوية والإشارة المستقبلة ضعيفة بسبب الـ fading.<br>• وما نقدر نحس بكل التصادمات أصلاً: hidden terminal و fading.</div>
+<div class="key">🎯 الهدف: نتجنب التصادم ← CSMA/CA (Collision Avoidance)</div>
+</article>
+
+<article class="s mini" id="s64"><div class="sh"><span class="n">سلايد 64</span><h3>🙈 CSMA/CA ومشكلة الأجهزة المخفية</h3></div>
+<p>تكرار للحالتين (path loss والعوائق): A و C ما يسمعون بعض ويتداخلون عند B. (شوف <a href="#s28" style="color:var(--sig)">سلايد 28</a>)</p>
+</article>
+
+<article class="s" id="s65"><div class="sh"><span class="n">سلايد 65</span><h3>💥 CSMA/CA: التصادم ممكن يصير</h3></div>
+<div class="grid2">
+<div><h4>الحالة 1️⃣</h4><p>A يتحسس القناة فاضية ← يرسل.<br>B يتحسسها فاضية (لأن إرسال A ما وصله للحين) ← يرسل.<br>💥 تصادم.</p></div>
+<div><h4>الحالة 2️⃣</h4><p>A يتحسس القناة فاضية ← يرسل.<br>B ما يسمع إرسال A بسبب الـ fading ← يرسل.<br>💥 تصادم.</p></div>
+</div>
+<p class="small">DIFS: فترة الانتظار قبل الإرسال.</p>
+</article>
+
+<article class="s" id="s66"><div class="sh"><span class="n">سلايد 66</span><h3>⚙️ بروتوكول MAC في 802.11: CSMA/CA</h3></div>
+<div class="fig">
+<svg viewBox="0 0 560 150" width="560" role="img" aria-label="DIFS ثم بيانات ثم SIFS ثم ACK">
+<text x="540" y="40" text-anchor="end" font-size="13" font-weight="700">📤 sender</text>
+<text x="540" y="110" text-anchor="end" font-size="13" font-weight="700">📥 receiver</text>
+<line class="sm" x1="20" y1="55" x2="460" y2="55"/><line class="sm" x1="20" y1="125" x2="460" y2="125"/>
+<rect class="fv" x="380" y="30" width="70" height="25" rx="4"/><text x="415" y="47" text-anchor="middle" font-size="12">DIFS</text>
+<rect class="fg" x="210" y="30" width="170" height="25" rx="4"/><text x="295" y="47" text-anchor="middle" font-size="12">data</text>
+<rect class="fv" x="160" y="100" width="50" height="25" rx="4"/><text x="185" y="117" text-anchor="middle" font-size="12">SIFS</text>
+<rect class="fa" x="90" y="100" width="70" height="25" rx="4"/><text x="125" y="117" text-anchor="middle" font-size="12">ACK</text>
+<text x="20" y="145" font-size="11" class="mu">← time</text>
+</svg></div>
+<div class="grid2">
+<div><h4>📤 802.11 sender</h4><ol class="steps"><li>لو القناة فاضية لمدة <b>DIFS</b> ← يرسل الـ frame كامل (بدون collision detection).</li><li>لو القناة مشغولة ← يبدأ <b>random backoff</b>، العداد ينقص بس وقت ما القناة فاضية، ويرسل لما يخلص.</li><li>لو ما جاه ACK ← يكبّر فترة الـ backoff ويعيد الخطوة 2.</li></ol></div>
+<div><h4>📥 802.11 receiver</h4><p>لو استلم الـ frame سليم ← يرجّع <b>ACK بعد SIFS</b>.</p><div class="tip">ليش الـ ACK؟ بسبب مشكلة الـ hidden terminal 🙈</div></div>
+</div>
+</article>
+
+<article class="s" id="s67"><div class="sh"><span class="n">سلايد 67</span><h3>🎲 العشوائية بعد التصادم</h3></div>
+<ol class="steps">
+<li>A و B يتحسسون القناة فاضية لمدة DIFS ويرسلون ← 💥 تصادم.</li>
+<li>ما يجي ACK ← يعرفون إنه صار فقدان أو تصادم.</li>
+<li>كل واحد ينتظر DIFS، وبعدها <b>backoff عشوائي</b> [0 إلى تقريباً 200 msec، حسب الطبقة الفيزيائية].</li>
+<li>كل واحد يرسل في وقت مختلف ← ✅ إرسال ناجح.</li>
+</ol>
+<div class="key">⏫ فترة الـ backoff تتضاعف بعد كل تصادم</div>
+</article>
+
+<article class="s" id="s68"><div class="sh"><span class="n">سلايد 68 و 69</span><h3>🎫 تجنب التصادم باستخدام RTS/CTS</h3></div>
+<div class="key">💡 الفكرة: المرسل "يحجز" القناة لـ data frames عن طريق حزم حجز صغيرة</div>
+<ol class="steps">
+<li>المرسل يرسل حزمة صغيرة <b>RTS (request-to-send)</b> للـ BS باستخدام CSMA. الـ RTS ممكن تتصادم مع بعض، بس هي قصيرة، وفيها مدة الإرسال اللي بيجي.</li>
+<li>الـ BS يبث <b>CTS (clear-to-send)</b> رد على الـ RTS، وفيها مدة الإرسال.</li>
+<li>الـ RTS و/أو CTS يسمعها كل الأجهزة.</li>
+<li>كل الأجهزة (إلا المرسل) تأجل إرسالها ✋</li>
+<li>المرسل يرسل الـ data frame.</li>
+</ol>
+<div class="fig">
+<svg viewBox="0 0 520 300" width="520" role="img" aria-label="تبادل RTS و CTS بين A و AP و B">
+<g font-size="14" font-weight="700" text-anchor="middle"><text x="440" y="20">A</text><text x="260" y="20">📶 AP</text><text x="80" y="20">B</text></g>
+<line class="sm" x1="440" y1="28" x2="440" y2="290"/><line class="sm" x1="260" y1="28" x2="260" y2="290"/><line class="sm" x1="80" y1="28" x2="80" y2="290"/>
+<line class="sr" x1="440" y1="45" x2="262" y2="62"/><line class="sr" x1="80" y1="45" x2="258" y2="62"/>
+<text x="350" y="44" text-anchor="middle" font-size="11">RTS(A)</text><text x="170" y="44" text-anchor="middle" font-size="11">RTS(B)</text>
+<text x="260" y="80" text-anchor="middle" font-size="11" style="fill:var(--rose)">💥 reservation collision</text>
+<line class="sa" x1="440" y1="100" x2="262" y2="118"/><text x="350" y="100" text-anchor="middle" font-size="11">RTS(A)</text>
+<line class="sg" x1="260" y1="130" x2="438" y2="148"/><line class="sg" x1="260" y1="130" x2="82" y2="148"/>
+<text x="350" y="132" text-anchor="middle" font-size="11">CTS(A)</text><text x="170" y="132" text-anchor="middle" font-size="11">CTS(A)</text>
+<rect class="fv" x="62" y="152" width="36" height="110" rx="4"/><text x="80" y="210" text-anchor="middle" font-size="11" transform="rotate(-90 80 210)">defer ✋</text>
+<rect class="fg" x="276" y="160" width="150" height="60" rx="6"/><text x="350" y="195" text-anchor="middle" font-size="12">DATA (A)</text>
+<line class="sg" x1="260" y1="240" x2="438" y2="258"/><line class="sg" x1="260" y1="240" x2="82" y2="258"/>
+<text x="350" y="242" text-anchor="middle" font-size="11">ACK(A)</text><text x="170" y="242" text-anchor="middle" font-size="11">ACK(A)</text>
+<text x="500" y="290" font-size="11" class="mu" text-anchor="end">time ↓</text>
+</svg><div class="cap">سلايد 69: تبادل RTS-CTS</div></div>
+</article>
+
+<article class="s mini" id="s70"><div class="sh"><span class="n">سلايد 70</span><h3>🗺️ مخطط: مشاركة القناة (OFDMA، CSMA/CA)، WiFi، 5G</h3></div></article>
+
+<article class="s" id="s71"><div class="sh"><span class="n">سلايد 71 و 72</span><h3>🧱 طبقة الربط اللاسلكية في 802.11 (Wi-Fi)</h3></div>
+<div class="fig">
+<svg viewBox="0 0 560 210" width="560" role="img" aria-label="الجهاز يرسل عبر 802.11 للـ AP الذي يحول إلى 802.3">
+<g font-size="12" text-anchor="middle">
+<rect class="fp" x="430" y="20" width="110" height="26" rx="4"/><text x="485" y="38">Application</text>
+<rect class="fp" x="430" y="48" width="110" height="26" rx="4"/><text x="485" y="66">Transport</text>
+<rect class="fp" x="430" y="76" width="110" height="26" rx="4"/><text x="485" y="94">Network</text>
+<rect class="fg" x="430" y="104" width="110" height="26" rx="4"/><text x="485" y="122">802.11 MAC</text>
+<rect class="fv" x="430" y="132" width="110" height="26" rx="4"/><text x="485" y="150">PHY</text>
+<text x="485" y="180">📱 device</text>
+<rect class="fg" x="240" y="104" width="80" height="26" rx="4"/><text x="280" y="122">802.11 MAC</text>
+<rect class="fa" x="320" y="104" width="0" height="0"/>
+<rect class="fa" x="160" y="104" width="80" height="26" rx="4"/><text x="200" y="122">802.3 MAC</text>
+<rect class="fv" x="160" y="132" width="160" height="26" rx="4"/><text x="240" y="150">PHY | PHY</text>
+<text x="240" y="180">📶 AP</text>
+<rect class="fa" x="20" y="104" width="100" height="26" rx="4"/><text x="70" y="122">802.3 MAC</text>
+<rect class="fv" x="20" y="132" width="100" height="26" rx="4"/><text x="70" y="150">PHY</text>
+<text x="70" y="180">🔀 switch/router</text>
+</g>
+<path class="sg dash" d="M430 145 L 322 145"/><text x="376" y="138" text-anchor="middle" font-size="11" style="fill:var(--sig)">802.11</text>
+<path class="sa" d="M160 145 L 122 145"/><text x="141" y="196" text-anchor="middle" font-size="11" style="fill:var(--amber)">802.3</text>
+</svg></div>
+<p>IEEE 802.11 هو المعيار المستخدم للاتصال اللاسلكي (Wi-Fi). يشتغل في <b>طبقة Link</b> ويخلي الأجهزة مثل اللابتوب والجوال تتصل بالشبكة بدون كابلات.</p>
+<div class="grid2"><div><h4>🎛️ MAC Layer</h4><p>يتحكم كيف الأجهزة توصل للقناة اللاسلكية ويدير الـ data frames.</p></div><div><h4>📻 PHY Layer</h4><p>يرسل ويستقبل البيانات بإشارات الراديو.</p></div></div>
+<p><b>BSS:</b> فيه AP وعدة أجهزة لاسلكية، والـ AP يوصل الأجهزة بالشبكة السلكية.</p>
+<p class="big">📲 ➜ 📶 ➜ 🔌 ➜ 🌐</p>
+<ol class="steps"><li>الجهاز يرسل البيانات بـ 802.11 (Wi-Fi).</li><li>البيانات توصل للـ AP.</li><li>الـ AP يمررها لشبكة 802.3 Ethernet.</li><li>البيانات تمر عبر switch/router للإنترنت.</li></ol>
+<div class="key">📝 الخلاصة: 802.11 يخلي الأجهزة اللاسلكية تتواصل مع AP، والـ AP يوصلها بشبكة Ethernet والإنترنت</div>
+</article>
+
+<article class="s" id="s73"><div class="sh"><span class="n">سلايد 73</span><h3>⬇️ تدفق الـ frames من الـ AP للجهاز (downlink)</h3></div>
+<p>الـ AP عنده <b>طابور (queue)</b> للـ frames اللي تنتظر الإرسال (MAC scheduling) 📥📥📥</p>
+<div class="tw"><table class="t">
+<tr><th>النوع</th><th>الـ plane</th><th>وش فيه / وش يسوي</th></tr>
+<tr><td>📦 data frames</td><td>data plane</td><td>فيها IP datagrams</td></tr>
+<tr><td>🎛️ control, management frames</td><td>control plane</td><td>reliable data transfer، energy management، channel measurement، discovery و attachment، RTS/CTS</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s74"><div class="sh"><span class="n">سلايد 74</span><h3>🏷️ عناوين الـ frame في 802.11</h3></div>
+<div class="tw"><table class="t" style="direction:ltr;min-width:620px">
+<tr><th class="c">frame control</th><th class="c">duration</th><th class="c">address 1</th><th class="c">address 2</th><th class="c">address 3</th><th class="c">seq control</th><th class="c">address 4</th><th class="c">payload</th><th class="c">CRC</th></tr>
+<tr><td class="c num">2</td><td class="c num">2</td><td class="c num">6</td><td class="c num">6</td><td class="c num">6</td><td class="c num">2</td><td class="c num">6</td><td class="c num">0 - 2312</td><td class="c num">4</td></tr>
+</table></div>
+<p class="small">الأرقام بالبايت.</p>
+<div class="tw"><table class="t">
+<tr><th>العنوان</th><th>وش هو؟</th></tr>
+<tr><td>📥 <b>Address 1</b></td><td>MAC للجهاز أو الـ AP اللي <b>يستقبل</b> الـ frame</td></tr>
+<tr><td>📤 <b>Address 2</b></td><td>MAC للجهاز أو الـ AP اللي <b>يرسل</b> الـ frame</td></tr>
+<tr><td>🔀 <b>Address 3</b></td><td>MAC لواجهة الـ router اللي الـ AP متصل فيه</td></tr>
+<tr><td>🤝 <b>Address 4</b></td><td>يُستخدم بس في ad hoc mode</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s75"><div class="sh"><span class="n">سلايد 75</span><h3>✉️ مثال على العناوين: H1 ← AP ← R1</h3></div>
+<div class="fig">
+<svg viewBox="0 0 560 120" width="560" role="img" aria-label="H1 إلى AP إلى R1">
+<text x="510" y="60" font-size="26" text-anchor="middle">📱</text><text x="510" y="84" font-size="12" text-anchor="middle">H1</text>
+<text x="290" y="60" font-size="26" text-anchor="middle">📶</text><text x="290" y="84" font-size="12" text-anchor="middle">AP</text>
+<text x="70" y="60" font-size="26" text-anchor="middle">🔀</text><text x="70" y="84" font-size="12" text-anchor="middle">R1 ← Internet</text>
+<path class="sg dash" d="M485 50 L 315 50"/><text x="400" y="38" text-anchor="middle" font-size="12" style="fill:var(--sig)">802.11 WiFi frame</text>
+<path class="sa" d="M265 50 L 95 50"/><text x="180" y="38" text-anchor="middle" font-size="12" style="fill:var(--amber)">802.3 Ethernet frame</text>
+</svg></div>
+<div class="grid2">
+<div><h4>📶 802.11 frame</h4><p>address 1 = <b>AP</b> MAC<br>address 2 = <b>H1</b> MAC<br>address 3 = <b>R1</b> MAC</p></div>
+<div><h4>🔌 802.3 frame</h4><p>MAC source = <b>H1</b> MAC<br>MAC dest = <b>R1</b> MAC</p></div>
+</div>
+</article>
+
+<article class="s" id="s76"><div class="sh"><span class="n">سلايد 76</span><h3>🔬 تفاصيل الـ frame في 802.11</h3></div>
+<div class="tw"><table class="t"><tr><th>الحقل</th><th>وش فيه</th></tr>
+<tr><td>⏱️ duration</td><td>مدة الإرسال المحجوزة (RTS/CTS)</td></tr>
+<tr><td>🔢 seq control</td><td>رقم تسلسل الـ frame (لنقل البيانات الموثوق)</td></tr>
+<tr><td>📦 payload</td><td>IP datagram، أو رسالة control أو management</td></tr></table></div>
+<p class="big">🎛️ حقل frame control (بالبتات):</p>
+<div class="tw"><table class="t" style="direction:ltr;min-width:640px">
+<tr><th class="c">protocol version</th><th class="c">type</th><th class="c">subtype</th><th class="c">to AP</th><th class="c">from AP</th><th class="c">more frag</th><th class="c">retry</th><th class="c">power mgt</th><th class="c">more data</th><th class="c">WEP</th><th class="c">rsvd</th></tr>
+<tr><td class="c">2</td><td class="c">2</td><td class="c">4</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">1</td></tr></table></div>
+<div class="grid2">
+<div><h4>type</h4><p>0️⃣ management<br>1️⃣ control<br>2️⃣ data</p></div>
+<div><h4>subtype</h4><p>نوع الـ frame داخل management أو control أو data</p></div>
+</div>
+</article>
+
+<article class="s" id="s77"><div class="sh"><span class="n">سلايد 77</span><h3>🌅 "يوم في حياة" WiFi</h3></div>
+<ol class="steps">
+<li>🌐 طلب <b>HTTP/3</b> داخل UDP segment داخل IP datagram، يتحط في frame 802.11 ويدخل طابور جدولة الـ MAC وينتظر.</li>
+<li>🎫 الجهاز يرسل control frame من نوع <b>RTS</b> (باستخدام CSMA/CA)، والـ AP يرد بـ <b>CTS</b>.</li>
+<li>📦 الجهاز يرسل <b>DATA</b> frame للـ AP، ويحتفظ بنسخة منه (buffers).</li>
+<li>✅ الـ AP يرد بـ <b>ACK</b>، والجهاز يحذف الـ frame اللي أرسله، والـ AP الحين يقدر يمرر الـ frame للراوتر.</li>
+</ol>
+</article>
+</section>
+
+<!-- ================= PART 4 ================= -->
+<section class="part" id="p4">
+<div class="part-h"><span class="emo">🗼</span><h2>الجزء الرابع: الشبكات الخلوية 3G و 4G و 5G<small>سلايد 78 إلى 105</small></h2></div>
+
+<article class="s mini" id="s78"><div class="sh"><span class="n">سلايد 78</span><h3>🗺️ مخطط: Cellular networks 3G و 4G و 5G، و 5G RAN</h3></div></article>
+<article class="s mini" id="s79"><div class="sh"><span class="n">سلايد 79</span><h3>📈 تطور التقنيات الخلوية</h3></div><p class="small">العنوان ورسم بس (ما فيها نص).</p></article>
+
+<article class="s" id="s80"><div class="sh"><span class="n">سلايد 80</span><h3>🛣️ خارطة الخدمات (Service Roadmap)</h3></div>
+<p>تحسّن في الأداء ⬆️ ونزول في تكلفة التوصيل ⬇️. متوسط السرعات (والسرعات القصوى أعلى):</p>
+<div class="tw"><table class="t">
+<tr><th>التقنية</th><th>السرعة</th><th>خدمات</th></tr>
+<tr><td>GSM</td><td class="num">9.6 kbps</td><td>📞 Voice و SMS</td></tr>
+<tr><td>GPRS</td><td class="num">171 kbps</td><td>📍 Presence/location، Push-to-talk</td></tr>
+<tr><td>EGPRS</td><td class="num">473 kbps</td><td>🖼️ MMS، xHTML browsing، تحميل التطبيقات، E-mail</td></tr>
+<tr><td>WCDMA</td><td class="num">2 Mbps</td><td>🎵 Streaming audio/video، Corporate data access، Multicasting</td></tr>
+<tr><td>HSDPA</td><td class="num">1-10 Mbps</td><td>🎮 Multitasking WEB browsing، Real-time IP multimedia and games، Video sharing و Video telephony</td></tr>
+</table></div>
+<ul><li>خدمات 3G تستفيد من الـ bandwidth الأعلى و/أو real-time QoS.</li><li>فيه خدمات كثيرة ما تعتمد على تقنية الحامل (bearer independent).</li><li>Broadband in wide area.</li></ul>
+</article>
+
+<article class="s" id="s81"><div class="sh"><span class="n">سلايد 81</span><h3>🧬 تطور GSM إلى 3G</h3></div>
+<div class="fig">
+<svg viewBox="0 0 560 100" width="560" role="img" aria-label="تطور GSM إلى HSCSD و GPRS و EDGE ثم WCDMA">
+<g font-size="12" text-anchor="middle">
+<rect class="fp" x="470" y="35" width="80" height="30" rx="6"/><text x="510" y="55">GSM</text>
+<rect class="fa" x="350" y="5" width="90" height="26" rx="6"/><text x="395" y="23">HSCSD</text>
+<rect class="fa" x="350" y="37" width="90" height="26" rx="6"/><text x="395" y="55">GPRS</text>
+<rect class="fa" x="350" y="69" width="90" height="26" rx="6"/><text x="395" y="87">EDGE</text>
+<rect class="fg" x="210" y="35" width="100" height="30" rx="6"/><text x="260" y="55">WCDMA (3G)</text>
+</g>
+<g class="st"><line x1="470" y1="50" x2="442" y2="18"/><line x1="470" y1="50" x2="442" y2="50"/><line x1="470" y1="50" x2="442" y2="82"/><line x1="350" y1="50" x2="312" y2="50"/></g>
+</svg></div>
+<div class="tw"><table class="t">
+<tr><th>التقنية</th><th>السرعة</th><th>الشرح</th></tr>
+<tr><td><b>GSM Data</b> (CSD)</td><td>9.6 kbps</td><td>one timeslot</td></tr>
+<tr><td><b>HSCSD</b><br><span class="small">High Speed Circuit Switched Data</span></td><td>~50 kbps</td><td>يخصص لين 4 timeslots. ✅ مناسب للتطبيقات اللحظية مقارنة بـ GPRS. ❌ غير فعّال لأنه يحجز الموارد حتى لو ما فيه شي ينرسل، ومو مشهور مثل GPRS (كثير تخطوه)</td></tr>
+<tr><td><b>GPRS</b><br><span class="small">General Packet Radio Services</span></td><td>~115 kbps</td><td>أقصى شي 8 timeslots. 📦 packet switched فالموارد ما تكون محجوزة طول الوقت. contention based: فعّال بس التأخير متغير. والـ core حق GSM/GPRS يُستخدم مرة ثانية في WCDMA (3G)</td></tr>
+<tr><td><b>EDGE</b><br><span class="small">Enhanced Data Rates for Global Evolution</span></td><td>~384 kbps (مع GPRS = EGPRS)</td><td>يحسّن السرعة في المسافات القصيرة، ويرجع لـ GMSK في المسافات الأطول، ويقدر يندمج مع HSCSD</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s82"><div class="sh"><span class="n">سلايد 82</span><h3>🌐 UMTS</h3></div>
+<p><b>Universal Mobile Telecommunications System</b></p>
+<ul><li>UMTS ترقية من GSM عن طريق GPRS أو EDGE.</li><li>معاييره تشتغل عليها <b>3GPP</b> (Third Generation Partnership Project).</li></ul>
+<div class="tw"><table class="t"><tr><th>المكان</th><th>السرعة</th></tr>
+<tr><td>🌾 rural</td><td class="num">144 kbps</td></tr><tr><td>🏙️ urban outdoor</td><td class="num">384 kbps</td></tr><tr><td>🏠 indoor and low range outdoor</td><td class="num">2048 kbps</td></tr></table></div>
+</article>
+
+<article class="s" id="s83"><div class="sh"><span class="n">سلايد 83</span><h3>🏗️ معمارية UMTS</h3></div>
+<div class="tw"><table class="t">
+<tr><th>الجزء</th><th>العناصر</th></tr>
+<tr><td>📱 Mobile Station</td><td>ME + SIM / USIM</td></tr>
+<tr><td>🗼 Base Station Subsystem</td><td>BTS، BSC · وفي UMTS: <b>UTRAN</b> (Node B + RNC = RNS)</td></tr>
+<tr><td>🧠 Network Subsystem</td><td>MSC/VLR، GMSC، HLR، AUC، EIR، SGSN، GGSN</td></tr>
+<tr><td>🌐 Other Networks</td><td>PSTN، PLMN، Internet</td></tr>
+</table></div>
+<p class="small">ملاحظة: الواجهات (Interfaces) مو موجودة في الرسم عشان يكون أوضح.</p>
+</article>
+
+<article class="s" id="s84"><div class="sh"><span class="n">سلايد 84</span><h3>🧩 معمارية شبكة UMTS: ثلاث مجالات</h3></div>
+<div class="grid2">
+<div><h4>🧠 Core Network (CN)</h4><p>يوفر التبديل (switching) والتوجيه (routing) والعبور (transit) لترافيك المستخدم.</p></div>
+<div><h4>🗼 UTRAN</h4><p>UMTS Terrestrial Radio Access Network: يوفر طريقة الوصول عبر الهواء لأجهزة المستخدمين.</p></div>
+<div><h4>📱 User Equipment (UE)</h4><p>الأجهزة اللي تقابل المحطات الأساسية في الاتصال الهوائي. هوياتها: <span class="en">IMSI, TMSI, P-TMSI, TLLI, MSISDN, IMEI, IMEISV</span></p></div>
+</div>
+</article>
+
+<article class="s" id="s85"><div class="sh"><span class="n">سلايد 85</span><h3>🗼 UTRAN</h3></div>
+<ul><li>تقنية <b>Wideband CDMA</b> هي المختارة للواجهة الهوائية.</li><li>المحطات الأساسية اسمها <b>Node-B</b>، والجهاز اللي يتحكم فيها اسمه <b>RNC</b> (Radio Network Controller).</li></ul>
+<div class="grid2">
+<div><h4>📡 وظائف Node-B</h4><ul><li>Air Interface Tx/Rx</li><li>Modulation/Demodulation</li></ul></div>
+<div><h4>🎛️ وظائف RNC</h4><ul><li>Radio Resource Control</li><li>Channel Allocation</li><li>Power Control Settings</li><li>Handover Control</li><li>Ciphering 🔐</li><li>Segmentation and reassembly</li></ul></div>
+</div>
+</article>
+
+<article class="s" id="s86"><div class="sh"><span class="n">سلايد 86</span><h3>⚡ 3.5G (HSPA)</h3></div>
+<p><b>HSPA (High Speed Packet Access)</b> دمج بين بروتوكولين:</p>
+<div class="grid2"><div><h4>⬇️ HSDPA</h4><p>High Speed Downlink Packet Access</p></div><div><h4>⬆️ HSUPA</h4><p>High Speed Uplink Packet Access</p></div></div>
+<p>يوسّع ويحسّن أداء بروتوكولات WCDMA الموجودة. و 3.5G يضيف ميزات جديدة كثيرة تحسّن تقنية UMTS في المستقبل.</p>
+</article>
+
+<article class="s" id="s87"><div class="sh"><span class="n">سلايد 87 و 88</span><h3>🚀 4G (LTE)</h3></div>
+<div class="key">LTE = Long Term Evolution</div>
+<ul><li>تقنية الجيل الجاي للإنترنت المتنقل.</li><li>تَعِد بسرعات نقل <b>100 Mbps</b>.</li><li>مبنية على تقنية UMTS 3G.</li><li>محسّنة للترافيك اللي كله IP (All-IP).</li></ul>
+<p class="small">سلايد 88: عنوانها "LTE" مع رسم بس.</p>
+</article>
+
+<article class="s" id="s89"><div class="sh"><span class="n">سلايد 89 → 93</span><h3>🏗️ عناصر معمارية 4G LTE</h3></div>
+<div class="fig">
+<svg viewBox="0 0 600 230" width="600" role="img" aria-label="معمارية 4G: UE و eNode-B و MME و HSS و S-GW و P-GW">
+<text x="560" y="140" font-size="26" text-anchor="middle">📱</text><text x="560" y="162" font-size="12" text-anchor="middle">UE</text>
+<path class="sg dash" d="M540 130 L 490 130"/>
+<rect class="fg" x="410" y="112" width="80" height="36" rx="8"/><text x="450" y="135" text-anchor="middle" font-size="12">🗼 eNode-B</text>
+<rect class="fv" x="290" y="30" width="80" height="34" rx="8"/><text x="330" y="52" text-anchor="middle" font-size="12">MME</text>
+<rect class="fv" x="170" y="30" width="80" height="34" rx="8"/><text x="210" y="52" text-anchor="middle" font-size="12">HSS</text>
+<rect class="fa" x="290" y="112" width="80" height="36" rx="8"/><text x="330" y="135" text-anchor="middle" font-size="12">S-GW</text>
+<rect class="fa" x="170" y="112" width="80" height="36" rx="8"/><text x="210" y="135" text-anchor="middle" font-size="12">P-GW</text>
+<rect class="fp" x="40" y="112" width="90" height="36" rx="8"/><text x="85" y="135" text-anchor="middle" font-size="12">🌐 Internet</text>
+<g class="st"><line x1="410" y1="130" x2="372" y2="130"/><line x1="290" y1="130" x2="252" y2="130"/><line x1="170" y1="130" x2="132" y2="130"/><line x1="290" y1="47" x2="252" y2="47"/></g>
+<path class="sv dash" d="M450 112 L 350 64"/>
+<line class="sm" x1="395" y1="180" x2="395" y2="220"/>
+<text x="500" y="210" text-anchor="middle" font-size="12" style="fill:var(--sig)">radio access network</text>
+<text x="250" y="210" text-anchor="middle" font-size="12" style="fill:var(--amber)">all-IP Enhanced Packet Core (EPC)</text>
+</svg></div>
+<div class="tw"><table class="t">
+<tr><th>العنصر</th><th>الشرح</th></tr>
+<tr><td id="s89b">📱 <b>Mobile device (UE)</b><br><span class="small">سلايد 89</span></td><td>جوال، تابلت، لابتوب، IoT... فيه راديو 4G LTE. عنده <b>IMSI</b> (International Mobile Subscriber Identity) بطول 64 بت، مخزن في شريحة <b>SIM</b>. اسمه في LTE: <b>User Equipment (UE)</b></td></tr>
+<tr><td id="s90">🗼 <b>Base station (eNode-B)</b><br><span class="small">سلايد 90</span></td><td>على "حافة" شبكة الشركة. يدير موارد الراديو والأجهزة في منطقته ("cell"). ينسّق مصادقة الأجهزة مع العناصر الثانية. <b>يشبه AP في WiFi بس:</b> له دور نشط في تنقل المستخدم، وينسّق مع المحطات القريبة عشان يحسّن استخدام الراديو</td></tr>
+<tr><td id="s91">🏠 <b>HSS</b> (Home Subscriber Service)<br><span class="small">سلايد 91</span></td><td>يخزن معلومات عن الأجهزة اللي شبكة الـ HSS هي "شبكتها الأم" (home network)، ويشتغل مع MME في مصادقة الأجهزة</td></tr>
+<tr><td id="s92">🚪 <b>S-GW و P-GW</b><br><span class="small">سلايد 92</span></td><td>على مسار البيانات من الجهاز وإليه للإنترنت.<br><b>P-GW:</b> بوابة الشبكة الخلوية، يبان مثل أي راوتر بوابة إنترنت، ويقدم خدمات <b>NAT</b>.<br><b>الراوترات الثانية:</b> استخدام كبير للـ tunneling</td></tr>
+<tr><td id="s93">🧭 <b>MME</b> (Mobility Management Entity)<br><span class="small">سلايد 93</span></td><td>🔐 مصادقة الجهاز (الجهاز للشبكة والشبكة للجهاز) بالتنسيق مع HSS في الشبكة الأم.<br>📱 إدارة الجهاز: handover بين الخلايا، تتبع موقع الجهاز و paging، وتجهيز المسار (tunneling) من الجهاز للـ P-GW</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s94"><div class="sh"><span class="n">سلايد 94</span><h3>✂️ الفصل بين data plane و control plane في LTE</h3></div>
+<div class="grid2">
+<div><h4>🎛️ control plane</h4><p>بروتوكولات جديدة لإدارة التنقل والأمان والمصادقة.</p><p class="small">العناصر: HSS، MME، base station، S-GW، P-GW</p></div>
+<div><h4>📦 data plane</h4><p>بروتوكولات جديدة في طبقات link و physical.</p><p>استخدام كبير للـ <b>tunneling</b> عشان يسهّل التنقل.</p><p class="small">base station ⇄ S-GW ⇄ P-GW عبر IP tunnels</p></div>
+</div>
+</article>
+
+<article class="s" id="s95"><div class="sh"><span class="n">سلايد 95</span><h3>📚 بروتوكولات data plane في LTE: القفزة الأولى</h3></div>
+<div class="tw"><table class="t">
+<tr><th>Protocol stack</th></tr>
+<tr><td class="c">Application</td></tr><tr><td class="c">Transport</td></tr><tr><td class="c">IP</td></tr>
+<tr><td class="c" style="background:var(--sig-soft)"><b>Packet Data Convergence · Radio Link · Medium Access</b> (Link)</td></tr>
+<tr><td class="c">Physical</td></tr></table></div>
+<div class="tw"><table class="t">
+<tr><th>بروتوكول طبقة Link</th><th>وظيفته</th></tr>
+<tr><td>🗜️ <b>Packet Data Convergence</b></td><td>ضغط الـ header والتشفير</td></tr>
+<tr><td>🔗 <b>Radio Link Control (RLC)</b></td><td>التقسيم وإعادة التجميع (fragmentation/reassembly)، ونقل البيانات الموثوق</td></tr>
+<tr><td>🎫 <b>Medium Access</b></td><td>طلب واستخدام فترات الإرسال الراديوية (slots)</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s96"><div class="sh"><span class="n">سلايد 96</span><h3>📡 القفزة الأولى: شبكة الوصول الراديوية</h3></div>
+<ul>
+<li>⬇️ <b>downstream:</b> FDM، و TDM داخل قناة التردد (<b>OFDM</b>: orthogonal frequency division multiplexing).<br><span class="small">"orthogonal" يعني أقل تداخل بين القنوات.</span></li>
+<li>⬆️ <b>upstream:</b> FDM و TDM يشبه OFDM.</li>
+</ul>
+<div class="key">⏱️ كل جهاز نشط ياخذ فترتين أو أكثر، مدة كل وحدة 0.5 ms، على 12 تردد</div>
+<ul><li>خوارزمية الجدولة <b>مو موحّدة</b> (not standardized)، يحددها المشغّل.</li><li>🚀 ممكن يوصل لمئات الـ Mbps لكل جهاز.</li></ul>
+</article>
+
+<article class="s" id="s97"><div class="sh"><span class="n">سلايد 97</span><h3>🚇 data plane في LTE: الشبكة الأساسية (packet core)</h3></div>
+<div class="fig">
+<svg viewBox="0 0 560 110" width="560" role="img" aria-label="أنفاق GTP من المحطة إلى S-GW إلى P-GW">
+<rect class="fg" x="440" y="35" width="100" height="40" rx="8"/><text x="490" y="60" text-anchor="middle" font-size="12">🗼 base station</text>
+<rect class="fa" x="230" y="35" width="100" height="40" rx="8"/><text x="280" y="60" text-anchor="middle" font-size="12">S-GW</text>
+<rect class="fa" x="20" y="35" width="100" height="40" rx="8"/><text x="70" y="60" text-anchor="middle" font-size="12">P-GW</text>
+<rect class="fv" x="332" y="44" width="106" height="22" rx="11" style="fill-opacity:.6"/><text x="385" y="59" text-anchor="middle" font-size="11">GTP tunnel</text>
+<rect class="fv" x="122" y="44" width="106" height="22" rx="11" style="fill-opacity:.6"/><text x="175" y="59" text-anchor="middle" font-size="11">re-tunnel</text>
+<text x="280" y="100" text-anchor="middle" font-size="11" class="mu">GTP-U / UDP / IP / link / Physical</text>
+</svg></div>
+<ol class="steps"><li>📦 datagram الجهاز يتغلّف بـ <b>GTP</b> (GPRS Tunneling Protocol)، وينرسل داخل UDP datagram للـ S-GW.</li><li>🔁 الـ S-GW يعيد تغليفه (re-tunnels) ويرسله للـ P-GW.</li></ol>
+<div class="key">🚗 دعم التنقل: لما المستخدم يتحرك، بس نقاط نهاية الـ tunnel هي اللي تتغير</div>
+</article>
+
+<article class="s" id="s98"><div class="sh"><span class="n">سلايد 98</span><h3>🤝 data plane في LTE: الارتباط بمحطة أساسية</h3></div>
+<ol class="steps">
+<li>📢 المحطة تبث <b>primary synch signal</b> كل 5 ms على كل الترددات. (ممكن محطات من أكثر من شركة تبث)</li>
+<li>🔎 الجهاز يلقى primary synch signal، وبعدها يلقى <b>2nd synch signal</b> على نفس التردد.</li>
+<li>ℹ️ الجهاز يلقى المعلومات اللي تبثها المحطة: bandwidth القناة، والإعدادات، ومعلومات الشركة. (ممكن من أكثر من محطة وأكثر من شبكة)</li>
+<li>✅ الجهاز يختار المحطة اللي يرتبط فيها (مثلاً يفضّل شركته الأم).</li>
+</ol>
+<div class="tip">⏭️ بعدها فيه خطوات زيادة: المصادقة، وتجهيز الحالة (state)، وتجهيز الـ data plane.</div>
+</article>
+
+<article class="s" id="s99"><div class="sh"><span class="n">سلايد 99</span><h3>💤 أوضاع النوم في أجهزة LTE</h3></div>
+<p>مثل WiFi و Bluetooth: جهاز LTE يحط الراديو في وضع "نوم" عشان يوفر البطارية 🔋</p>
+<div class="tw"><table class="t">
+<tr><th>الوضع</th><th>متى؟</th><th>التفاصيل</th></tr>
+<tr><td>😪 <b>light sleep</b></td><td>بعد مئات الـ msec بدون نشاط</td><td>يصحى بشكل دوري (كل مئات الـ msec) يشيك إذا فيه إرسال جاي له</td></tr>
+<tr><td>😴 <b>deep sleep</b></td><td>بعد 5 إلى 10 ثواني بدون نشاط</td><td>الجهاز ممكن يغيّر الخلية وهو نايم، فيحتاج يعيد الارتباط</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s100"><div class="sh"><span class="n">سلايد 100</span><h3>🌍 الشبكة الخلوية العالمية: شبكة من شبكات IP</h3></div>
+<div class="fig">
+<svg viewBox="0 0 560 170" width="560" role="img" aria-label="شبكة أم وشبكة مزارة متصلتان عبر IPX والإنترنت">
+<rect class="fg" x="350" y="20" width="190" height="80" rx="12"/><text x="445" y="44" text-anchor="middle" font-size="13" font-weight="700">🏠 home network</text><text x="445" y="64" text-anchor="middle" font-size="12">HSS · P-GW</text>
+<rect class="fa" x="20" y="20" width="190" height="80" rx="12"/><text x="115" y="44" text-anchor="middle" font-size="13" font-weight="700">✈️ visited network</text><text x="115" y="64" text-anchor="middle" font-size="12">P-GW · 📱 roaming</text>
+<rect class="fv" x="220" y="40" width="120" height="40" rx="20"/><text x="280" y="65" text-anchor="middle" font-size="12">inter-carrier IPX</text>
+<rect class="fp" x="200" y="120" width="160" height="36" rx="18"/><text x="280" y="143" text-anchor="middle" font-size="12">🌐 public Internet</text>
+<g class="st"><line x1="350" y1="60" x2="340" y2="60"/><line x1="210" y1="60" x2="220" y2="60"/><line x1="400" y1="100" x2="340" y2="125"/><line x1="160" y1="100" x2="220" y2="125"/></g>
+</svg></div>
+<ul>
+<li>🏠 <b>HSS في الشبكة الأم:</b> معلومات الهوية والخدمات، سواء الجهاز في شبكته الأم أو متجول (roaming).</li>
+<li>💳 <b>SIM card:</b> معلومات الهوية العالمية في الشبكة الأم.</li>
+<li>🌐 <b>all IP:</b> الشركات تتصل ببعض وبالإنترنت العام عند نقاط التبادل (exchange points)، وفيه inter-carrier IPX.</li>
+<li>📼 <b>legacy 2G و 3G:</b> مو كلها IP، وتتعامل بطريقة ثانية.</li>
+</ul>
+</article>
+
+<article class="s" id="s101"><div class="sh"><span class="n">سلايد 101</span><h3>🆚 شبكات 4G/5G مقارنة بالإنترنت السلكي</h3></div>
+<div class="tw"><table class="t">
+<tr><th>✅ التشابهات</th><th>🔀 الاختلافات</th></tr>
+<tr><td>تمييز بين edge و core، بس الاثنين تابعين لنفس الشركة</td><td>طبقة link لاسلكية مختلفة</td></tr>
+<tr><td>الشبكة الخلوية العالمية "شبكة من الشبكات"</td><td>التنقل خدمة أساسية (mobility as a 1st class service)</td></tr>
+<tr><td>تستخدم بروتوكولات درسناها: HTTP، DNS، TCP، UDP، IP، NAT، فصل data/control planes، SDN، Ethernet، tunneling</td><td>"هوية" المستخدم عن طريق SIM card 💳</td></tr>
+<tr><td>متصلة بالإنترنت السلكي</td><td>نموذج العمل: المستخدمين يشتركون مع شركة اتصالات</td></tr>
+<tr><td></td><td>مفهوم قوي لـ "home network" مقابل roaming في شبكات ثانية</td></tr>
+<tr><td></td><td>وصول عالمي مع بنية مصادقة وتسويات بين الشركات (inter-carrier settlements)</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s102"><div class="sh"><span class="n">سلايد 102</span><h3>🚀 نروح لـ 5G!</h3></div>
+<p class="big">🎯 الهدف مقارنة بـ 4G:</p>
+<div class="grid2">
+<div><h4>⚡ 10x</h4><p>زيادة في أعلى سرعة (peak bitrate)</p></div>
+<div><h4>⏱️ 10x</h4><p>نقص في التأخير (latency)</p></div>
+<div><h4>📊 100x</h4><p>زيادة في سعة الترافيك</p></div>
+</div>
+<p class="big">📻 5G NR (new radio):</p>
+<div class="tw"><table class="t"><tr><th>النطاق</th><th>الترددات</th></tr><tr><td><b>FR1</b></td><td>450 MHz – 6 GHz</td></tr><tr><td><b>FR2</b></td><td>24 GHz – 52 GHz (millimeter wave)</td></tr></table></div>
+<ul><li>❌ <b>مو متوافق مع 4G</b> (not backwards-compatible).</li><li>📡 MIMO: هوائيات اتجاهية متعددة.</li></ul>
+<div class="warn">📏 <b>millimeter wave:</b> سرعات أعلى بكثير بس لمسافات أقصر<br>• <b>pico-cells:</b> قطر الخلية 10 - 100 m<br>• يحتاج نشر محطات أساسية جديدة كثيرة وكثيفة</div>
+</article>
+
+<article class="s" id="s103"><div class="sh"><span class="n">سلايد 103</span><h3>🏗️ العناصر المعمارية في 5G</h3></div>
+<div class="fig">
+<svg viewBox="0 0 560 100" width="560" role="img" aria-label="الجهاز ثم gNodeB ثم 5G core ثم الإنترنت">
+<text x="520" y="55" font-size="26" text-anchor="middle">📱</text><text x="520" y="80" font-size="12" text-anchor="middle">User device</text>
+<rect class="fg" x="360" y="30" width="100" height="36" rx="8"/><text x="410" y="53" text-anchor="middle" font-size="12">🗼 gNodeB</text>
+<rect class="fv" x="170" y="30" width="150" height="36" rx="8"/><text x="245" y="53" text-anchor="middle" font-size="12">Core Network Functions</text>
+<rect class="fp" x="30" y="30" width="100" height="36" rx="8"/><text x="80" y="53" text-anchor="middle" font-size="12">🌐 Internet</text>
+<path class="sg dash" d="M500 48 L 462 48"/><g class="st"><line x1="360" y1="48" x2="322" y2="48"/><line x1="170" y1="48" x2="132" y2="48"/></g>
+<text x="440" y="92" text-anchor="middle" font-size="11" style="fill:var(--sig)">RAN</text><text x="245" y="92" text-anchor="middle" font-size="11" style="fill:var(--violet)">5G core network</text>
+</svg></div>
+</article>
+
+<article class="s" id="s104"><div class="sh"><span class="n">سلايد 104</span><h3>📶 5G Radio Access Network (RAN)</h3></div>
+<ul><li>شبكة <b>edge</b> توصل الأجهزة بالمحطة الأساسية.</li><li>تقدم خدمة طبقة link، كأول قفزة (first hop) بين الأجهزة والشبكة الأكبر.</li><li>نطاقها الجغرافي محدود.</li><li>تحت تحكم مزود خدمة واحد.</li><li>تشبه شوي WiFi LAN.</li></ul>
+<div class="tw"><table class="t"><tr><th>مكونات الـ RAN</th><th>الاسم</th></tr>
+<tr><td>📱 أجهزة كثيرة</td><td>User Equipment: <b>UE</b></td></tr>
+<tr><td>〰️ قناة راديو</td><td>New Radio: <b>NR</b></td></tr>
+<tr><td>🗼 محطة أساسية وحدة</td><td>Next Generation Node B: <b>gNodeB / gNB</b></td></tr></table></div>
+</article>
+
+<article class="s" id="s105"><div class="sh"><span class="n">سلايد 105</span><h3>🧠 5G Core Network</h3></div>
+<ul><li>موجودة بين الـ RAN والأطراف الثانية (Core، الإنترنت الأكبر).</li><li>فيها روابط وراوترات وسيرفرات تقدم خدمات للأجهزة والمحطات الأساسية.</li><li>"all IP"، بس خدماتها مختلفة مرة عن تطبيقات الإنترنت التقليدية.</li></ul>
+<div class="key">1️⃣ Core واحد ← 🔢 أكثر من RAN</div>
+<div class="tip">✂️ فصل منطقي واضح بين control-plane و user plane:<br><b>CUPS: Control-Plane and User-Plane Separation</b></div>
+</article>
+</section>
+
+<!-- ================= PART 5 ================= -->
+<section class="part" id="p5">
+<div class="part-h"><span class="emo">😴</span><h2>الجزء الخامس: النوم والاستيقاظ<small>سلايد 106 إلى 110</small></h2></div>
+<article class="s mini" id="s106"><div class="sh"><span class="n">سلايد 106</span><h3>🗺️ مخطط: التحديات المشتركة (network discovery، frame scheduling، energy)</h3></div></article>
+
+<article class="s" id="s107"><div class="sh"><span class="n">سلايد 107 و 108</span><h3>💤 النوم سهل ⏰ والاستيقاظ صعب</h3></div>
+<p>راديوهات 4G/5G و WiFi و Bluetooth تنطفي لما ما تُستخدم عشان توفر طاقة 🔋</p>
+<div class="grid2">
+<div><h4>😴 النوم أسهل (107)</h4><ul><li>الجهاز هو اللي يقرر: ينام لو ما عنده شي يرسله ولا شي يستقبله.</li><li>ممكن يكون (أو ما يكون) بالتنسيق مع base station (4/5G) أو AP (WiFi) أو controller (BT).</li><li>فيه deep-sleep (أطول، أكثر "انطفاء") و light sleep (أقصر، أقل "انطفاء").</li></ul></div>
+<div id="s108"><h4>⏰ الاستيقاظ أصعب (108)</h4><ul><li>الـ base station أو AP أو controller لازم يرسل إشارة "اصحَ" للجهاز لما يكون فيه حزم له.</li><li>في 4/5G ممكن نحتاج نعيد إنشاء network context.</li><li>الـ data frames لازم تنحفظ (buffer) في المحطة الأساسية لين يصحى الجهاز.</li></ul></div>
+</div>
+</article>
+
+<article class="s" id="s109"><div class="sh"><span class="n">سلايد 109</span><h3>⚖️ المفاضلات والتحديات</h3></div>
+<div class="tw"><table class="t">
+<tr><th>السؤال</th><th>الطرف الأول</th><th>الطرف الثاني</th></tr>
+<tr><td><b>⏳ كم ينام؟</b></td><td>أطول: يوفر طاقة أكثر ✅ بس تأخير أكبر ❌ ويأثر على بروتوكولات عليا مثل TCP</td><td>أقصر: توفير أقل ❌ و signaling overhead أكثر ❌</td></tr>
+<tr><td><b>👀 كم يظل صاحي؟</b></td><td colspan="2">حسب الوقت من آخر نشاط. الإرسال عادةً على دفعات (bursty)، ولازم الدفعة تخلص قبل ما ينام، طيب كم ينتظر؟ 🤔</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s110"><div class="sh"><span class="n">سلايد 110</span><h3>🔄 تنسيق النوم والاستيقاظ في 5G (DRX)</h3></div>
+<div class="fig">
+<svg viewBox="0 0 600 120" width="600" role="img" aria-label="خط زمني من t0 إلى t5 لدورات DRX">
+<line class="sm" x1="20" y1="70" x2="580" y2="70"/>
+<rect class="fg" x="510" y="45" width="60" height="25" rx="4"/><text x="540" y="62" text-anchor="middle" font-size="11">active</text>
+<g class="sa"><path d="M490 70 v-15 h10 v15 M450 70 v-15 h10 v15 M410 70 v-15 h10 v15"/></g>
+<text x="440" y="40" text-anchor="middle" font-size="11" style="fill:var(--amber)">short DRX</text>
+<g class="sv"><path d="M340 70 v-15 h10 v15 M240 70 v-15 h10 v15"/></g>
+<text x="290" y="40" text-anchor="middle" font-size="11" style="fill:var(--violet)">long DRX</text>
+<rect class="fg" x="30" y="45" width="60" height="25" rx="4"/><text x="60" y="62" text-anchor="middle" font-size="11">active</text>
+<g font-size="12" font-family="JetBrains Mono" text-anchor="middle"><text x="550" y="92">t0</text><text x="505" y="92">t1</text><text x="455" y="92">t2</text><text x="380" y="92">t3</text><text x="200" y="92">t4</text><text x="100" y="92">t5</text></g>
+<text x="300" y="114" text-anchor="middle" font-size="11" class="mu">← time</text>
+</svg></div>
+<div class="tw"><table class="t">
+<tr><th>الوقت</th><th>وش يصير</th></tr>
+<tr><td class="en">t0</td><td>📥 وصل إرسال للجهاز، يبدأ inactivity timer</td></tr>
+<tr><td class="en">t1</td><td>⏲️ انتهى المؤقت ← يدخل short DRX cycle</td></tr>
+<tr><td class="en">t2</td><td>🔁 يصحى بشكل دوري في short DRX، ما فيه شي ← يرجع ينام</td></tr>
+<tr><td class="en">t3</td><td>😴 للحين ما فيه شي ← يدخل long DRX cycle</td></tr>
+<tr><td class="en">t4</td><td>📦 وصل إرسال للجهاز ← ينحفظ في المحطة الأساسية لين نهاية دورة DRX الحالية</td></tr>
+<tr><td class="en">t5</td><td>⏰ الجهاز يصحى من long DRX، يقبل channel scheduling assignment، وينهي النوم</td></tr>
+</table></div>
+</article>
+</section>
+
+<!-- ================= PART 6 ================= -->
+<section class="part" id="p6">
+<div class="part-h"><span class="emo">🧠</span><h2>الجزء السادس: الشبكة الأساسية 5G Core<small>سلايد 111 إلى 119</small></h2></div>
+<article class="s mini" id="s111"><div class="sh"><span class="n">سلايد 111</span><h3>🗺️ مخطط: the wireless core network (principles، 5G)</h3></div></article>
+
+<article class="s" id="s112"><div class="sh"><span class="n">سلايد 112</span><h3>🧩 المكونات الوظيفية في 5G Core</h3></div>
+<div class="key">5G Core أغلبه عن خدمات الـ control plane 🎛️</div>
+<div class="tw"><table class="t">
+<tr><th>المجموعة</th><th>الوظائف</th></tr>
+<tr><td>💾 data storage</td><td><b>UDSF</b> Unstructured Data Storage · <b>UDR</b> Unified Data Repository</td></tr>
+<tr><td>🎛️ control plane</td><td><b>PCF</b> Policy control · <b>UDM</b> Unified Data Management · <b>AUSF</b> Authentication Server · <b>NEF</b> Network Exposure (لتطبيقات 3rd party) · <b>SEPP</b> Security Edge Proxy (يتصل بـ control planes عند مزودين خلويين ثانيين) · <b>NRF</b> Network Repository · <b>SMF</b> Session Management · <b>AF</b> Application Function · <b>AMF</b> Access, Mobility Management</td></tr>
+<tr><td>📦 user plane</td><td><b>UPF</b> User Plane ← Internet</td></tr>
+<tr><td>🔌 الواجهات</td><td>N1 (الجهاز)، N2 (base station ⇄ AMF)، N3 (base station ⇄ UPF)</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s113"><div class="sh"><span class="n">سلايد 113 → 115</span><h3>🔍 وظائف 5G Core بالتفصيل</h3></div>
+<div class="tw"><table class="t">
+<tr><th>الوظيفة</th><th>وش تسوي</th></tr>
+<tr><td>📦 <b>UPF</b><br>User Plane Function<br><span class="small">سلايد 113</span></td><td>كل جهاز ينربط بـ UPF، وهو relay يمرر الترافيك بين UE والإنترنت. مسؤول عن: تطبيق السياسات، lawful intercept، قياس استخدام الترافيك، QoS policing. ومسؤول عن الـ tunneling (تغليف وفك) من وإلى base station عبر واجهة <b>N3</b></td></tr>
+<tr><td id="s114">🧭 <b>AMF</b><br>Access, Mobility Management<br><span class="small">سلايد 114</span></td><td>إدارة الاتصال والوصول (connection, reachability)، إدارة التنقل، access authorization، location services</td></tr>
+<tr><td>🗂️ <b>SMF</b><br>Session Management<br><span class="small">سلايد 114</span></td><td>يدير جلسة كل UE: تخصيص IP address، اختيار الـ UP function المرتبط، التحكم في QoS، والتحكم في جوانب UP routing</td></tr>
+<tr><td id="s115">🔐 <b>AUSF</b><br><span class="small">سلايد 115</span></td><td>Authentication Server Function: يصادق الأجهزة</td></tr>
+<tr><td>🪪 <b>UDM</b></td><td>Unified Data Management: يدير هوية المستخدم، ومنها توليد authentication credentials</td></tr>
+<tr><td>📇 <b>UDR</b></td><td>Unified Data Repository: يدير المعلومات الثابتة المتعلقة بالمشترك</td></tr>
+<tr><td>🗄️ <b>UDSF</b></td><td>Unstructured Data Storage Network Function: يخزن بيانات غير منظمة، يشبه Key/Value Store</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s116"><div class="sh"><span class="n">سلايد 116</span><h3>✂️ واجهات 5G و CUPS</h3></div>
+<div class="grid2">
+<div><h4>🎛️ control plane</h4><ul><li>التركيز على الوظائف والخدمات.</li><li>واجهات محددة بوضوح بين الخدمات.</li><li>في الرسم: N1، N2، N4، N5، N7، N8، N10، N11، N12، N13.</li></ul></div>
+<div><h4>📦 data plane</h4><ul><li>data plane الإنترنت بالطبقات الخمس.</li><li>استخدام كبير للـ tunneling: IP tunnel من base station للـ UPF عبر N3، وبعدها N6.</li></ul></div>
+</div>
+<p class="small">* مو كل واجهات 3GPP موجودة في الرسم.</p>
+</article>
+
+<article class="s" id="s117"><div class="sh"><span class="n">سلايد 117</span><h3>🪪 الهوية: مين أنت؟</h3></div>
+<div class="grid2">
+<div><h4>🗼 4G/5G</h4><ul><li>أنت عميل عند مزود خدمة لاسلكية، ولك home cellular network (اللي تدفع لها).</li><li>عندك 💳 <b>SIM</b> (أو vSIM): تعرّف عليك وعلى شبكتك الأم لكل الشبكات في العالم، وفيها معلومات مفاتيح تشفير تعرفها شبكتك الأم.</li></ul></div>
+<div><h4>🌐 Internet</h4><ul><li>أنت اسم + كلمة مرور، ومختلفة لكل تطبيق وخدمة.</li><li>أو أنت اسم + public key certificate. السيرفرات غالباً عندها مفاتيح عامة، المستخدمين للحين لا.</li></ul></div>
+</div>
+</article>
+
+<article class="s" id="s118"><div class="sh"><span class="n">سلايد 118</span><h3>🚪 الانضمام لشبكة 5G: مرحلتين</h3></div>
+<div class="grid2">
+<div><h4>1️⃣ Registration</h4><p>الجهاز يعرّف بنفسه ويصادق نفسه للشبكة، والعكس.</p></div>
+<div><h4>2️⃣ PDU Session establishment</h4><p>وظائف الـ Core تعطي الجهاز IP address، وتسوي مسار data-plane بين الجهاز والـ UPF حقه.</p></div>
+</div>
+<div class="tip">📦 PDU = protocol data unit، يعني "packet"<br>⭐ <b>AMF</b> له دور أساسي في ضم الجهاز الجديد للشبكة</div>
+</article>
+
+<article class="s" id="s119"><div class="sh"><span class="n">سلايد 119</span><h3>🪜 خطوات الانضمام لشبكة 5G</h3></div>
+<p class="big">📝 مرحلة التسجيل</p>
+<ol class="steps">
+<li>RRC connection setup (request، response).</li>
+<li>Registration request ← AMF.</li>
+<li>Identity request، response.</li>
+<li>🔐 authentication، security مع AUSF (و AUSF في الـ remote/home 5G Core).</li>
+<li>update device's connection data في UDM.</li>
+<li>✅ registration accept.</li>
+</ol>
+<p class="big">🔗 مرحلة إنشاء الجلسة</p>
+<ol class="steps">
+<li>PDU session establishment request.</li>
+<li>AMF ⇄ SMF: session creation request، response.</li>
+<li>SMF ⇄ UDM: device subscription retrieval، update.</li>
+<li>SMF ⇄ UPF: session establishment req./resp.</li>
+<li>session info (مثل device IPv4 address، tunnel).</li>
+<li>Device، base station، RAN data plane configuration (session req. مع SMF info، ثم session response).</li>
+<li>🎉 1st uplink datagram في الـ data plane.</li>
+</ol>
+</article>
+</section>
+
+<!-- ================= PART 7 ================= -->
+<section class="part" id="p7">
+<div class="part-h"><span class="emo">🚗</span><h2>الجزء السابع: التنقل (Mobility)<small>سلايد 120 إلى 126</small></h2></div>
+<article class="s mini" id="s120"><div class="sh"><span class="n">سلايد 120</span><h3>🗺️ مخطط: mobility</h3></div></article>
+
+<article class="s" id="s121"><div class="sh"><span class="n">سلايد 121</span><h3>📏 وش هو التنقل؟</h3></div>
+<div class="fig">
+<svg viewBox="0 0 600 70" width="600" role="img" aria-label="طيف التنقل من بدون تنقل إلى تنقل عالي">
+<defs><linearGradient id="gm" x1="1" x2="0"><stop offset="0" stop-color="var(--sig)"/><stop offset="1" stop-color="var(--rose)"/></linearGradient></defs>
+<rect x="20" y="20" width="560" height="14" rx="7" fill="url(#gm)"/>
+<text x="580" y="56" text-anchor="end" font-size="12">🧍 no mobility</text><text x="20" y="56" font-size="12">high mobility 🏎️</text>
+</svg></div>
+<div class="tw"><table class="t">
+<tr><th>#</th><th>الحالة</th><th class="c">يهمنا؟</th></tr>
+<tr><td class="num">1</td><td>الجهاز يتحرك داخل نفس WLAN/RAN عند مزود واحد</td><td class="c">—</td></tr>
+<tr><td class="num">2</td><td>الجهاز يتحرك بين الشبكات بس يطفي وهو يتحرك</td><td class="c">—</td></tr>
+<tr><td class="num">3</td><td>الجهاز يتحرك بين أكثر من WLAN/RAN عند مزود واحد</td><td class="c">⭐ نعم</td></tr>
+<tr><td class="num">4</td><td>الجهاز يتحرك بين شبكات مزودين مختلفين مع المحافظة على الاتصالات الشغالة</td><td class="c">⭐ نعم</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s122"><div class="sh"><span class="n">سلايد 122</span><h3>📶 التنقل في شبكة WiFi</h3></div>
+<p>802.11 معيار طبقة link، فيتعامل مع التنقل بأسلوب link-layer.</p>
+<div class="key">🏘️ ESS (Extended Service Set): أكثر من BSS في نفس الـ layer-3 subnet، وكلها نفس الـ SSID</div>
+<div class="fig">
+<svg viewBox="0 0 560 170" width="560" role="img" aria-label="ثلاث BSS متصلة بسويتشين وراوتر">
+<rect class="fp" x="230" y="8" width="100" height="28" rx="6"/><text x="280" y="27" text-anchor="middle" font-size="12">router R1 🌐</text>
+<rect class="fa" x="120" y="56" width="90" height="26" rx="6"/><text x="165" y="74" text-anchor="middle" font-size="12">switch S1</text>
+<rect class="fa" x="350" y="56" width="90" height="26" rx="6"/><text x="395" y="74" text-anchor="middle" font-size="12">switch S2</text>
+<g class="st"><line x1="260" y1="36" x2="175" y2="56"/><line x1="300" y1="36" x2="385" y2="56"/><line x1="150" y1="82" x2="80" y2="110"/><line x1="180" y1="82" x2="250" y2="110"/><line x1="395" y1="82" x2="460" y2="110"/></g>
+<ellipse cx="80" cy="135" rx="70" ry="28" class="fg" style="fill-opacity:.5"/><text x="80" y="140" text-anchor="middle" font-size="12">AP1 · BSS1</text>
+<ellipse cx="250" cy="135" rx="70" ry="28" class="fg" style="fill-opacity:.5"/><text x="250" y="140" text-anchor="middle" font-size="12">AP2 · BSS2</text>
+<ellipse cx="460" cy="135" rx="70" ry="28" class="fg" style="fill-opacity:.5"/><text x="460" y="140" text-anchor="middle" font-size="12">AP3 · BSS3</text>
+</svg></div>
+<ul><li>🔄 التنقل بين BSSs في نفس ESS: <b>Fast re-authentication</b>، والـ AP يقدر يقترح APs جديدة للجهاز.</li><li>🏭 فيه حلول خاصة من الشركات (proprietary) لتحسين التنقل.</li></ul>
+</article>
+
+<article class="s" id="s123"><div class="sh"><span class="n">سلايد 123</span><h3>🔀 التنقل في 5G: الـ Handover</h3></div>
+<p><b>Handover:</b> الجهاز يغيّر نقطة اتصاله بالشبكة، فتدفق البيانات يتحول من <b>source base station</b> إلى <b>target base station</b>.</p>
+<p class="big">🤔 ليش نسوي handover؟</p>
+<div class="grid2"><div><h4>📶 إشارة أقوى</h4><p>من الـ target base station</p></div><div><h4>🚦 زحمة أقل</h4><p>الـ target فيه أجهزة وترافيك أقل</p></div></div>
+</article>
+
+<article class="s" id="s124"><div class="sh"><span class="n">سلايد 124 و 125</span><h3>🪜 خطوات الـ Handover في 5G</h3></div>
+<div class="fig">
+<svg viewBox="0 0 560 190" width="560" role="img" aria-label="المحطة المصدر والهدف و UPF و AMF و SMF">
+<rect class="fv" x="20" y="10" width="120" height="30" rx="6"/><text x="80" y="30" text-anchor="middle" font-size="12">AMF · SMF</text>
+<rect class="fa" x="230" y="10" width="100" height="30" rx="6"/><text x="280" y="30" text-anchor="middle" font-size="12">UPF</text>
+<rect class="fg" x="400" y="110" width="120" height="34" rx="6"/><text x="460" y="132" text-anchor="middle" font-size="12">🗼 source BS</text>
+<rect class="fg" x="40" y="110" width="120" height="34" rx="6"/><text x="100" y="132" text-anchor="middle" font-size="12">🗼 target BS</text>
+<path class="sm dash" d="M300 40 L 450 110"/><text x="400" y="70" font-size="11" class="mu">قبل</text>
+<path class="sg" d="M260 40 L 120 110"/><text x="160" y="70" font-size="11" style="fill:var(--sig)">بعد</text>
+<path class="sa" d="M400 127 L 162 127"/><text x="280" y="120" text-anchor="middle" font-size="11" style="fill:var(--amber)">1 · 2 · 4 · 6</text>
+<text x="280" y="180" text-anchor="middle" font-size="22">📱 →</text>
+</svg></div>
+<ol class="steps">
+<li>📨 الـ source BS يختار target BS ويرسل له <b>Handover Request</b>.</li>
+<li>🎫 الـ target يحجز مسبقاً radio time slots ويرد بـ <b>HR ACK</b> فيه معلومات للجهاز.</li>
+<li>📲 الـ source يبلّغ الجهاز بالـ BS الجديد، والجهاز يقدر يرسل عن طريقه. <b>بالنسبة للجهاز الـ handover يبان إنه خلص.</b></li>
+<li>↪️ الـ source يوقف إرسال الـ datagrams للجهاز، وبدالها يمررها للـ target (اللي يمررها للجهاز عبر الراديو).</li>
+<li>📢 الـ target يبلّغ AMF و SMF إنه الـ BS الجديد، والـ SMF يطلب من UPF يغيّر نقطة نهاية الـ tunnel للـ target.</li>
+<li>✅ الـ target يرسل ACK للـ source: الـ handover خلص، والـ source يحرر موارده.</li>
+<li>🚇 الـ datagrams حق الجهاز تمشي الحين في tunnel جديد من الـ target للـ UPF.</li>
+</ol>
+</article>
+
+<article class="s" id="s126"><div class="sh"><span class="n">سلايد 126</span><h3>⏱️ الـ Handover: التسلسل الزمني والإشارات</h3></div>
+<p class="small">الأطراف: device، source base station، target base station، AMF، SMF، UPF</p>
+<div class="grid2">
+<div><h4>📶 handover in the RAN</h4><ol class="steps"><li>device data عبر الـ source</li><li>measurement ← making handover decision</li><li>handover request ← accept? ← handover request ACK</li><li>RRC reconfig.</li><li>transfer status</li><li>detach من source، attach للـ target</li><li>buffer device data from source</li><li>RRC reconfig. complete ← handover success</li></ol></div>
+<div><h4>🧠 handover in the Core</h4><ol class="steps"><li>path switch req.</li><li>PDU session update</li><li>session mod. req/response (مع UPF)</li><li>data end marker</li><li>PDU session update resp.</li><li>path switch req. ACK</li><li>device context release</li><li>device data عبر الـ target ✅</li></ol></div>
+</div>
+</article>
+</section>
+
+<!-- ================= PART 8 ================= -->
+<section class="part" id="p8">
+<div class="part-h"><span class="emo">🔵</span><h2>الجزء الثامن: Bluetooth و IoT<small>سلايد 127 إلى 135</small></h2></div>
+<article class="s mini" id="s127"><div class="sh"><span class="n">سلايد 127</span><h3>🗺️ مخطط: Bluetooth، satellite، IoT</h3></div></article>
+
+<article class="s" id="s128"><div class="sh"><span class="n">سلايد 128</span><h3>🔵 نظرة عامة على Bluetooth</h3></div>
+<p>مثال على <b>ad hoc network</b>: الأجهزة ما عندها "infrastructure" (مثل AP أو base station).</p>
+<p>أجهزة BT لازم تلقى بعض وتنظّم نفسها في شبكة <b>من الصفر</b>:</p>
+<div class="grid2"><div>🔗 ربط في طبقة link وتخصيص القنوات</div><div>🏷️ addressing assignment</div><div>🔎 service discovery</div><div>📲 application-to-application communication</div><div>🔐 security</div></div>
+<div class="key">🆕 يحتاج معمارية و protocol stack جديدة بالكامل (مختلفة عن الإنترنت)!</div>
+</article>
+
+<article class="s" id="s129"><div class="sh"><span class="n">سلايد 129</span><h3>🕸️ Bluetooth: الـ piconet</h3></div>
+<div class="fig">
+<svg viewBox="0 0 300 220" width="300" role="img" aria-label="piconet فيه جهاز مركزي وأجهزة طرفية">
+<circle cx="150" cy="110" r="95" class="fv" style="fill-opacity:.35"/>
+<g class="sv"><line x1="150" y1="110" x2="150" y2="35"/><line x1="150" y1="110" x2="230" y2="80"/><line x1="150" y1="110" x2="220" y2="165"/><line x1="150" y1="110" x2="80" y2="170"/><line x1="150" y1="110" x2="70" y2="75"/></g>
+<circle cx="150" cy="110" r="18" class="fa"/><text x="150" y="116" text-anchor="middle" font-size="15" font-weight="700">C</text>
+<g class="fg"><circle cx="150" cy="35" r="13"/><circle cx="230" cy="80" r="13"/><circle cx="220" cy="165" r="13"/><circle cx="80" cy="170" r="13"/><circle cx="70" cy="75" r="13"/></g>
+<g font-size="12" font-weight="700" text-anchor="middle"><text x="150" y="40">P</text><text x="230" y="85">P</text><text x="220" y="170">P</text><text x="80" y="175">P</text><text x="70" y="80">P</text></g>
+</svg><div class="cap">C = central · P = peripheral · التغطية عادةً &lt; 10 m</div></div>
+<ul>
+<li>📏 التغطية عادةً أقل من <b>10 m</b> قطر.</li>
+<li>👥 <b>ما تزيد عن 8 أجهزة</b> في الـ piconet: الجهاز اللي يكوّن الشبكة أول = <b>central</b>، ولين 7 أجهزة ثانية = <b>peripheral</b>.</li>
+<li>↔️ التواصل بس بين central و peripheral. 🚫 ما فيه peripheral-to-peripheral.</li>
+<li>🏷️ كل جهاز BT له عنوان فريد <b>48-bit</b>.</li>
+<li>📻 يشتغل في نطاق ISM غير المرخّص: <b>2.4 GHz</b>.</li>
+</ul>
+</article>
+
+<article class="s" id="s130"><div class="sh"><span class="n">سلايد 130</span><h3>📻 Bluetooth: القناة اللاسلكية</h3></div>
+<p>يشتغل في نطاق ISM من <b>2.4 إلى 2.5 GHz</b>.</p>
+<div class="tw"><table class="t">
+<tr><th></th><th>Classic BT</th><th>BLE</th></tr>
+<tr><td>bandwidth/channel</td><td>1 MHz</td><td>2 MHz</td></tr>
+<tr><td>عدد القنوات</td><td>79</td><td>40 (3 advertising + 37 data)</td></tr>
+<tr><td>max rate</td><td>2.1 Mbit</td><td>—</td></tr>
+</table></div>
+<ul><li>⏱️ قناة BT: <b>TDM</b>، طول الـ slot = 625 msec.</li><li>🙋 الوصول بالـ <b>polling</b>: الجهاز المركزي يعلن (advertises) ويعطي الأجهزة الطرفية صلاحية الوصول.</li><li>🦘 يستخدم <b>frequency hopping</b> (نوع من "spread spectrum").</li></ul>
+</article>
+
+<article class="s" id="s131"><div class="sh"><span class="n">سلايد 131</span><h3>🦘 القفز الترددي (Frequency hopping)</h3></div>
+<div class="fig">
+<svg viewBox="0 0 520 170" width="520" role="img" aria-label="نمطان مختلفان للقفز الترددي">
+<line class="sm" x1="40" y1="150" x2="500" y2="150"/><line class="sm" x1="40" y1="10" x2="40" y2="150"/>
+<text x="30" y="20" font-size="11" text-anchor="end" class="mu">79</text><text x="30" y="148" font-size="11" text-anchor="end" class="mu">1</text>
+<g class="fg"><rect x="50" y="100" width="30" height="12"/><rect x="90" y="30" width="30" height="12"/><rect x="130" y="80" width="30" height="12"/><rect x="170" y="125" width="30" height="12"/><rect x="210" y="50" width="30" height="12"/><rect x="250" y="110" width="30" height="12"/><rect x="290" y="20" width="30" height="12"/><rect x="330" y="70" width="30" height="12"/><rect x="370" y="130" width="30" height="12"/><rect x="410" y="40" width="30" height="12"/><rect x="450" y="95" width="30" height="12"/></g>
+<g class="fa"><rect x="50" y="40" width="30" height="12"/><rect x="90" y="120" width="30" height="12"/><rect x="130" y="25" width="30" height="12"/><rect x="170" y="70" width="30" height="12"/><rect x="210" y="130" width="30" height="12"/><rect x="250" y="45" width="30" height="12"/><rect x="290" y="95" width="30" height="12"/><rect x="330" y="15" width="30" height="12"/><rect x="370" y="85" width="30" height="12"/><rect x="410" y="115" width="30" height="12"/><rect x="450" y="30" width="30" height="12"/></g>
+<text x="500" y="166" font-size="11" text-anchor="end" class="mu">time → (slot = 625)</text>
+</svg><div class="cap">🟩 BT network 1 · 🟧 BT network 2 (أنماط مختلفة في نفس المكان)</div></div>
+<ul><li>المرسلين "يقفزون" بين <b>79</b> تردد/قناة، ويرسلون على تردد مختلف بعد كل slot.</li><li>نمط القفز يعرفه كل الأجهزة في نفس الـ piconet.</li><li>ممكن أكثر من piconet (بأنماط مختلفة) في نفس المكان.</li></ul>
+<div class="tip"><b>❓ ليش نقفز؟</b><br>✅ عشان نقلل تأثير التداخل: ممكن فيه مرسلين كثير في ISM. لو جهاز متداخل يستخدم القناة x، فـ x تطلع بس مرات قليلة في التسلسل. ولو frame انرسل على x وما وصل، ينعاد إرساله على تردد ثاني في الـ slot اللي بعده 🔁</div>
+</article>
+
+<article class="s" id="s132"><div class="sh"><span class="n">سلايد 132</span><h3>💡 IoT: حالات استخدام كثيرة!</h3></div>
+<div class="grid2">
+<div><h4>🏭 مراقبة</h4><p class="small">pressure، vibration، 3D tilt، temperature، humidity، switches، openings، battery charge، voltage، leaks، cracks، strain gauges، fill levels...</p></div>
+<div><h4>📦 تتبع الأصول</h4><p class="small">asset geolocation، tracking warehouse security، monitoring transport conditions (مثلاً لسلامة الأغذية)...</p></div>
+<div><h4>🏙️ المدينة</h4><p class="small">sound، air، water، weather، lighting، traffic، crowds، infrastructure، sharing (bikes)...</p></div>
+<div><h4>⚡ العدادات الذكية</h4><p class="small">smart metering، service (de)activation، efficiency monitoring، remote diagnosis، asset surveillance، quality monitoring...</p></div>
+<div><h4>🏢 المباني</h4><p class="small">security، enviro conditions (temp.، air، lights، power)، predictive infrastructure monitoring...</p></div>
+<div><h4>🌾 الزراعة</h4><p class="small">rainfall، temperature، wind، humidity، animal tracking and health، soil condition، infrastructure monitoring...</p></div>
+</div>
+<p>.... وفيه أكثر بكثير! 🚀</p>
+</article>
+
+<article class="s" id="s133"><div class="sh"><span class="n">سلايد 133</span><h3>📈 أجهزة IoT كثيرة، وبتزيد!</h3></div>
+<p>رسم بياني من <b>2014</b> إلى <b>2028</b> (بالمليارات): عدد أجهزة 💡 IoT يزيد بشكل كبير ويتجاوز عدد 💻📱 PC و laptops و tablets و phones.</p>
+<p class="small">المصدر: statista.com</p>
+</article>
+
+<article class="s" id="s134"><div class="sh"><span class="n">سلايد 134</span><h3>⚖️ متطلبات الاتصال في IoT</h3></div>
+<div class="tw"><table class="t">
+<tr><th>المفاضلة</th><th>النطاق</th></tr>
+<tr><td>📏 distance</td><td>من أمتار إلى كيلومترات</td></tr>
+<tr><td>⚡ data rate</td><td>من مئات الـ bps وقت النشاط (metering) لين ~1 Mbps (video surveillance)</td></tr>
+<tr><td>🔋 energy</td><td>دائماً عامل مهم: لين ~10 سنوات بدون طاقة خارجية، أو local energy harvesting</td></tr>
+</table></div>
+<div class="tw"><table class="t">
+<tr><th>الفئة</th><th>التقنيات</th><th>المميز</th></tr>
+<tr><td>🏠 short range</td><td>WiFi، BLE، Zigbee</td><td>مدى قصير</td></tr>
+<tr><td>🔋 low power wide area</td><td>LoRaWAN، LTE-M</td><td>low energy consumption + wide area</td></tr>
+<tr><td>🗼 traditional cellular</td><td>4/5G</td><td>high data rate + wide area coverage</td></tr>
+</table></div>
+</article>
+
+<article class="s" id="s135"><div class="sh"><span class="n">سلايد 135</span><h3>🏁 الخلاصة</h3></div>
+<div class="grid2">
+<div>📻 The physical layer: radio</div>
+<div>📶 The wireless access network: principles، WiFi، 5G</div>
+<div>🧠 The wireless core network: principles، 5G</div>
+<div>🚗 Mobility</div>
+<div>🔵 Bluetooth، satellite، IoT wireless networks</div>
+</div>
+<p class="small">🔗 للتوسع: <a href="https://gaia.cs.umass.edu/wireless_and_mobile_networks" style="color:var(--sig)">gaia.cs.umass.edu/wireless_and_mobile_networks</a></p>
+</article>
+</section>
+
+<footer>📡 بالتوفيق في المذاكرة! · المحتوى من سلايدات Kurose & Ross، الطبعة التاسعة</footer>
+</div>
+
+<script>
+(function(){
+  var f=document.getElementById('jumpf'),inp=document.getElementById('jn');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=parseInt(inp.value,10); if(!n||n<1)return; if(n>135)n=135;
+    var el=null; for(var k=n;k>=1&&!el;k--){el=document.getElementById('s'+k);}
+    if(el){var card=el.closest('.s')||el;card.scrollIntoView({block:'start'});card.style.outline='3px solid var(--amber)';setTimeout(function(){card.style.outline='';},1600);}
+  });
+})();
+</script>
+
+<style>
+.sh .det{margin-inline-start:auto;font:inherit;font-size:13px;font-weight:700;padding:3px 12px;border-radius:8px;border:1.5px solid var(--sig);background:var(--sig-soft);color:var(--ink);cursor:pointer;white-space:nowrap}
+.sh .det:hover{background:var(--sig);color:var(--paper)}
+.sh .det:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.sh .det[aria-expanded="true"]{background:var(--sig);color:var(--paper)}
+.detail{margin-top:12px;border-top:2px dashed var(--line);padding-top:12px;font-size:16px}
+.detail h5{font-family:var(--display);font-size:18px;margin:10px 0 4px;color:var(--sig)}
+.detail h5:first-child{margin-top:0}
+.detail p{margin:4px 0}
+.detail .ex{background:var(--amber-soft);border-radius:10px;padding:8px 12px;margin:8px 0}
+.detail .exam{background:var(--violet-soft);border-radius:10px;padding:8px 12px;margin:8px 0;font-weight:500}
+</style>
+<script>
+(function(){
+var D={
+s1:`<h5>🔍 وش فايدة السلايد؟</h5><p>هذا سلايد تعريفي بس: يعطيك اسم الفصل والكتاب اللي مأخوذة منه السلايدات. ما فيه معلومات علمية للحفظ.</p><div class="exam">🎯 للاختبار: ما فيه شي يُسأل عنه هنا غير إن الفصل عن Wireless and Mobile Networks.</div>`,
+s2:`<h5>🔍 الفكرة</h5><p>السلايد يعطيك "خريطة" للفصل كله. الفصل يمشي من تحت لفوق: أول شي الراديو نفسه (كيف الإشارة تنتقل في الهواء)، بعدين كيف الأجهزة تشترك في الهواء (access network)، بعدين الشبكة اللي ورا الأبراج (core)، بعدين كيف تتنقل وأنت متصل (mobility).</p><div class="ex">💡 تخيلها مثل طبقات: الراديو هو "الطريق"، و access network هي "إشارات المرور"، و core هي "إدارة المرور"، و mobility هي "كيف تغيّر الطريق وأنت ماشي".</div><p>وبعدها يطبّق كل هذا على أمثلة واقعية: WiFi و 5G و Bluetooth و IoT.</p>`,
+s3:`<h5>🔍 الفكرة</h5><p>مخطط الفصل بالترتيب. كل ما تشوف هذا السلايد يتكرر في النص، معناه بيبدأ قسم جديد، والجزء المظلل فيه هو القسم اللي بيجي.</p>`,
+s4:`<h5>🔍 ليش السلايد هذا مهم؟</h5><p>يبرر ليش ندرس الشبكات اللاسلكية أصلاً: لأن أغلب الناس صاروا يتصلون بالإنترنت لاسلكياً.</p><p><b>5 إلى 1:</b> مقابل كل اشتراك إنترنت ثابت (مثل الألياف في البيت) فيه 5 اشتراكات إنترنت جوال.</p><p><b>80%:</b> حتى اللي عندهم إنترنت ثابت في البيت، أغلبهم يستخدمونه عبر WiFi، يعني لاسلكي برضو.</p><p><b>60%:</b> أكثر من نص ترافيك المواقع الكبيرة رايح لجوالات.</p><div class="exam">🎯 احفظ الأرقام الثلاثة: 5:1، و 80%، و 60%.</div>`,
+s5:`<h5>🔍 الفكرة</h5><p>مو كل التطبيقات اللاسلكية تحتاج نفس الشي. كل مجال له أولويات مختلفة من الستة: السرعة، والتنقل، والطاقة، والسعة، والتأخير، وكثافة الأجهزة.</p><div class="ex">💡 مثلاً: جوالك في السيارة يحتاج تنقل عالي، بينما حساس IoT صغير يهمه توفير الطاقة وكثرة الأجهزة أكثر من السرعة.</div><p>السلايد يعرض هذا كرسم يقيّم كل احتياج (عالي، متوسط، منخفض) لكل مجال.</p>`,
+s6:`<h5>🔍 الفكرة</h5><p>السلايدات 6 إلى 10 تبني صورة الشبكة اللاسلكية قطعة قطعة: فيه شبكة سلكية في الخلف (infrastructure)، ومحطات أساسية متصلة فيها، وأجهزة لاسلكية تتصل بالمحطات عبر روابط لاسلكية.</p><p>يعني حتى الشبكة "اللاسلكية" فيها جزء كبير سلكي. اللاسلكي غالباً بس "آخر خطوة" بين جهازك والمحطة.</p>`,
+s7:`<h5>🔍 الفكرة</h5><p>الـ wireless host هو الجهاز اللي في يدك: جوال أو لابتوب أو جهاز IoT. هو اللي يشغّل التطبيقات.</p><div class="ex">💡 النقطة اللي يركز عليها السلايد: <b>لاسلكي ≠ متنقل</b>. مثلاً كمبيوتر مكتبي متصل WiFi هو لاسلكي بس ثابت ما يتحرك. وفيه فرق بين المفهومين، والفصل يدرس الاثنين.</div><div class="exam">🎯 سؤال محتمل: هل كل جهاز لاسلكي متنقل؟ الجواب: لا.</div>`,
+s8:`<h5>🔍 الفكرة</h5><p>الـ base station هي "الوسيط" بين عالمين: الأجهزة اللاسلكية من جهة، والشبكة السلكية من جهة. أي حزمة من جوالك للإنترنت لازم تمر عليها، وأي حزمة جاية لك من الإنترنت لازم تمر عليها.</p><p>وكل محطة مسؤولة عن الأجهزة اللي في "منطقتها" بس.</p><div class="ex">💡 مثالين: برج الجوال (4G/5G) و راوتر WiFi في البيت (AP). الاثنين نفس الدور.</div>`,
+s9:`<h5>🔍 الفكرة</h5><p>الـ wireless link هو "الهواء" نفسه بين الجهاز والمحطة. ولأن الهواء مشترك بين كل الأجهزة، نحتاج بروتوكول ينظّم مين يرسل ومتى، وهذا هو الـ <b>multiple access protocol</b> (مثل random access أو FDMA أو TDMA أو CDMA أو polling).</p><p>والروابط تختلف: بعضها سريع ومداه قصير، وبعضها بطيء ومداه بعيد، وكل واحد على نطاق تردد مختلف.</p><div class="ex">💡 ملاحظة ad hoc: فيه شبكات لاسلكية ما تتصل بالإنترنت أبداً، الأجهزة تتكلم مع بعض بس.</div>`,
+s10:`<h5>🔍 الفكرة</h5><p>جهازك الواحد فيه أكثر من راديو، وكل راديو لنوع شبكة مختلف. مثال السلايد: iPhone 16 فيه تقريباً 11 راديو.</p><p>يعني لما تستخدم Bluetooth وأنت متصل WiFi وشغال GPS، فكل وحدة منها شغالة على راديو مستقل.</p>`,
+s11:`<h5>🔍 كيف تقرأ الجدول؟</h5><p>الفكرة إن فيه علاقة بين <b>المدى</b> و<b>التقنية</b>: كل تقنية مصممة لمسافة معينة.</p><p>🏠 داخل البيت (10-30 م): Bluetooth وأقدم WiFi.<br>🌳 خارجي قريب (50-200 م): أغلب أنواع WiFi.<br>🏙️ متوسط (لين 4 كم): 4G/5G وأنواع خاصة من WiFi (af، ah).<br>🛣️ بعيد (لين 15 كم): 5G.<br>🛰️ الفضاء: أقمار LEOS.</p><div class="exam">🎯 ممكن يجيك: أسرع وحدة في الرسم 802.11ax بـ 14 Gbps، وأبطأ وحدة Bluetooth بـ 2 Mbps.</div>`,
+s12:`<h5>🔍 الفرق الجوهري</h5><p><b>Infrastructure mode:</b> فيه "مدير" (base station) وكل الأجهزة تتكلم معه، وهو اللي يوصلهم بالإنترنت. ولما تبعد عن محطة وتقرب من ثانية يصير <b>handoff</b>، يعني تنتقل من محطة لمحطة.</p><p><b>Ad hoc mode:</b> ما فيه مدير. الأجهزة تتكلم مع بعض مباشرة، وكل جهاز يوصل بس للي حوله. ولو جهاز يبي يوصل لجهاز بعيد، تمرر الأجهزة الحزمة بينها (routing بينهم).</p><div class="ex">💡 تخيل Infrastructure مثل فصل فيه مدرس كل الطلاب يرجعون له، و Ad hoc مثل مجموعة طلاب يتناقلون ورقة بينهم بدون مدرس.</div>`,
+s14:`<h5>🔍 كيف تفهم الجدول؟</h5><p>الجدول يقسم الشبكات حسب سؤالين:</p><p>1️⃣ <b>فيه بنية تحتية (محطة أساسية)؟</b><br>2️⃣ <b>البيانات توصل بقفزة وحدة ولا أكثر؟</b></p><p>فيطلع عندنا 4 أنواع:</p><p>• بنية + قفزة: WiFi والخلوي العادي.<br>• بنية + قفزات: <b>mesh net</b> (جهازك يمر على أجهزة لاسلكية لين يوصل للإنترنت).<br>• بدون بنية + قفزة: Bluetooth.<br>• بدون بنية + قفزات: <b>MANET</b> و <b>VANET</b>.</p><div class="exam">🎯 هذا الجدول مهم جداً، احفظ مكان كل مثال فيه.</div>`,
+s15:`<h5>🔍 الفكرة</h5><p>كل شبكة لاسلكية تنقسم لجزئين:</p><p><b>🟢 Edge (الحافة):</b> الجزء اللاسلكي اللي يتصل فيه جهازك، يعني أول قفزة.<br><b>🟠 Core (الأساسية):</b> اللي ورا الحافة، تدير البيانات وتوصلها للإنترنت.</p><div class="ex">💡 في WiFi: الحافة = الـ WLAN، والأساسية = شبكة المؤسسة السلكية.<br>في 5G: الحافة = الجهاز + البرج، والأساسية = عناصر مثل MME.</div><p>والفصل نفسه مقسوم على هذا الأساس: قسم للـ access network وقسم للـ core network.</p>`,
+s16:`<h5>🔍 وش بيجي؟</h5><p>بداية قسم الطبقة الفيزيائية (الراديو). هذا أطول قسم في الفصل، ويغطي: كيف الإشارة تنتقل، ووش يخربها، وكيف الهوائيات تساعد، وكيف يتقسم الطيف، وكيف نحوّل البتات لموجات.</p>`,
+s17:`<h5>🔍 الفكرة</h5><p>هذا أساس كل الاتصال اللاسلكي في 3 خطوات:</p><p>1. تمرّر تيار كهربائي في هوائي المرسل.<br>2. هذا التيار يولّد مجال كهرومغناطيسي ينتشر في الفضاء.<br>3. لما يوصل المجال لهوائي المستقبل، يولّد فيه تيار كهربائي.</p><div class="ex">💡 يعني المعلومة تنتقل من تيار ← مجال في الهواء ← تيار، بدون أي سلك بينهم.</div>`,
+s18:`<h5>🔍 خصائص الموجة</h5><p><b>λ (الطول الموجي):</b> المسافة بين قمتين في الموجة.<br><b>التردد:</b> كم مرة تتكرر الموجة في الثانية، ويساوي c/λ (سرعة الضوء على الطول الموجي).<br><b>الاتجاه:</b> الموجة تنتشر في اتجاه.<br><b>السعة:</b> ارتفاع الموجة، وتتغير مع الوقت.</p><div class="ex">💡 من القانون: لو الطول الموجي قصير ← التردد عالي، ولو الطول الموجي طويل ← التردد منخفض.</div>`,
+s19:`<h5>🔍 الفكرة</h5><p>الطور يعني "وين وصلت الموجة في دورتها" عند لحظة معينة، ويُقاس من 0 إلى 360 درجة.</p><p>الشي المهم: نقدر <b>نحط معلومات في الطور</b>. مثلاً: موجة تبدأ طالعة = 0، وموجة تبدأ نازلة = 1، والتردد نفسه ما تغيّر.</p><div class="ex">💡 هذي الفكرة هي أساس BPSK و QPSK اللي بتجيك في سلايد 51 و 52.</div>`,
+s20:`<h5>🔍 الفكرة</h5><p>القدرة = كمية الطاقة اللي يرسلها الهوائي في الثانية. ونقيسها بطريقتين:</p><p>• <b>خطي:</b> بالواط أو الملي واط (mW).<br>• <b>لوغاريتمي:</b> بالـ dBm، وهو أسهل للأرقام الكبيرة والصغيرة.</p><p>التحويل: P(dBm) = 10 × log10(P بالـ mW)</p><div class="ex">💡 المثال: 250 mW ← log10(250) ≈ 2.4 ← × 10 = <b>24 dBm</b>.</div><p><b>Power spectral density:</b> رسم يوضح القدرة موزعة على أي ترددات. في المثال الإشارة متركزة حول 1.00 GHz.</p><div class="exam">🎯 تدرب على التحويل بين mW و dBm، ممكن يجي سؤال حسابي.</div>`,
+s21:`<h5>🔍 الفكرة</h5><p>الـ bandwidth (في الراديو) = <b>عرض</b> النطاق الترددي اللي تستخدمه الإشارة.</p><div class="ex">💡 مثال السلايد: الإشارة تبدأ من 2.427 وتنتهي عند 2.449 GHz ← الفرق 22 MHz = هذا الـ bandwidth. والمركز 2.438 GHz. وهذي هي قناة 6 في WiFi.</div><p>⚠️ <b>انتبه للفخ:</b> كلمة bandwidth لها معنيين:<br>• في الراديو: عرض النطاق بالـ Hz.<br>• عند مهندسين الشبكات: أقصى سرعة نقل (مثل Mbps).</p><div class="exam">🎯 سؤال محتمل: وش الفرق بين radio bandwidth و link bandwidth؟</div>`,
+s22:`<h5>🔍 الفكرة</h5><p>الإشارة توصل للمستقبل ومعها "شي زايد" يخربها، من مصدرين:</p><p><b>📡 التداخل:</b> من أجهزة ثانية ترسل على نفس التردد. ونطاق 2.4 GHz بالذات زحمة لأنه غير مرخّص (ISM) وأي أحد يقدر يستخدمه: WiFi و Bluetooth والمايكرويف وغيرها.</p><p><b>🌡️ الضوضاء:</b> من داخل جهاز المستقبل نفسه، من الحرارة وعيوب الإلكترونيات. يعني موجودة حتى لو ما فيه أجهزة حولك.</p><div class="ex">💡 الإشارة الأصلية + الضوضاء = الإشارة اللي توصل فعلياً.</div>`,
+s23:`<h5>🔍 الفكرة</h5><p><b>SNR</b> يقيس: قد إيش إشارتك أقوى من الضوضاء.</p><p>SNR(dB) = 10 × log10(قدرة الإشارة ÷ قدرة الضوضاء)</p><p>• SNR = 0 dB ← الإشارة والضوضاء متساويين.<br>• SNR عالي ← الإشارة واضحة.<br>• SNR منخفض ← الإشارة غارقة في الضوضاء.</p><div class="ex">💡 لاحظ: الخلوي يقدر يشتغل حتى بـ SNR سالب (-10 إلى -6 dB)، بينما WiFi يحتاج تقريباً 20 dB.</div><div class="exam">🎯 احفظ القانون والحدين الأدنى للخلوي و WiFi.</div>`,
+s24:`<h5>🔍 الفكرة</h5><p><b>BER</b> = نسبة البتات اللي توصل غلط. وكل ما زاد SNR قلّ BER.</p><p><b>حالتين:</b><br>• لو طريقة الإرسال ثابتة: زد القدرة ← SNR يزيد ← أخطاء أقل.<br>• لو SNR ثابت: اختر طريقة الإرسال اللي أخطاؤها مقبولة وسرعتها أعلى.</p><div class="ex">💡 من الرسم: BPSK بطيئة (1 Mbps) بس تشتغل حتى بـ SNR منخفض. QAM256 سريعة (8 Mbps) بس تحتاج SNR عالي. فيه مفاضلة بين السرعة والتحمّل.</div><p>ولأن SNR يتغير لما تتحرك، النظام يغيّر طريقة التعديل ديناميكياً.</p>`,
+s25:`<h5>🔍 الفكرة</h5><p>Shannon يقول: فيه <b>سقف</b> لسرعة أي قناة، ويعتمد على الـ bandwidth و SNR بس.</p><p>C = B × log2(1 + SNR)، و SNR هنا بالقيمة الخطية مو بالـ dB.</p><p>• <b>B:</b> لو ضاعفته، تتضاعف السعة (علاقة خطية).<br>• <b>SNR:</b> زيادته تفيد بس بشكل لوغاريتمي، فبعد حد معيّن الفايدة قليلة.</p><div class="ex">💡 بالأرقام: SNR = 15 يعطي C = 4B، و SNR = 255 يعطي C = 8B. يعني زودت SNR 17 ضعف والسعة زادت ضعفين بس.</div><div class="exam">🎯 احفظ القانون والملاحظتين.</div>`,
+s26:`<h5>🔍 الفكرة</h5><p>ليش اللاسلكي أصعب من السلكي؟ 3 أسباب:</p><p>1. <b>الإشارة تضعف</b> وهي تمر في الهواء والجدران (path loss).<br>2. <b>تداخل</b> من أجهزة ثانية تستخدم نفس التردد.<br>3. <b>Multipath:</b> الإشارة ترتد من الأجسام وتوصل أكثر من نسخة في أوقات مختلفة.</p><div class="ex">💡 في الكيبل ما عندك هالمشاكل تقريباً، لأن الإشارة محمية داخل السلك.</div><div class="exam">🎯 سؤال محتمل: اذكر 3 فروقات بين الرابط اللاسلكي والسلكي.</div>`,
+s27:`<h5>🔍 الفكرة</h5><p>Path loss (أو fading) = الإشارة تخسر قوتها كل ما مشت مسافة أكثر.</p><p>Path loss ~ (f × d)^n</p><p>يعني الفقدان يزيد مع: <b>التردد (f)</b> و<b>المسافة (d)</b>.</p><p>و <b>n</b> يعتمد على البيئة:<br>• فضاء مفتوح: 2<br>• مدينة: 2.7 إلى 3.5<br>• داخل مبنى: 3 إلى 6 (أسوأ شي، بسبب الجدران)</p><div class="ex">💡 كل ما كبر n، الإشارة تضعف أسرع مع المسافة.</div>`,
+s28:`<h5>🔍 الفكرة</h5><p>عندنا 3 أجهزة: A و B و C، و B في النص.</p><p>• A يسمع B ✅، و C يسمع B ✅<br>• بس <b>A ما يسمع C</b> ❌ لأنهم بعيدين عن بعض.</p><p><b>المشكلة:</b> A يبي يرسل لـ B، فيتحسس القناة ويلقاها فاضية (لأنه ما يسمع C)، فيرسل. وفي نفس الوقت C يسوي نفس الشي. فيتصادمون عند B، وما أحد منهم يدري!</p><p><b>سببين للمشكلة:</b><br>1. المسافة (path loss): الإشارة تضعف قبل ما توصل.<br>2. عائق (جدار مثلاً) بين A و C.</p><div class="ex">💡 هذي المشكلة هي السبب إن WiFi يستخدم CSMA/CA و ACK و RTS/CTS (سلايد 63 → 69).</div>`,
+s30:`<h5>🔍 Multipath</h5><p>الإشارة ما توصل من طريق واحد: فيه طريق مباشر (LOS) وطرق ترتد من المباني والأرض. وكل طريق طوله مختلف، فتوصل نسخ من نفس الإشارة في أوقات مختلفة.</p><div class="ex">💡 مثل الصدى في الوادي: تسمع صوتك، وبعدين تسمعه مرة ثانية متأخر.</div><h5>⏳ Coherence time</h5><p>بسبب النسخ المتأخرة، البت الواحد يكون "ممدود" على فترة زمنية. هذي الفترة هي <b>Tc</b>.</p><p>لو أرسلت البت الثاني قبل ما تخلص Tc حق البت الأول، يختلطون. عشان كذا Tc تحدد <b>أقصى سرعة إرسال</b>.</p><p>و Tc يقل لما يزيد التردد، أو تزيد سرعة حركة المستقبل.</p>`,
+s32:`<h5>🔍 الفكرة</h5><p>زمان كان كل جهاز فيه هوائي واحد. الحين أغلب الأجهزة فيها أكثر من هوائي، وهذا اسمه <b>MIMO</b> (Multiple Input Multiple Output).</p><div class="ex">💡 الرقم مثل 4x4 أو 2x2 يعني عدد الهوائيات: 4x4 MIMO في Gigabit LTE، و 2x2 MIMO في WiFi 6.</div><p>والسلايدات الجاية تشرح كيف الهوائيات المتعددة تستفيد من الـ multipath بدل ما يكون مشكلة.</p>`,
+s33:`<h5>🔍 الفكرة</h5><p>كنا نشوف الـ multipath كمشكلة، بس MIMO يحوّله لفايدة: هوائيات أكثر تعني مسارات أكثر للإشارة.</p><p><b>Spatial diversity:</b> نرسل <b>نفس المعلومة</b> على أكثر من مسار. والمستقبل يدمج الإشارات عشان يرفع SNR (antenna gain).</p><p><b>الفايدتين:</b><br>🛡️ <b>موثوقية:</b> لو مسار تخرّب، الباقي يكفي. صعب كل المسارات تخرب مرة وحدة.<br>📏 <b>مدى أبعد:</b> الهوائيات تجمع إشارة أكثر.</p>`,
+s35:`<h5>🔍 الفرق بين النوعين</h5><p><b>🛡️ Diversity:</b> نرسل <b>نفس x</b> من الهوائيين. الهدف: موثوقية. والسؤال عند المستقبل: كيف يدمج y1 و y2؟ يجمعهم مباشرة؟ ياخذ الأقوى؟ أو يضبط الأطوار ويجمعهم بتناسق؟</p><p><b>🚀 Multiplexing:</b> نرسل <b>x1 من هوائي و x2 من الثاني</b>، يعني بيانات مختلفة. الهدف: سرعة أكثر.</p><p>المستقبل يحصل على:<br>y1 = H1,1(x1) + H2,1(x2)<br>y2 = H1,2(x1) + H2,2(x2)<br>يعني معادلتين بمجهولين (x1 و x2)، فنظرياً يقدر يحلها.</p><div class="ex">⚠️ المشكلة: قيم H تتغير مع الوقت وعشوائية، فالحل مو سهل.</div><div class="exam">🎯 سؤال محتمل جداً: الفرق بين spatial diversity و spatial multiplexing.</div>`,
+s38:`<h5>🔍 الفكرة</h5><p>في الـ single-user MIMO، كل الهوائيات تخدم مستخدم واحد. أما <b>Multi-user MIMO</b>، فالهوائيات تخدم <b>أكثر من مستخدم في نفس الوقت</b>.</p><p>كيف؟ عن طريق <b>beamforming</b>: الهوائي يوجّه الإشارة لاتجاه معيّن مثل "الكشاف"، فيرسل لمستخدم في جهة ولمستخدم ثاني في جهة ثانية بنفس اللحظة.</p>`,
+s39:`<h5>🔍 الفكرة</h5><p>الطيف الترددي ملك للدولة، وهي تقرر مين يستخدمه وكيف. وفيه 3 أنواع:</p><p>🔒 <b>Licensed:</b> شركة وحدة تملك الاستخدام (غالباً تشتريه بمزاد)، مثل شركات الاتصالات.<br>🤝 <b>Shared:</b> يتشاركه أكثر من مستخدم، والمستخدم الأصلي له أولوية.<br>🔓 <b>Unlicensed:</b> مجاني لأي أحد بشرط يلتزم بالقواعد، مثل WiFi على 2.4 و 5 GHz.</p><div class="ex">💡 عشان كذا 2.4 GHz زحمة: لأنه unlicensed وكل الأجهزة تستخدمه (ارجع لسلايد 22).</div>`,
+s40:`<h5>🔍 الفكرة</h5><p>WiFi يشتغل على 3 نطاقات رئيسية:</p><p>• <b>2.4 GHz:</b> الأقدم، وقنواته قليلة (11-14).<br>• <b>5 GHz:</b> قنوات أكثر بكثير (أكثر من 150).<br>• <b>6 GHz:</b> الأحدث، وفيه أكثر من 250 قناة.</p><div class="ex">💡 كل ما كان النطاق أحدث، فيه قنوات أكثر، يعني زحمة أقل.</div><div class="exam">🎯 ممكن يسألك: أي معايير تستخدم أي نطاق (b/g/n/ax على 2.4، و ax/be على 6).</div>`,
+s41:`<h5>🔍 الفكرة</h5><p>5G يستخدم 3 نطاقات، وكل واحد له ميزة:</p><p>🐢 <b>Low (&lt;1 GHz):</b> يوصل بعيد (عشرات الأميال) بس بطيء.<br>⚖️ <b>Mid (1-6 GHz):</b> توازن بين المسافة والسرعة.<br>🚀 <b>High (25-66 GHz) أو mmwave:</b> سريع جداً بس مداه قصير، ويحتاج خط رؤية مباشر، والأشجار والمباني توقفه.</p><div class="ex">💡 القاعدة: كل ما زاد التردد ← زادت السرعة ← قلّ المدى وضعف الاختراق. (وهذا يتماشى مع قانون path loss في سلايد 27: التردد العالي يفقد أكثر.)</div>`,
+s42:`<h5>🔍 وش بيجي؟</h5><p>بداية جزء الترميز والتعديل: كيف نحوّل البتات (0 و 1) لإشارة راديو، وكيف نحميها من الأخطاء.</p>`,
+s43:`<h5>🔍 الفكرة</h5><p>في CDMA، كل المستخدمين يرسلون <b>في نفس الوقت وعلى نفس التردد</b>! طيب كيف ما يتداخلون؟</p><p>كل مستخدم عنده <b>كود خاص</b> (chipping sequence). المرسل يضرب بياناته في الكود، والمستقبل يضرب اللي وصله في نفس الكود عشان يرجّع البيانات.</p><div class="ex">💡 تخيل غرفة فيها ناس كثير يتكلمون في نفس الوقت بلغات مختلفة. أنت تفهم بس اللي يتكلم لغتك وتتجاهل الباقي. الكود هو "اللغة".</div><p>وعشان يشتغل لازم الأكواد تكون "orthogonal" (متعامدة).</p>`,
+s44:`<h5>🔍 خطوة بخطوة</h5><p><b>المرسل:</b> البت d0 = 1، والكود 8 قيم. نضرب كل قيمة في الكود بـ 1، فيطلع الكود نفسه. والبت d1 = -1، فيطلع الكود معكوس.</p><p><b>المستقبل:</b> ياخذ الـ 8 قيم اللي وصلته، ويضرب كل وحدة في القيمة المقابلة في الكود، ويجمعها. فيطلع القيمة الأصلية (1 أو -1).</p><div class="ex">💡 ليش ينجح؟ لأن 1 × 1 = 1 و -1 × -1 = 1، فلما تضرب الكود في نفسه كل القيم تصير موجبة.</div><p>بس السلايد يقول "هذا مو مفيد للحين"، لأننا للحين ما شفنا أكثر من مرسل.</p>`,
+s45:`<h5>🔍 الفكرة</h5><p>الحين عندنا مرسلَين في نفس الوقت، والقناة <b>تجمع</b> إشاراتهم مع بعض.</p><p>المستقبل اللي يبي بيانات المرسل 1 يستخدم <b>كود المرسل 1</b> في فك الترميز، فيطلع له بيانات المرسل 1 بالضبط، وكأن المرسل 2 مو موجود!</p><div class="ex">💡 هذي هي قوة CDMA: الأكواد المتعامدة تخلي كل مستقبل "يفلتر" الإشارة اللي تخصه بس.</div>`,
+s46:`<h5>🔍 الفكرة</h5><p>السلايد يوضح رحلة البيانات من بتات لموجة راديو، في 4 مراحل:</p><p>1. <b>Coding:</b> نضيف بتات حماية عشان نكتشف الأخطاء ونصلحها.<br>2. <b>Digital modulation:</b> نحوّل البتات لرموز حسب حالة القناة (مثل QAM).<br>3. <b>Pulse shaping:</b> نضبط الإشارة عشان تناسب عرض القناة.<br>4. <b>RF modulation:</b> نركّب الإشارة على موجة الـ carrier ونرسلها.</p><div class="exam">🎯 المرحلتين الأخيرة (Pulse shaping و RF) مكتوب عليها "ما راح ندرسها"، فركّز على Coding و Digital modulation.</div>`,
+s47:`<h5>🔍 الفكرة</h5><p>EDC = بتات إضافية نرسلها مع البيانات عشان المستقبل يكتشف الأخطاء.</p><p>المستقبل يستقبل d' و EDC'، وممكن يكون فيهم أخطاء. فيشيك:<br>• ما فيه أخطاء؟ ← تمام ✅<br>• فيه أخطاء؟ ← يقدر يصلحها؟ لو نعم يصلحها، ولو لا ما يقدر.</p><div class="ex">💡 أبسط مثال parity bit: بت إضافي يخلي عدد الـ 1 في البيانات زوجي دائماً. لو وصل فردي، يعرف المستقبل إن فيه خطأ.</div><p>و EDC موجود في كل الطبقات، مو بس الفيزيائية.</p>`,
+s48:`<h5>🔍 الفكرة</h5><p>طيب إذا الطبقات الثانية (link، transport، application) فيها EDC، ليش نضيف في الطبقة الفيزيائية بعد؟</p><p>السبب: <b>الإصلاح المحلي أسرع</b>. بدل ما تنتظر الخطأ يوصل للطرف الثاني ويطلب إعادة الإرسال من البداية (end-to-end)، الطبقة الفيزيائية تصلحه مباشرة.</p><p>وكمان الطبقة الفيزيائية تعرف طبيعة أخطاء الراديو، فتقدر تتعامل معها بطريقة مناسبة.</p>`,
+s49:`<h5>🔍 الفكرة</h5><p>في الراديو، الأخطاء كثير تجي على شكل <b>burst</b> (دفعة)، يعني تخرّب بتات <b>متتالية</b>.</p><p><b>بدون خلط:</b> d4 ونسخته d4' جنب بعض. لو الضوضاء خربت 3 بتات متتالية فيها d4 و d4'، ضاع d4 نهائياً.</p><p><b>مع الخلط:</b> نبعّد كل بت عن نسخته. فلو الضوضاء خربت 3 بتات متتالية، كل بت يضيع تبقى نسخته سليمة في مكان ثاني.</p><div class="ex">💡 مثل لو عندك نسختين من مفتاح البيت: لا تحطهم في نفس الجيب، عشان لو ضاع الجيب ما يضيعون الاثنين.</div>`,
+s50:`<h5>🔍 الفكرة</h5><p>الـ modulation = نحط البتات في موجة عن طريق تغيير وحدة من خصائصها:</p><p>• <b>السعة:</b> موجة عالية = 1، موجة منخفضة = 0.<br>• <b>التردد:</b> موجة سريعة = 1، موجة بطيئة = 0.<br>• <b>الطور:</b> موجة طالعة = 1، موجة نازلة = 0.</p><p>والسلايدات الجاية تشرح أمثلة على كل طريقة.</p>`,
+s51:`<h5>🔍 الفرق</h5><p><b>ASK:</b> نغيّر <b>السعة</b>. بت 1 = موجة كبيرة، وبت 0 = موجة صغيرة.</p><p><b>BPSK:</b> نغيّر <b>الطور</b>. بت 0 وبت 1 موجتين بنفس الحجم ونفس التردد، بس وحدة مقلوبة على الثانية (فرق 180 درجة).</p><div class="ex">💡 B في BPSK = Binary، يعني طورين بس، ويرسل بت واحد في كل رمز.</div>`,
+s52:`<h5>🔍 الفكرة</h5><p>BPSK يستخدم طورين، فيرسل بت واحد في كل رمز. QPSK يقول: ليش ما نستخدم <b>4 أطوار</b>؟</p><p>4 أطوار = 4 رموز = كل رمز يمثل <b>بتين</b> (00 أو 01 أو 10 أو 11).</p><div class="ex">💡 النتيجة: نفس التردد بالضبط، بس ضعف البيانات! لأن كل رمز صار يحمل بتين بدل بت واحد.</div><div class="exam">🎯 سؤال محتمل: QPSK مقارنة بـ BPSK؟ نفس التردد، وضعف سرعة البيانات.</div>`,
+s53:`<h5>🔍 الفكرة</h5><p>QAM يطوّر الفكرة: يغيّر <b>السعة والطور مع بعض</b>، فيقدر يعمل رموز أكثر بكثير.</p><p>القاعدة: m-QAM يرسل <b>log2(m)</b> بت في كل رمز.</p><p>• 4-QAM ← log2(4) = 2 بت<br>• 16-QAM ← log2(16) = 4 بت<br>• 64-QAM ← log2(64) = 6 بت</p><div class="ex">💡 كل ما زاد m، زادت البتات في كل رمز، يعني سرعة أعلى. بس مثل ما شفنا في سلايد 24، يحتاج SNR أعلى.</div>`,
+s54:`<h5>🔍 الفكرة</h5><p>الـ constellation diagram رسم فيه كل الرموز الممكنة كنقاط، وكل نقطة لها سعة وطور خاصة.</p><p>المرسل يرسل "1111" 12 مرة. بس بسبب الضوضاء، اللي يوصل ما يكون بالضبط على نقطة 1111، يكون قريب منها ومتبعثر حولها.</p><p>المستقبل يقرر: <b>أي نقطة هي الأقرب؟</b> ويعتبرها هي.</p><div class="ex">💡 أغلب الإشارات قريبة من 1111 فتتصنف صح. بس وحدة الضوضاء دفّتها بعيد، فصارت أقرب لنقطة 1011، فتصنفت <b>غلط</b>. وهكذا يصير خطأ البتات.</div><p>ولاحظ: كل ما زادت النقاط (مثل 64-QAM)، صارت أقرب لبعض، والخطأ أسهل.</p>`,
+s55:`<h5>🔍 الفكرة</h5><p>كل طريقة تعديل لها سرعة نظرية. بس SNR يتغير طول الوقت (تداخل يزيد وينقص، قدرة إرسال تتغير).</p><p><b>الحل:</b> بدل ما نثبّت طريقة وحدة، نغيّرها لحظياً حسب SNR:<br>• SNR عالي ← طريقة سريعة (64 QAM: 26.9 Mbps)<br>• SNR منخفض ← طريقة أبطأ وأضمن (16 QAM: 11.5 Mbps)</p><div class="ex">💡 الهدف: أعلى سرعة ممكنة مع أخطاء مقبولة واستهلاك طاقة مقبول.</div>`,
+s56:`<h5>🔍 الفكرة</h5><p>هذا تطبيق سلايد 55 في WiFi:</p><p>1. أنت قريب من الراوتر ← SNR عالي ← تشتغل على QAM256 (أسرع).<br>2. تبعد ← SNR ينقص ← BER يزيد.<br>3. لما الأخطاء تكثر ← النظام ينزل لطريقة أبطأ (QAM16 ثم BPSK) بس أخطاؤها أقل.</p><div class="ex">💡 عشان كذا لما تبعد عن الراوتر، النت يبطأ بس ما ينقطع على طول.</div>`,
+s57:`<h5>🔍 الفكرة</h5><p>WiFi يخلي الجهاز ينام عشان يوفر البطارية، بس بدون ما يضيع عليه شي:</p><p>1. الجهاز يقول للـ AP: "بنام".<br>2. الـ AP يحتفظ بأي frames جاية للجهاز وما يرسلها.<br>3. الجهاز يصحى قبل الـ beacon frame الجاي.<br>4. الـ beacon فيه قائمة: مين له frames تنتظره.<br>5. لو اسمه موجود ← يظل صاحي وياخذها. ولو مو موجود ← يرجع ينام.</p><div class="ex">💡 مثل لو تقول لصاحبك "خلّ رسايلي عندك وأنا بمر عليك كل ساعة أشوف إذا فيه شي".</div>`,
+s58:`<h5>🔍 وش بيجي؟</h5><p>بداية قسم WiFi: معاييره، ومعماريته، وكيف الأجهزة ترتبط، وكيف تتشارك القناة (CSMA/CA)، وشكل الـ frame.</p>`,
+s59:`<h5>🔍 كيف تقرأ الجدول؟</h5><p>هذا تطور WiFi عبر السنين. لاحظ:</p><p>• السرعة زادت بشكل كبير: من 11 Mbps (1999) لين 14 Gbps (WiFi 6).<br>• المدى زاد من 30 م إلى 70 م.<br>• 802.11af و 802.11ah مختلفين: مداهم 1 كم، لأنهم على ترددات منخفضة (نطاقات التلفزيون و 900 MHz).</p><div class="exam">🎯 أهم جملة: <b>كلهم يستخدمون CSMA/CA</b>، وكلهم عندهم وضع base station ووضع ad hoc.</div>`,
+s60:`<h5>🔍 الفكرة</h5><p>في WiFi، الـ base station اسمها <b>AP (Access Point)</b>.</p><p><b>BSS</b> = "خلية" WiFi وحدة:<br>• في infrastructure mode: فيها AP + الأجهزة المتصلة فيه.<br>• في ad hoc mode: أجهزة بس، بدون AP.</p><div class="ex">💡 مثال: راوتر بيتك مع جوالاتكم ولابتوباتكم = BSS وحدة. والـ APs متصلة بـ switch أو router يوصلها للإنترنت.</div>`,
+s61:`<h5>🔍 الفكرة</h5><p><b>القنوات:</b> الطيف مقسوم لقنوات، ومسؤول كل AP يختار قناته. لو جارك اختار نفس القناة، يصير تداخل.</p><p><b>الارتباط:</b> لما تدخل مكان جديد، جوالك:<br>1. يمسح القنوات ويسمع للـ beacons (فيها اسم الشبكة SSID وعنوان MAC).<br>2. يختار شبكة.<br>3. يسوي authentication (كلمة السر مثلاً، وتفاصيلها في الفصل 8).<br>4. ياخذ IP عن طريق DHCP.</p><div class="ex">💡 هذا بالضبط اللي يصير لما تفتح قائمة WiFi في جوالك وتختار شبكة.</div>`,
+s62:`<h5>🔍 الفرق</h5><p><b>👂 Passive (سلبي):</b> الجهاز ينتظر ويسمع. الـ APs ترسل beacons، والجهاز يختار ويرسل Association Request، والـ AP يرد بـ Association Response.</p><p><b>📣 Active (نشط):</b> الجهاز يبدأ ويسأل. يرسل Probe Request للكل، والـ APs ترد بـ Probe Response، وبعدها نفس خطوتين الارتباط.</p><div class="exam">🎯 احفظ الترتيب وأسماء الرسائل: Passive فيها 3 خطوات، و Active فيها 4.</div>`,
+s63:`<h5>🔍 الفكرة</h5><p>WiFi يستخدم <b>CSMA</b>: يسمع القناة قبل ما يرسل.</p><p>بس فيه فرق كبير عن Ethernet: WiFi <b>ما يقدر يكتشف التصادم</b>. ليش؟</p><p>1. إشارته هو قوية جداً وهو يرسل، فما يسمع الإشارات الضعيفة الجاية من غيره.<br>2. مشكلة hidden terminal: أصلاً ما يسمع بعض الأجهزة.</p><div class="ex">💡 فبما إنه ما يقدر يكتشف التصادم، الحل إنه <b>يتجنبه</b> من البداية، وهذا معنى CA (Collision Avoidance).</div>`,
+s64:`<h5>🔍 الفكرة</h5><p>تذكير بمشكلة hidden terminal (سلايد 28). وهي السبب الرئيسي إن WiFi يحتاج CSMA/CA و ACK و RTS/CTS.</p>`,
+s65:`<h5>🔍 الفكرة</h5><p>حتى مع CSMA/CA، التصادم ممكن يصير. السلايد يعطي حالتين:</p><p><b>1. التأخير:</b> A بدأ يرسل، بس إشارته ما وصلت B للحين. فـ B يحسب القناة فاضية ويرسل.<br><b>2. الـ fading:</b> إشارة A ضعيفة عند B، فـ B ما يسمعها ويرسل.</p><div class="ex">💡 يعني CSMA يقلل التصادم بس ما يمنعه 100%.</div>`,
+s66:`<h5>🔍 خطوة بخطوة</h5><p><b>المرسل:</b><br>1. القناة فاضية لمدة DIFS؟ ← أرسل الـ frame كامل.<br>2. القناة مشغولة؟ ← اختر وقت انتظار عشوائي. العداد ينقص بس لما القناة فاضية، ولما يوصل صفر أرسل.<br>3. ما جاك ACK؟ ← كبّر فترة الانتظار وارجع للخطوة 2.</p><p><b>المستقبل:</b> وصله الـ frame سليم؟ ← ينتظر SIFS ويرجّع ACK.</p><div class="ex">💡 ليش ACK ضروري؟ لأن المرسل ما يقدر يكتشف التصادم بنفسه (hidden terminal)، فالـ ACK هو الطريقة الوحيدة يعرف فيها إن الإرسال نجح.</div><div class="exam">🎯 من أهم السلايدات: احفظ الخطوات و DIFS و SIFS.</div>`,
+s67:`<h5>🔍 الفكرة</h5><p>لو A و B تصادموا، ليش ما يرجعون يتصادمون مرة ثانية؟</p><p>لأن كل واحد يختار <b>وقت انتظار عشوائي</b> (backoff)، فاحتمال يختارون نفس الوقت قليل. واللي اختار وقت أقصر يرسل أول.</p><div class="ex">💡 ولو تصادموا مرة ثانية، فترة الانتظار <b>تتضاعف</b>. يعني الأرقام العشوائية تصير من مدى أكبر، فاحتمال التصادم يقل أكثر.</div>`,
+s68:`<h5>🔍 الفكرة</h5><p>بدل ما ترسل البيانات الكبيرة وتخاطر بتصادم، <b>احجز القناة أول</b>:</p><p>1. المرسل يرسل <b>RTS</b> (رسالة صغيرة: "أبي أرسل لمدة كذا").<br>2. الـ AP يرد بـ <b>CTS</b> للكل ("تفضل، والباقين انتظروا كذا").<br>3. كل الأجهزة تسمع الـ CTS، فتسكت.<br>4. المرسل يرسل البيانات بأمان.<br>5. الـ AP يرد بـ ACK.</p><div class="ex">💡 ليش يحل مشكلة hidden terminal؟ لأن حتى لو C ما يسمع A، بيسمع الـ CTS من الـ AP، فيعرف إن القناة محجوزة.</div><p>و RTS ممكن تتصادم، بس هي قصيرة، فالخسارة بسيطة (مثل ما يوضح سلايد 69).</p>`,
+s70:`<h5>🔍 وش بيجي؟</h5><p>نكمل WiFi بالتركيز على طبقة الربط وشكل الـ frame.</p>`,
+s71:`<h5>🔍 الفكرة</h5><p>802.11 يشتغل في <b>طبقتين</b>: MAC (ينظم الوصول ويدير الـ frames) و PHY (الراديو).</p><p>الـ AP مثل "مترجم": يستلم من جهازك بـ 802.11 (WiFi)، ويحوّلها لـ 802.3 (Ethernet) ويرسلها للشبكة السلكية.</p><div class="ex">💡 المسار: جوالك ← (WiFi) ← AP ← (Ethernet) ← switch/router ← الإنترنت.</div>`,
+s73:`<h5>🔍 الفكرة</h5><p>الـ AP عنده طابور frames تنتظر الإرسال لأجهزتك، وفيها نوعين:</p><p><b>📦 Data frames:</b> البيانات الفعلية (IP datagrams).<br><b>🎛️ Control و management frames:</b> رسائل إدارة الشبكة: ACK، و RTS/CTS، وإدارة الطاقة، والاكتشاف والارتباط، وقياس القناة.</p><div class="ex">💡 يعني مو كل اللي ينرسل بيانات. جزء كبير "كلام إداري" عشان الشبكة تشتغل.</div>`,
+s74:`<h5>🔍 ليش 4 عناوين؟</h5><p>في Ethernet فيه عنوانين بس (مصدر ووجهة). WiFi يحتاج أكثر لأن فيه وسيط (AP):</p><p>• <b>Address 1:</b> مين يستقبل هذا الـ frame الحين (القفزة الجاية).<br>• <b>Address 2:</b> مين أرسل هذا الـ frame الحين.<br>• <b>Address 3:</b> الراوتر اللي الـ AP متصل فيه.<br>• <b>Address 4:</b> بس في ad hoc.</p><div class="exam">🎯 سؤال شبه أكيد: وش وظيفة كل عنوان؟</div>`,
+s75:`<h5>🔍 المثال</h5><p>H1 (جوالك) يبي يرسل للراوتر R1:</p><p><b>المرحلة 1 (WiFi):</b> من H1 للـ AP:<br>• Address 1 = AP (اللي بيستقبل الحين)<br>• Address 2 = H1 (اللي أرسل)<br>• Address 3 = R1 (الوجهة النهائية)</p><p><b>المرحلة 2 (Ethernet):</b> الـ AP يحوّلها:<br>• المصدر = H1<br>• الوجهة = R1</p><div class="ex">💡 لاحظ: الـ AP يختفي من الـ Ethernet frame! كأن H1 أرسل لـ R1 مباشرة. والـ AP بس "جسر" بين الشبكتين.</div>`,
+s76:`<h5>🔍 الحقول المهمة</h5><p>• <b>duration:</b> كم وقت القناة محجوزة (من RTS/CTS).<br>• <b>seq control:</b> رقم الـ frame، عشان لو انرسل مرتين المستقبل يعرف إنه مكرر.<br>• <b>type:</b> 0 = management، و 1 = control، و 2 = data.<br>• <b>to AP / from AP:</b> هذي البتات تحدد طريقة تفسير العناوين.<br>• <b>power mgt:</b> للنوم وتوفير الطاقة.<br>• <b>retry:</b> هل هذي إعادة إرسال.</p><div class="exam">🎯 احفظ قيم الـ type الثلاثة.</div>`,
+s77:`<h5>🔍 الفكرة</h5><p>هذا ملخص يربط كل اللي درسناه في رحلة وحدة: تفتح موقع من جوالك عبر WiFi:</p><p>1. الطلب (HTTP/3) يتغلّف: داخل UDP ← داخل IP ← داخل frame 802.11، وينتظر دوره.<br>2. الجوال يحجز القناة: RTS، والـ AP يرد CTS.<br>3. الجوال يرسل البيانات ويحتفظ بنسخة (لو ضاعت).<br>4. الـ AP يرد ACK، فالجوال يحذف النسخة. والـ AP يمرر للراوتر.</p>`,
+s78:`<h5>🔍 وش بيجي؟</h5><p>بداية قسم الشبكات الخلوية: من 2G و 3G لين 4G و 5G.</p>`,
+s79:`<h5>🔍 الفكرة</h5><p>سلايد فيه رسم بس يوضح تطور الأجيال الخلوية. ما فيه نص للحفظ.</p>`,
+s80:`<h5>🔍 الفكرة</h5><p>الجدول يوضح كيف كل جيل أسرع من اللي قبله، فصار يقدر يقدم خدمات أكثر:</p><p>• GSM (9.6 kbps): مكالمات ورسايل بس.<br>• GPRS و EGPRS: إيميل وصور (MMS) وتحميل تطبيقات.<br>• WCDMA و HSDPA (لين 10 Mbps): فيديو ومكالمات فيديو وألعاب.</p><div class="ex">💡 القاعدة: سرعة أعلى ← خدمات أكثر ← وتكلفة توصيل أقل.</div>`,
+s81:`<h5>🔍 الفكرة</h5><p>من GSM فيه 3 طرق تطورت، وكلها توصل لـ WCDMA (3G):</p><p><b>HSCSD:</b> يحجز لين 4 timeslots (~50 kbps). مشكلته: <b>circuit switched</b>، يعني يحجز الموارد حتى لو ما ترسل شي، فغير فعّال.</p><p><b>GPRS:</b> <b>packet switched</b> (~115 kbps): ما يحجز إلا وقت الإرسال، فأكثر كفاءة، بس التأخير متغير.</p><p><b>EDGE:</b> يحسّن السرعة في المسافات القصيرة، ومع GPRS يوصل ~384 kbps.</p><div class="exam">🎯 سؤال محتمل: ليش GPRS أكثر انتشاراً من HSCSD؟ لأنه packet switched وما يحجز الموارد.</div>`,
+s82:`<h5>🔍 الفكرة</h5><p>UMTS = اسم نظام 3G، وهو ترقية من GSM عن طريق GPRS أو EDGE. والجهة اللي تكتب معاييره اسمها 3GPP.</p><p>السرعة تعتمد على المكان:<br>🌾 أرياف: 144 kbps<br>🏙️ خارجي في المدينة: 384 kbps<br>🏠 داخلي أو مدى قصير: 2048 kbps</p><div class="ex">💡 لاحظ: كل ما كنت أقرب وفي مكان أصغر، السرعة أعلى.</div>`,
+s83:`<h5>🔍 الفكرة</h5><p>الرسم يقسم شبكة UMTS لأربع أجزاء:</p><p>📱 الجهاز (ME مع SIM أو USIM).<br>🗼 شبكة الوصول الراديوية: في GSM كانت BTS و BSC، وفي UMTS صارت Node B و RNC (واسمها UTRAN).<br>🧠 الشبكة الأساسية: فيها قواعد بيانات المشتركين (HLR) والمصادقة (AUC) وبوابات البيانات (SGSN و GGSN).<br>🌐 الشبكات الخارجية: الهاتف الأرضي (PSTN) والإنترنت.</p>`,
+s84:`<h5>🔍 الفكرة</h5><p>UMTS ثلاث أجزاء أساسية:</p><p>1. <b>UE:</b> جهازك. وله هويات كثيرة (مثل IMSI للمشترك و IMEI للجهاز نفسه).<br>2. <b>UTRAN:</b> الأبراج وأجهزة التحكم فيها، يعني شبكة الوصول.<br>3. <b>CN:</b> الشبكة الأساسية اللي توجّه وتمرر الترافيك.</p><div class="ex">💡 نفس فكرة edge و core من سلايد 15: UTRAN هي الحافة، و CN هي الأساسية.</div>`,
+s85:`<h5>🔍 الفكرة</h5><p>UTRAN يستخدم تقنية <b>Wideband CDMA</b> (نفس فكرة CDMA من سلايد 43).</p><p>وفيه عنصرين:<br>• <b>Node-B</b> (البرج): شغله بسيط، يرسل ويستقبل ويسوي modulation.<br>• <b>RNC</b> (المتحكم): هو "العقل": يوزع القنوات، ويتحكم في القدرة، ويدير الـ handover، ويشفّر.</p><div class="exam">🎯 سؤال محتمل: وظائف Node-B مقارنة بوظائف RNC.</div>`,
+s86:`<h5>🔍 الفكرة</h5><p>3.5G (HSPA) مو جيل جديد كامل. هو <b>تحسين</b> على 3G، ويجمع بروتوكولين:</p><p>• HSDPA: يسرّع التنزيل.<br>• HSUPA: يسرّع الرفع.</p>`,
+s87:`<h5>🔍 الفكرة</h5><p>LTE = 4G. أهم شي فيه:</p><p>• مبني على UMTS (3G).<br>• <b>All-IP</b>: كل شي يمشي على IP، حتى المكالمات.<br>• يوعد بسرعة 100 Mbps.</p>`,
+s89:`<h5>🔍 الفكرة</h5><p>شبكة 4G فيها جزئين: الوصول الراديوي (الجهاز والبرج)، والـ EPC (الشبكة الأساسية، وكلها IP).</p><p><b>📱 UE:</b> جهازك، ومعرّف برقم IMSI في شريحة SIM.<br><b>🗼 eNode-B:</b> البرج. أذكى من AP الـ WiFi، لأنه يساعد في التنقل وينسق مع الأبراج الثانية.<br><b>🏠 HSS:</b> قاعدة بيانات المشتركين في شبكتهم الأم.<br><b>🚪 S-GW و P-GW:</b> البوابات اللي تمر عليها بياناتك. P-GW هو آخر وحدة قبل الإنترنت، ويسوي NAT.<br><b>🧭 MME:</b> "المدير": يصادق الأجهزة، ويتابع مكانها، ويدير الـ handover، ويجهز الأنفاق.</p><div class="exam">🎯 من أهم السلايدات: احفظ وظيفة كل عنصر.</div>`,
+s94:`<h5>🔍 الفكرة</h5><p>LTE يفصل بين نوعين من الشغل:</p><p><b>🎛️ Control plane:</b> "الإدارة": مين أنت، تقدر تدخل ولا لا، وين مكانك. عناصره: MME و HSS.</p><p><b>📦 Data plane:</b> البيانات الفعلية تمشي من البرج ← S-GW ← P-GW عبر أنفاق (tunnels).</p><div class="ex">💡 الفصل هذا يخلي كل جزء يتطور ويتوسع لحاله.</div>`,
+s95:`<h5>🔍 الفكرة</h5><p>بين جوالك والبرج، طبقة الـ link في LTE فيها 3 بروتوكولات فوق بعض:</p><p>1. <b>Packet Data Convergence:</b> يضغط الـ headers ويشفّر.<br>2. <b>Radio Link Control:</b> يقسم الحزم الكبيرة ويجمعها، ويضمن وصولها.<br>3. <b>Medium Access:</b> يطلب وقت يرسل فيه.</p>`,
+s96:`<h5>🔍 الفكرة</h5><p>كيف الأجهزة تتشارك الراديو في LTE؟ بـ <b>OFDM</b>: يقسم القناة على <b>ترددات</b> (FDM) وعلى <b>وقت</b> (TDM).</p><p>كل جهاز ياخذ "مربعات": ترددات معينة في أوقات معينة (فترتين أو أكثر، كل وحدة 0.5 ms، على 12 تردد).</p><div class="ex">💡 مين ياخذ وش؟ هذا يقرره المشغّل، لأن خوارزمية الجدولة مو موحدة.</div>`,
+s97:`<h5>🔍 الفكرة</h5><p>بياناتك من البرج للإنترنت تمشي في <b>أنفاق</b>:</p><p>1. البرج يغلّف الحزمة بـ GTP ويحطها داخل UDP ويرسلها لـ S-GW.<br>2. S-GW يعيد تغليفها ويرسلها لـ P-GW.</p><div class="ex">💡 ليش أنفاق؟ عشان التنقل! لما تتحرك من برج لبرج، بس <b>بداية النفق</b> تتغير، وعنوان IP حقك والباقي يبقى نفسه.</div><div class="exam">🎯 احفظ الجملة: "only tunneling endpoints change when mobile user moves".</div>`,
+s98:`<h5>🔍 الفكرة</h5><p>لما تشغّل جوالك، كيف يلقى برج؟</p><p>1. الأبراج تبث "إشارة تزامن" كل 5 ms.<br>2. جوالك يلقاها، وبعدها يلقى إشارة التزامن الثانية.<br>3. يقرأ معلومات البرج (الـ bandwidth والإعدادات والشركة).<br>4. يختار برج (يفضّل شركته).</p><p>وبعدها يجي باقي الشغل: مصادقة وتجهيز.</p>`,
+s99:`<h5>🔍 الفكرة</h5><p>LTE عنده نومين:</p><p>😪 <b>خفيف:</b> بعد مئات الـ msec بدون نشاط. يصحى كل شوي يشيك.<br>😴 <b>عميق:</b> بعد 5-10 ثواني بدون نشاط. وممكن تتحرك لبرج ثاني وأنت نايم، فلما تصحى تحتاج تعيد الارتباط.</p><div class="ex">💡 النوم العميق يوفر أكثر، بس الصحيان منه أبطأ.</div>`,
+s100:`<h5>🔍 الفكرة</h5><p>الشبكة الخلوية العالمية = شبكات كثيرة متصلة ببعض عبر IP.</p><p><b>التجوال:</b> لما تسافر، تتصل بشبكة الدولة الثانية (visited network)، بس هويتك وخدماتك محفوظة في <b>HSS شبكتك الأم</b>. والشبكتين يتكلمون عبر IPX.</p><div class="ex">💡 عشان كذا شريحتك تشتغل برا، لأن الشبكة الثانية تسأل شبكتك الأم عنك.</div>`,
+s101:`<h5>🔍 الفكرة</h5><p><b>التشابه مع الإنترنت:</b> نفس البروتوكولات (IP و TCP و DNS...)، ونفس فكرة edge و core، وشبكة من الشبكات.</p><p><b>الاختلاف:</b><br>• التنقل أساسي، مو إضافة.<br>• هويتك في SIM، مو اسم مستخدم.<br>• فيه "شبكة أم" ونظام اشتراك وتجوال.</p><div class="exam">🎯 سؤال محتمل: قارن بين الشبكة الخلوية والإنترنت السلكي.</div>`,
+s102:`<h5>🔍 الفكرة</h5><p>أهداف 5G مقارنة بـ 4G: سرعة ×10، وتأخير أقل ÷10، وسعة ×100.</p><p><b>5G NR</b> يستخدم نطاقين: FR1 (لين 6 GHz) و FR2 (mmwave: 24-52 GHz).</p><div class="ex">⚠️ المشكلة: mmwave سريع بس مداه قصير. فيحتاجون خلايا صغيرة (pico-cells بقطر 10-100 م) وأبراج <b>كثيرة جداً</b>.</div><p>وانتبه: 5G <b>مو متوافق</b> مع 4G.</p>`,
+s103:`<h5>🔍 الفكرة</h5><p>معمارية 5G بسيطة في 3 أجزاء: جهازك ← البرج (gNodeB) في الـ RAN ← وظائف الشبكة الأساسية (5G core) ← الإنترنت.</p>`,
+s104:`<h5>🔍 الفكرة</h5><p>الـ RAN في 5G هو "الحافة" (edge): الجزء اللي بين جوالك والبرج.</p><p>• هو أول قفزة.<br>• تديره شركة وحدة.<br>• منطقته الجغرافية محدودة.<br>• يشبه WiFi LAN.</p><p>أسماء مهمة: UE = الجهاز، و NR = الراديو، و gNB = البرج.</p>`,
+s105:`<h5>🔍 الفكرة</h5><p>الـ 5G Core هو "العقل" ورا الأبراج. Core واحد يخدم RANs كثيرة.</p><p>كله IP، بس خدماته مختلفة عن الإنترنت العادي (مصادقة، وتنقل، وجلسات...).</p><div class="ex">💡 أهم مفهوم: <b>CUPS</b>، يعني فصل واضح بين الـ control plane (الإدارة) والـ user plane (البيانات).</div>`,
+s106:`<h5>🔍 وش بيجي؟</h5><p>تحديات مشتركة بين WiFi و 4G/5G و Bluetooth، وأهمها: كيف الجهاز ينام ويصحى عشان يوفر بطارية.</p>`,
+s107:`<h5>🔍 ليش النوم سهل والاستيقاظ صعب؟</h5><p><b>النوم سهل:</b> الجهاز يقرر بنفسه: "ما عندي شي، بنام".</p><p><b>الاستيقاظ صعب:</b> لو جاتك رسالة وأنت نايم، الشبكة لازم:<br>• تحفظ الرسالة عندها (buffer).<br>• ترسل لك إشارة "اصحَ".<br>• وفي 4G/5G، ممكن تحتاج تعيد تجهيز اتصالك (network context).</p><div class="ex">💡 يعني الصحيان يحتاج تعاون من الشبكة، والنوم ما يحتاج.</div>`,
+s109:`<h5>🔍 المفاضلة</h5><p><b>كم تنام؟</b><br>• نوم طويل ← توفير أكثر بس الرسايل تتأخر (وهذا يأثر حتى على TCP).<br>• نوم قصير ← توفير أقل، ورسايل "اصحَ" كثيرة.</p><p><b>كم تنتظر قبل ما تنام؟</b><br>البيانات تجي على دفعات. لو نمت بسرعة، ممكن الدفعة ما خلصت. ولو انتظرت كثير، ضيعت بطارية.</p>`,
+s110:`<h5>🔍 الفكرة</h5><p>5G يستخدم <b>DRX</b>: دورات نوم واستيقاظ منظمة:</p><p>• جاتك بيانات (t0) ← يبدأ مؤقت.<br>• المؤقت خلص (t1) ← نوم قصير (short DRX): تصحى كثير.<br>• ما فيه شي (t3) ← نوم طويل (long DRX): تصحى أقل.<br>• جاتك بيانات وأنت نايم (t4) ← البرج يحفظها لين تصحى.<br>• صحيت (t5) ← تاخذها.</p><div class="ex">💡 الفكرة: كل ما طال الهدوء، طال النوم.</div><div class="exam">🎯 احفظ الترتيب: active ← short DRX ← long DRX ← active.</div>`,
+s111:`<h5>🔍 وش بيجي؟</h5><p>بداية قسم الشبكة الأساسية في 5G: وظائفها، وكيف الجهاز ينضم للشبكة.</p>`,
+s112:`<h5>🔍 الفكرة</h5><p>5G Core مبني من "وظائف" (functions)، وكل وحدة لها شغل محدد. وأغلبها في الـ <b>control plane</b>، ووحدة بس في الـ user plane: هي <b>UPF</b>.</p><p>الواجهات: <b>N1</b> للجهاز، و <b>N2</b> بين البرج و AMF، و <b>N3</b> بين البرج و UPF.</p><div class="ex">💡 فكّر فيها مثل شركة: أقسام كثيرة للإدارة (control)، وقسم واحد للتوصيل الفعلي (UPF).</div>`,
+s113:`<h5>🔍 أهم 3 وظائف</h5><p><b>📦 UPF:</b> الوحيد في الـ user plane. بياناتك تمر عليه، ويغلّفها في أنفاق للبرج (N3)، ويقيس استهلاكك ويطبق السياسات.</p><p><b>🧭 AMF:</b> "البواب": يتحكم في دخولك للشبكة، ويتابع مكانك، ويدير تنقلك.</p><p><b>🗂️ SMF:</b> يدير جلستك: يعطيك IP، ويختار لك UPF، ويضبط الـ QoS.</p><h5>🗄️ وظائف البيانات</h5><p><b>AUSF</b> يصادق. <b>UDM</b> يدير هويتك ويولّد بيانات المصادقة. <b>UDR</b> يخزن معلومات اشتراكك. <b>UDSF</b> مخزن بيانات عام مثل Key/Value.</p><div class="exam">🎯 من أهم السلايدات: احفظ وظيفة كل وحدة.</div>`,
+s116:`<h5>🔍 الفكرة</h5><p>السلايد يوضح <b>CUPS</b> بالرسم:</p><p>• <b>Control plane:</b> الوظائف (AMF و SMF و AUSF...) تتكلم مع بعض عبر واجهات واضحة (N1، N2، N4...).<br>• <b>Data plane:</b> بياناتك تمشي في نفق من البرج للـ UPF (عبر N3)، وبعدها للإنترنت (N6).</p><div class="ex">💡 الـ SMF يتحكم في الـ UPF عبر N4، يعني الإدارة توجّه، والـ UPF ينفّذ.</div>`,
+s117:`<h5>🔍 الفرق</h5><p><b>في الشبكة الخلوية:</b> هويتك = شريحة SIM. فيها مفاتيح تشفير تعرفها شركتك، وتعرّف عليك في أي شبكة في العالم.</p><p><b>في الإنترنت:</b> هويتك = اسم مستخدم وكلمة سر، ومختلفة لكل موقع. أو شهادة (certificate)، بس غالباً السيرفرات بس اللي عندها.</p>`,
+s118:`<h5>🔍 الفكرة</h5><p>دخولك لشبكة 5G على مرحلتين:</p><p><b>1. Registration:</b> "مين أنت؟" ← الجهاز والشبكة يتأكدون من بعض.<br><b>2. PDU Session:</b> "جهّزوا لي اتصال" ← تاخذ IP، ويتجهز مسار بياناتك للـ UPF.</p><div class="ex">💡 PDU = packet بس باسم ثاني. و AMF هو اللي يقود العملية كلها.</div>`,
+s119:`<h5>🔍 خطوة بخطوة</h5><p><b>التسجيل:</b> اتصال راديو (RRC) ← طلب تسجيل للـ AMF ← "مين أنت؟" ← مصادقة مع AUSF ← تحديث في UDM ← ✅ مقبول.</p><p><b>الجلسة:</b> طلب جلسة ← AMF يكلم SMF ← SMF يجيب اشتراكك من UDM ← SMF يجهز UPF ← تاخذ IP والنفق ← يتجهز البرج ← 🎉 أول حزمة.</p><div class="exam">🎯 احفظ مين يكلم مين: AMF مع AUSF (مصادقة)، و SMF مع UPF (الجلسة).</div>`,
+s120:`<h5>🔍 وش بيجي؟</h5><p>بداية قسم التنقل: كيف تتحرك وتظل متصل.</p>`,
+s121:`<h5>🔍 الفكرة</h5><p>التنقل درجات، من بسيط لصعب:</p><p>1. تتحرك داخل نفس الشبكة (سهل).<br>2. تطفي جهازك، تروح مكان ثاني، وتشغله (ما فيه اتصال مستمر).<br>3. ⭐ تتحرك بين شبكات نفس الشركة، والاتصال شغال.<br>4. ⭐ تتحرك بين شركات مختلفة، والاتصال شغال (أصعب شي).</p><div class="exam">🎯 الفصل يركز على الحالتين 3 و 4.</div>`,
+s122:`<h5>🔍 الفكرة</h5><p>في WiFi، التنقل بسيط لأنه في طبقة الـ link.</p><p><b>ESS:</b> مجموعة BSSs (راوترات)، كلها <b>نفس الـ SSID</b> و<b>نفس الـ subnet</b>. فلما تتنقل من AP لـ AP، عنوان IP ما يتغير.</p><div class="ex">💡 مثل جامعة فيها راوترات كثيرة بنفس اسم الشبكة: تمشي من مبنى لمبنى وجوالك ينتقل بينها تلقائياً. ويساعد في هذا: إعادة المصادقة السريعة، والـ AP يقترح لك APs قريبة.</div>`,
+s123:`<h5>🔍 الفكرة</h5><p>Handover = جوالك ينتقل من برج (source) لبرج ثاني (target)، وبياناتك تتحول معه.</p><p>ليش؟<br>• البرج الثاني إشارته أقوى.<br>• أو البرج الثاني أقل زحمة.</p>`,
+s124:`<h5>🔍 القصة بالترتيب</h5><p><b>في الـ RAN (بين الأبراج):</b><br>1. البرج القديم يقرر وينتقي برج جديد، ويطلب منه.<br>2. البرج الجديد يحجز مكان ويوافق.<br>3. البرج القديم يقول لجوالك: "روح للجديد". وبالنسبة لجوالك خلاص انتقل.<br>4. أي بيانات توصل للقديم، يمررها للجديد.</p><p><b>في الـ Core:</b><br>5. البرج الجديد يبلّغ AMF و SMF، والـ SMF يقول للـ UPF: "غيّر نهاية النفق للبرج الجديد".<br>6. البرج الجديد يقول للقديم: "خلصنا، حرر مواردك".<br>7. البيانات تمشي الحين مباشرة عبر البرج الجديد.</p><div class="ex">💡 الذكاء في الخطوة 4: ما تضيع ولا حزمة وقت الانتقال.</div><div class="exam">🎯 سؤال شبه أكيد: رتّب خطوات الـ handover.</div>`,
+s126:`<h5>🔍 الفكرة</h5><p>نفس خطوات الـ handover، بس كرسم زمني يوضح كل رسالة.</p><p>مقسوم لجزئين:<br>• <b>في الـ RAN:</b> القرار، والطلب، والموافقة، وانتقال الجهاز، وتمرير البيانات المحفوظة.<br>• <b>في الـ Core:</b> تحويل المسار (path switch)، وتحديث الجلسة، وتعديل الـ UPF، وتحرير موارد البرج القديم.</p><div class="ex">💡 الـ "data end marker" يعلّم آخر حزمة جات من المسار القديم.</div>`,
+s127:`<h5>🔍 وش بيجي؟</h5><p>آخر قسم: Bluetooth و IoT.</p>`,
+s128:`<h5>🔍 الفكرة</h5><p>Bluetooth مثال على شبكة <b>ad hoc</b>: ما فيه راوتر ولا برج. الأجهزة لازم تلقى بعض وتبني شبكة لحالها.</p><p>فيحتاج يسوي كل شي بنفسه: الربط، والعناوين، واكتشاف الخدمات، والأمان.</p><div class="ex">💡 عشان كذا Bluetooth عنده معمارية و protocol stack خاصة فيه، مختلفة عن الإنترنت.</div>`,
+s129:`<h5>🔍 الفكرة</h5><p>شبكة Bluetooth اسمها <b>piconet</b>:</p><p>• جهاز واحد <b>central</b> (اللي بدأ الشبكة).<br>• لين 7 أجهزة <b>peripheral</b>.<br>• المجموع ما يزيد عن <b>8</b>.<br>• الأجهزة الطرفية ما تتكلم مع بعض، كل الكلام يمر على الـ central.</p><div class="ex">💡 مثال: جوالك (central) متصل بسماعة وساعة وسيارة (peripherals). السماعة ما تتكلم مع الساعة مباشرة.</div><div class="exam">🎯 احفظ: 8 أجهزة، و 10 م، و 48-bit، و 2.4 GHz.</div>`,
+s130:`<h5>🔍 الفكرة</h5><p>Bluetooth نوعين:</p><p>• <b>Classic:</b> 79 قناة، كل وحدة 1 MHz.<br>• <b>BLE (Low Energy):</b> 40 قناة، كل وحدة 2 MHz (3 للإعلان و 37 للبيانات).</p><p><b>كيف ينظم الوصول؟</b><br>• TDM: الوقت مقسوم لـ slots.<br>• <b>Polling:</b> الـ central هو اللي يقول "دورك" لكل جهاز.<br>• <b>Frequency hopping:</b> يقفز بين الترددات.</p>`,
+s131:`<h5>🔍 الفكرة</h5><p>بعد كل slot، الأجهزة تنتقل لتردد ثاني حسب نمط يعرفونه كلهم.</p><p><b>ليش؟</b> عشان التداخل. نطاق 2.4 GHz زحمة (سلايد 22). لو فيه جهاز مزعج على قناة معينة، Bluetooth ما يقعد عليها إلا لحظات.</p><p>ولو frame ضاع بسبب التداخل؟ ينعاد على تردد ثاني في الـ slot الجاي.</p><div class="ex">💡 وكل piconet له نمط مختلف، فأكثر من شبكة Bluetooth تقدر تشتغل في نفس الغرفة.</div>`,
+s132:`<h5>🔍 الفكرة</h5><p>IoT في كل مكان: مصانع (حساسات ضغط واهتزاز)، ومستودعات (تتبع)، ومدن (مرور وطقس)، وعدادات ذكية، ومباني، ومزارع.</p><div class="ex">💡 القاسم المشترك: أجهزة صغيرة كثيرة، تقيس شي وترسله.</div>`,
+s133:`<h5>🔍 الفكرة</h5><p>الرسم يقول شي واحد: أجهزة IoT تزيد بسرعة، وصارت أكثر من الجوالات والكمبيوترات.</p>`,
+s134:`<h5>🔍 الفكرة</h5><p>IoT ما فيه تقنية وحدة تناسب الكل، لأن فيه مفاضلة بين 3 أشياء: المسافة، والسرعة، والطاقة.</p><p>• تحتاج مدى قصير؟ ← WiFi أو BLE أو Zigbee.<br>• تحتاج مدى بعيد وطاقة قليلة (بطارية تعيش 10 سنين)؟ ← LoRaWAN أو LTE-M.<br>• تحتاج سرعة عالية ومدى بعيد؟ ← 4G/5G.</p><div class="ex">💡 مثال: عداد كهرباء يرسل رقم كل ساعة يحتاج بس مئات الـ bps، بينما كاميرا مراقبة تحتاج ~1 Mbps.</div>`,
+s135:`<h5>🔍 الخلاصة</h5><p>الفصل مشى من الأساس للتطبيق:</p><p>📻 الراديو (كيف الإشارة تنتقل وتتخرّب) ← 📶 شبكة الوصول (كيف الأجهزة تتشارك الهواء: WiFi و 5G) ← 🧠 الشبكة الأساسية (5G core) ← 🚗 التنقل (handover) ← 🔵 تطبيقات خاصة (Bluetooth و IoT).</p>`
+};
+document.querySelectorAll('article.s').forEach(function(a){
+  var html=D[a.id]; if(!html) return;
+  var sh=a.querySelector('.sh'); if(!sh) return;
+  var b=document.createElement('button'); b.type='button'; b.className='det';
+  b.textContent='التفاصيل ▾'; b.setAttribute('aria-expanded','false');
+  var p=document.createElement('div'); p.className='detail'; p.id='d-'+a.id; p.hidden=true; p.innerHTML=html;
+  b.setAttribute('aria-controls',p.id);
+  sh.appendChild(b); a.appendChild(p);
+  b.addEventListener('click',function(){var open=p.hidden; p.hidden=!open; b.setAttribute('aria-expanded',String(open)); b.textContent=open?'إخفاء ▴':'التفاصيل ▾';});
+});
+})();
+</script>
+
+</body></html>
